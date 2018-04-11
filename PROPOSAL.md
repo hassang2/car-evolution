@@ -2,7 +2,7 @@
 
 For my final project I will be doing a machine learning project. Specifically I will be using Neuroevolution of Augmented Topologies, NEAT for short, which is a genetic algorithm based on a [paper](http://nn.cs.utexas.edu/downloads/papers/stanley.ec02.pdf) by Kenneth Stanley in 2002 used to evolve neural networks to do complex tasks. Having this paper already read, I will use this algortihm to evolve a neural network to play a simple game or run a simmulation. The complexity of my game or simmulation will depend on how quickly I can get the algorithm working. In worst case scenario I will create a simple pixly atari game. I will code the game myself but my focus for this project will be the machine learning aspect of it and not developing a game.
 
-An example of an AI evolved by this algorithm is [here](https://www.youtube.com/watch?v=qv6UVOQ0F44&t=280s)
+An example of an AI evolved by this algorithm is [here](https://youtu.be/qv6UVOQ0F44)
 My project probably will not look as complex and impressive but I will try to come up with something original and interesting to deploy my network on.
 
 ## Libraries:
