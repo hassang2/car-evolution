@@ -5,12 +5,12 @@ For my final project I will be doing a machine learning project. Specifically I 
 An example of an AI evolved by this algorithm is here.
 
 
-##Libraries
-###NEAT C++
+## Libraries
+### NEAT C++
 I will be using NEAT C++ [library](http://nn.cs.utexas.edu/?neat-c) to evolve my network.
 This library has no formal documentation page but the code is well commented and by looking at it I could understand what the code does and how to use it. In addition, there are available demos and their source codes that I can look at.
 
-###Game Library
+### Game Library
 This is unlikely, but I might use a library to develop my game. This will depend on how using a library will make things for me easier and that if it is worth my time to learn how to use the library.
 
 
