@@ -571,7 +571,7 @@ bool Population::epoch(int generation) {
 	for(curspecies=sorted_species.begin();curspecies!=sorted_species.end();++curspecies) {
 
 		//Print out for Debugging/viewing what's going on 
-//		std::cout<<"orig fitness of Species"<<(*curspecies)->id<<"(Size "<<(*curspecies)->organisms.size()<<"): "<<(*((*curspecies)->organisms).begin())->orig_fitness<<" last improved "<<((*curspecies)->age-(*curspecies)->age_of_last_improvement)<<std::endl;
+		std::cout<<"orig fitness of Species"<<(*curspecies)->id<<"(Size "<<(*curspecies)->organisms.size()<<"): "<<(*((*curspecies)->organisms).begin())->orig_fitness<<" last improved "<<((*curspecies)->age-(*curspecies)->age_of_last_improvement)<<std::endl;
 	}
 
 	//Check for Population-level stagnation
