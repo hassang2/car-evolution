@@ -32,3 +32,5 @@ add_executable(final_project_hassang2
         NEAT.1.2.1/species.cpp
         NEAT.1.2.1/species.h
         NEAT.1.2.1/trait.cpp)
+
+add_executable(main src/main.cpp)

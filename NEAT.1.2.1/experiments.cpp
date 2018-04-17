@@ -289,7 +289,7 @@ Population *opposite_test(int gens) {
     memset(genes, 0, NEAT::num_runs * sizeof(int));
     memset(nodes, 0, NEAT::num_runs * sizeof(int));
 
-    ifstream iFile("oppositestartergenes", ios::in);
+    ifstream iFile("xorstartgenes2", ios::in);
 
     cout << "START opposite TEST" << endl;
 
@@ -297,6 +297,7 @@ Population *opposite_test(int gens) {
     //Read in the start Genome
     iFile >> curword;
     iFile >> id;
+
     cout << "Reading in Genome id " << id << endl;
     start_genome = new Genome(id, iFile);
     iFile.close();
@@ -378,7 +379,7 @@ Population *opposite_test(int gens) {
 
 bool opposite_evaluate(Organism *org) {
     Network *net;
-    double out[4]; //The four outputs
+    double out[50];
     double this_out; //The current output
     int count;
     double errorsum;
@@ -390,12 +391,26 @@ bool opposite_evaluate(Organism *org) {
     int net_depth; //The max depth of the network to be activated
     int relax; //Activates until relaxation
 
-    //The four possible input combinations to xor
     //The first number is for biasing
-    double in[4][3] = {{1.0, 0.0, 0.0},
-                       {1.0, 0.0, 1.0},
-                       {1.0, 1.0, 0.0},
-                       {1.0, 1.0, 1.0}};
+    double **in = new double*[50];
+    for (int i = 0;i < 50; i++) {
+        in[i] = new double[2];
+    }
+
+    double *expected = new double[50];
+
+    for (int i = 0; i < 50; i++) {
+        double x = -25 +  i;
+        in[i][0] = 1.0;
+        in[i][1] = x;
+
+        if (x > 0) {
+            expected[i] = 1.0;
+        } else {
+            expected[i] = 0.0;
+        }
+    }
+
 
     net = org->net;
     numnodes = ((org->gnome)->nodes).size();
@@ -407,7 +422,7 @@ bool opposite_evaluate(Organism *org) {
     //cout<<"DEPTH: "<<net_depth<<endl;
 
     //Load and activate the network on each input
-    for (count = 0; count <= 3; count++) {
+    for (count = 0; count < 50; count++) {
         net->load_sensors(in[count]);
 
         //Relax net and get output
@@ -422,15 +437,18 @@ bool opposite_evaluate(Organism *org) {
         out[count] = (*(net->outputs.begin()))->activation;
 
         net->flush();
-
     }
 
     if (success) {
-        errorsum = (fabs(out[0]) + fabs(1.0 - out[1]) + fabs(1.0 - out[2]) + fabs(out[3]));
-        org->fitness = pow((4.0 - errorsum), 2);
+        errorsum = 0;
+        for (int i = 0; i < 50; i++) {
+            errorsum += fabs(expected[i] - out[i]);
+        }
+        org->fitness = pow((50 - errorsum), 2);
         org->error = errorsum;
     } else {
         //The network is flawed (shouldn't happen)
+        cout << "unsuccessful activation";
         errorsum = 999.0;
         org->fitness = 0.001;
     }
@@ -442,9 +460,34 @@ bool opposite_evaluate(Organism *org) {
          << endl;
 #endif
 
-    //  if (errorsum<0.05) {
-    //if (errorsum<0.2) {
-    if ((out[0] < 0.5) && (out[1] >= 0.5) && (out[2] >= 0.5) && (out[3] < 0.5)) {
+
+//  if (errorsum<0.05) {
+    if (errorsum < 0.1) {
+        std::cout << "winner found. enter number: " << std::endl;
+//    if ((out[0] < 0.5) && (out[1] >= 0.5) && (out[2] >= 0.5) && (out[3] < 0.5)) {
+        double x;
+        double output;
+        cin >> x;
+        double input[2] = {1.0, x};
+        net->load_sensors(input);
+        //Relax net and get output
+        success = net->activate();
+
+        //use depth to ensure relaxation
+        for (relax = 0; relax <= net_depth; relax++) {
+            success = net->activate();
+            this_out = (*(net->outputs.begin()))->activation;
+        }
+
+        output = (*(net->outputs.begin()))->activation;
+
+        if (output < .5) {
+            std::cout << "negative" <<std::endl;
+        } else {
+            std::cout << "positive" <<std::endl;
+        }
+        net->flush();
+
         org->winner = true;
         return true;
     } else {
@@ -455,8 +498,7 @@ bool opposite_evaluate(Organism *org) {
 
 }
 
-int
-opposite_epoch(Population *pop, int generation, char *filename, int &winnernum, int &winnergenes, int &winnernodes) {
+int opposite_epoch(Population *pop, int generation, char *filename, int &winnernum, int &winnergenes, int &winnernodes) {
     vector<Organism *>::iterator curorg;
     vector<Species *>::iterator curspecies;
     //char cfilename[100];
@@ -469,7 +511,7 @@ opposite_epoch(Population *pop, int generation, char *filename, int &winnernum, 
 
     //Evaluate each organism on a test
     for (curorg = (pop->organisms).begin(); curorg != (pop->organisms).end(); ++curorg) {
-        if (xor_evaluate(*curorg)) {
+        if (opposite_evaluate(*curorg)) {
             win = true;
             winnernum = (*curorg)->gnome->genome_id;
             winnergenes = (*curorg)->gnome->extrons();
@@ -511,7 +553,7 @@ opposite_epoch(Population *pop, int generation, char *filename, int &winnernum, 
                 cout << "WINNER IS #" << ((*curorg)->gnome)->genome_id << endl;
                 //Prints the winner to file
                 //IMPORTANT: This causes generational file output!
-                print_Genome_tofile((*curorg)->gnome, "xor_winner");
+                print_Genome_tofile((*curorg)->gnome, "opposite_winner");
             }
         }
 

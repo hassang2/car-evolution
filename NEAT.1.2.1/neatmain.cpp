@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
     int choice;
 
     cout << "Please choose an experiment: " << endl;
-    cout << " " << endl;
+    cout << "1 - pos-neg " << endl;
     cout << " " << endl;
     cout << " " << endl;
     cout << "4 - XOR" << endl;
@@ -107,6 +107,7 @@ int main(int argc, char *argv[]) {
     cin >> choice;
     switch (choice) {
         case 1:
+            p = opposite_test(100);
             break;
         case 4:
             p = xor_test(30);
@@ -120,8 +121,7 @@ int main(int argc, char *argv[]) {
     //p = pole2_test(100,1); // 2-pole balancing, velocity
     //p = pole2_test(100,0); // 2-pole balancing, no velocity (non-markov)
 
-    if (p)
-        delete p;
+    delete p;
 
     return (0);
 

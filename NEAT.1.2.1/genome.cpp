@@ -104,7 +104,6 @@ Genome::Genome(const Genome& genome)
 }
 
 Genome::Genome(int id, std::ifstream &iFile) {
-
 	char curword[128];  //max word size of 128 characters
 	char curline[1024]; //max line size of 1024 characters
 	char delimiters[] = " \n";
@@ -115,14 +114,17 @@ Genome::Genome(int id, std::ifstream &iFile) {
 
 	genome_id=id;
 
-	iFile.getline(curline, sizeof(curline));
-	int wordcount = NEAT::getUnitCount(curline, delimiters);
+    iFile.getline(curline, sizeof(curline));
+//    std::cout<<curline<<std::endl;
+
+    int wordcount = NEAT::getUnitCount(curline, delimiters);
 	int curwordnum = 0;
 
-	//Loop until file is finished, parsing each line
+
+    //Loop until file is finished, parsing each line
 	while (!done) {
 
-        //std::cout << curline << std::endl;
+//        std::cout << curline <<std::endl;
 
 		if (curwordnum > wordcount || wordcount == 0) {
 			iFile.getline(curline, sizeof(curline));
@@ -149,7 +151,7 @@ Genome::Genome(int id, std::ifstream &iFile) {
 		//Ignore genomestart if it hasn't been gobbled yet
 		else if (strcmp(curword,"genomestart")==0) {
 			++curwordnum;
-			//cout<<"genomestart"<<endl;
+//			cout<<"genomestart"<<endl;
 		}
 
 		//Ignore comments surrounded by - they get printed to screen
@@ -166,6 +168,7 @@ Genome::Genome(int id, std::ifstream &iFile) {
 
 		//Read in a trait
 		else if (strcmp(curword,"trait")==0) {
+			std::cout<<"reading trait";
 			Trait *newtrait;
 
 			char argline[1024];
@@ -183,6 +186,8 @@ Genome::Genome(int id, std::ifstream &iFile) {
 
 		//Read in a node
 		else if (strcmp(curword,"node")==0) {
+			std::cout<<"reading node";
+
 			NNode *newnode;
 
 			char argline[1024];
@@ -199,6 +204,8 @@ Genome::Genome(int id, std::ifstream &iFile) {
 
 		//Read in a Gene
 		else if (strcmp(curword,"gene")==0) {
+			std::cout<<"reading gene";
+
 			Gene *newgene;
 
 			char argline[1024];
