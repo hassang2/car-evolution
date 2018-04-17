@@ -12,22 +12,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fdebe038-62e2-4106-8588-e71a418b965e" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/experiments.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/experiments.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/experiments.h" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/experiments.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/experiments.o" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/experiments.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_11" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_11" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_12" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_12" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_13" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_13" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_15" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_15" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_16" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_16" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_18" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_18" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_19" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_19" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_20" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_20" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_21" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_21" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_22" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_22" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_23" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_23" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_24" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_24" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_25" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_25" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_28" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_28" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_30" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_30" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_31" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_31" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_33" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_33" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_34" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_34" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_36" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_36" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_37" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_37" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_43" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_43" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_45" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_45" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_47" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_47" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_48" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_48" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_55" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_55" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_60" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_60" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_72" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_72" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_90" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/gen_90" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neat" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/neat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neatmain.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/neatmain.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neatmain.o" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/neatmain.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/population.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/population.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/population.o" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/population.o" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,8 +63,11 @@
       <file leaf-file-name="neatmain.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/neatmain.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="112" column="14" selection-end-line="136" />
+            <state relative-caret-position="-147">
+              <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+              <folding>
+                <element signature="e#938#957#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -53,20 +76,7 @@
         <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/neat.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="825">
-              <caret line="147" column="16" lean-forward="true" selection-start-line="147" selection-start-column="16" selection-end-line="147" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="experiments.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/experiments.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="262" column="1" lean-forward="true" selection-start-line="262" selection-start-column="1" selection-end-line="262" selection-end-column="1" />
-              <folding>
-                <element signature="e#1665#1718#0" expanded="true" />
-                <element signature="e#5252#5582#0" expanded="true" />
-              </folding>
+              <caret line="147" column="16" selection-start-line="147" selection-start-column="16" selection-end-line="147" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -74,26 +84,32 @@
       <file leaf-file-name="experiments.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/experiments.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="40" column="12" lean-forward="true" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
+            <state relative-caret-position="266">
+              <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="population.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/population.cpp">
+      <file leaf-file-name="experiments.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/experiments.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="574" column="5" lean-forward="true" selection-start-line="574" selection-start-column="5" selection-end-line="574" selection-end-column="5" />
+            <state relative-caret-position="491">
+              <caret line="410" column="28" selection-start-line="410" selection-start-column="26" selection-end-line="410" selection-end-column="28" />
+              <folding>
+                <element signature="e#1665#1718#0" expanded="true" />
+                <element signature="e#5252#5582#0" expanded="true" />
+                <element signature="e#9776#9829#0" expanded="true" />
+                <element signature="e#13442#13772#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="population.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/population.h">
+      <file leaf-file-name="network.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/network.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-75">
-              <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+            <state relative-caret-position="208">
+              <caret line="160" column="14" selection-start-line="160" selection-start-column="14" selection-end-line="160" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -113,6 +129,9 @@
       <find>orig fitness of</find>
       <find>gee</find>
       <find>winner</find>
+      <find>hidden</find>
+      <find>experiments</find>
+      <find>relax net</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -125,8 +144,10 @@
         <option value="$PROJECT_DIR$/NEAT.1.2.1/Makefile" />
         <option value="$PROJECT_DIR$/neat.1.1/finaldir/experiments.cpp" />
         <option value="$PROJECT_DIR$/neat.1.1/finaldir/neat.h" />
-        <option value="$PROJECT_DIR$/NEAT.1.2.1/neatmain.cpp" />
         <option value="$PROJECT_DIR$/NEAT.1.2.1/population.cpp" />
+        <option value="$PROJECT_DIR$/NEAT.1.2.1/neatmain.cpp" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
+        <option value="$PROJECT_DIR$/NEAT.1.2.1/experiments.h" />
         <option value="$PROJECT_DIR$/NEAT.1.2.1/experiments.cpp" />
       </list>
     </option>
@@ -137,10 +158,12 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="977" />
-    <option name="height" value="1038" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -172,6 +195,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="TEXT" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -213,18 +237,18 @@
       <option name="presentableId" value="Default" />
       <updated>1523814841210</updated>
       <workItem from="1523814842689" duration="213000" />
-      <workItem from="1523815161769" duration="6480000" />
+      <workItem from="1523815161769" duration="10571000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6693000" />
+    <option name="totallyTimeSpent" value="10784000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1595052" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.140625" />
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Messages" order="0" weight="0.33333334" />
       <window_info anchor="bottom" id="CMake" order="11" />
@@ -291,13 +315,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc/LocalState/rootfs/usr/include/x86_64-linux-gnu/bits/mathcalls.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
@@ -317,13 +334,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/neatmain.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="112" column="14" selection-end-line="136" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -334,31 +344,123 @@
     <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/population.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
-          <caret line="574" column="5" lean-forward="true" selection-start-line="574" selection-start-column="5" selection-end-line="574" selection-end-column="5" />
+          <caret line="574" column="5" selection-start-line="574" selection-start-column="5" selection-end-line="574" selection-end-column="5" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/network.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="104" column="13" selection-start-line="104" selection-start-column="13" selection-end-line="104" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/my_experiments.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/my_experiments.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/neat.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="825">
-          <caret line="147" column="16" lean-forward="true" selection-start-line="147" selection-start-column="16" selection-end-line="147" selection-end-column="16" />
+          <caret line="147" column="16" selection-start-line="147" selection-start-column="16" selection-end-line="147" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/neatmain.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-147">
+          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+          <folding>
+            <element signature="e#938#957#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/genome.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="81" column="37" selection-start-line="81" selection-start-column="31" selection-end-line="81" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="54" column="49" selection-start-line="54" selection-start-column="49" selection-end-line="54" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc/LocalState/rootfs/usr/include/c++/5/fstream">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="480" column="6" selection-start-line="480" selection-start-column="6" selection-end-line="480" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/nnode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-650">
+          <caret line="121" column="8" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/nnode.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="90" column="30" lean-forward="true" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/gene.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="91" column="33" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/genome.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="193" column="27" selection-start-line="193" selection-start-column="27" selection-end-line="193" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/experiments.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="40" column="12" lean-forward="true" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
+        <state relative-caret-position="266">
+          <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/network.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="160" column="14" selection-start-line="160" selection-start-column="14" selection-end-line="160" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/experiments.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="262" column="1" lean-forward="true" selection-start-line="262" selection-start-column="1" selection-end-line="262" selection-end-column="1" />
+        <state relative-caret-position="491">
+          <caret line="410" column="28" selection-start-line="410" selection-start-column="26" selection-end-line="410" selection-end-column="28" />
           <folding>
             <element signature="e#1665#1718#0" expanded="true" />
             <element signature="e#5252#5582#0" expanded="true" />
+            <element signature="e#9776#9829#0" expanded="true" />
+            <element signature="e#13442#13772#0" expanded="true" />
           </folding>
         </state>
       </provider>

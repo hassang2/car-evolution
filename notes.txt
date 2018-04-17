@@ -1,0 +1,26 @@
+Neoron states:
+
+
+    enum nodetype {
+    	NEURON = 0,
+    	SENSOR = 1
+    };
+
+
+    enum nodeplace {
+    	HIDDEN = 0,
+    	INPUT = 1,
+    	OUTPUT = 2,
+    	BIAS = 3
+    };
+
+
+
+
+starter genome format :
+
+    gene : 
+        >> traitnum >> input node num >> output node num >> weight >> recur >> innovation_num >> mutation_num >> enable;
+    Node:
+         >> node_id >> traitnum >> nodety >> nodepl
+

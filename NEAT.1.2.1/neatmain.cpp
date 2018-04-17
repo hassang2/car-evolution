@@ -98,25 +98,18 @@ int main(int argc, char *argv[]) {
     int choice;
 
     cout << "Please choose an experiment: " << endl;
-    cout << "1 - 1-pole balancing" << endl;
-    cout << "2 - 2-pole balancing, velocity info provided" << endl;
-    cout << "3 - 2-pole balancing, no velocity info provided (non-markov)" << endl;
+    cout << " " << endl;
+    cout << " " << endl;
+    cout << " " << endl;
     cout << "4 - XOR" << endl;
     cout << "Number: ";
 
     cin >> choice;
     switch (choice) {
         case 1:
-            p = pole1_test(100);
-            break;
-        case 2:
-            p = pole2_test(100, 1);
-            break;
-        case 3:
-            p = pole2_test(100, 0);
             break;
         case 4:
-            p = xor_test(100);
+            p = xor_test(30);
             break;
         default:
             cout << "Not an available option." << endl;
