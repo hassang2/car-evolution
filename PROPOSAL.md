@@ -15,7 +15,7 @@ This is unlikely, but I might use a library to develop my game. This will depend
 
 ## The Game
 
-The game will be a top view of a car track and the user has to finish the designated amount of loops as fast as possible. The game will have three modes: playing the game yourself and trying to beat the high score, watching the AI that I have trained play, or competing against the AI. There will be no collision in the game becasue that's the setting I am training my network in. The game will start with simple controls such as only pressing keys to go right or left and as I go on, depening on how much time I have remaining to complete the project, I will add more controls and mechanics such as a break and boost system or obsticles to avoid. The goal of this project will be to train an AI that can surpass human performance in playing the game.
+The game will be a [top view](https://duskfire.files.wordpress.com/2011/08/pyracerz.png) of a car track and the user has to finish the designated amount of loops as fast as possible. The game will have three modes: playing the game yourself and trying to beat the high score, watching the AI that I have trained play, or competing against the AI. There will be no collision in the game becasue that's the setting I am training my network in. The game will start with simple controls such as only pressing keys to go right or left and as I go on, depening on how much time I have remaining to complete the project, I will add more controls and mechanics such as a break and boost system or obsticles to avoid. The goal of this project will be to train an AI that can surpass human performance in playing the game.
 
 ## Training the Network
 
