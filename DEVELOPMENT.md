@@ -13,9 +13,6 @@
 * Figure out how to change the activation function of the network so that it could be used for multiclass classification and regression
 
 
-
-### ISSUES
-
 ## Race Game:
 ## LOG
 
