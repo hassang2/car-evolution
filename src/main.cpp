@@ -1,12 +1,13 @@
-#include <iostream>
+#include "ofMain.h"
+#include "ofApp.h"
+
+#define DISPLAY_MODE OF_WINDOW // Can be OF_WINDOW or OF_FULLSCREEN
 
 int main() {
-    double *expected = new double[50];
-    expected[0] = 1;
-    double **in = new double*[50];
+	ofSetupOpenGL(800, 600, DISPLAY_MODE); // setup the GL context
+	ofSetFrameRate(30); // An appropriate framerate that moves the snake at a good speed
+						// Due to the simple nature of our objects rendering things this slow should not cause visual discomfort or lage
 
-    expected[20] = 5;
-    std::cout<<sizeof(in) / sizeof(in[0]) << " " << sizeof(expected) / sizeof(*expected);
-    return 0;
+						// this kicks off the running of my app
+	ofRunApp(new racingai::carGame());
 }
-
