@@ -1,0 +1,10 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (obj\Debug\) contains files shared from another project (final_project.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  main.cpp
+  ofApp.cpp
+  track.cpp
+c:\users\p_cat\openframeworks\of_v0.9.8_vs_release\addons\ofxbox2d-stable\libs\triangle\dpoint.hpp(477): warning C4002: too many actual parameters for macro 'assert' (compiling source file src\ofApp.cpp)
+c:\users\p_cat\openframeworks\of_v0.9.8_vs_release\addons\ofxbox2d-stable\libs\triangle\dpoint.hpp(477): warning C4002: too many actual parameters for macro 'assert' (compiling source file src\main.cpp)
+  final-project-hassang2.vcxproj -> C:\Users\P_Cat\openFrameworks\of_v0.9.8_vs_release\apps\myApps\final-project-hassang2\bin\final-project-hassang2_debug.exe
+  final-project-hassang2.vcxproj -> bin\final-project-hassang2_debug.pdb (Full PDB)
+  
+  	                   9	C:\Users\P_Cat\openFrameworks\of_v0.9.8_vs_release\export\vs\Win32\
