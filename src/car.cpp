@@ -9,11 +9,13 @@ ofVec2f Car::getBodySize() const {
 
 Car::Car() {
 	position_.set(100, 100);
-	body_ = ofRectangle(position_.x, position_.y, WIDTH, HEIGHT);
+	body_ = new ofxBox2dRect();
+	body_->setPhysics(3.0, 0.53, 0.1);
 }
 
 void Car::update() {
 	position_.set(position_.x + cos(angle_ * PI / 180) * speed_, position_.y + sin(angle_ * PI / 180) * speed_);
+	body_->setPosition(position_);
 }
 
 bool Car::isDead() const {
@@ -42,6 +44,10 @@ void racingai::Car::swerveLeft() {
 	angle_ = fmod(angle_ + SWERVE_AMOUNT, 360);
 }
 
+ofxBox2dRect * racingai::Car::getBody() const {
+	return body_;
+}
+
 double racingai::Car::getXPos() const {
 	return position_.x;
 }
@@ -55,9 +61,11 @@ double racingai::Car::getAngle() const {
 }
 
 double racingai::Car::getHeight() const {
-	return body_.height;
+	//return body_.height;
+	return 20;
 }
 
 double racingai::Car::getWidth() const {
-	return body_.width;
+	//return body_.width;
+	return 40;
 }

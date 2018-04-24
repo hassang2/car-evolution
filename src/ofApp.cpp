@@ -1,3 +1,4 @@
+#pragma once
 #include "ofApp.h"
 #include <iostream>
 
@@ -5,11 +6,9 @@ using namespace racingai;
 
 // Setup method
 void carGame::setup() {
-	box2d.init();
-	box2d.setGravity(0, 5);
-	box2d.createGround();
-	box2d.setFPS(60.0);
-	box2d.registerGrabbing();
+
+	initBox2d();
+	game_car_.getBody()->setup(box2d_.getWorld(), 200, 200, 40, 20);
 
 	ofSetWindowTitle("AI Racing");
 	ofSetRectMode(OF_RECTMODE_CENTER);     // 0,0 is at center of a rectangle now
@@ -27,7 +26,7 @@ If the function should update when it is called it will:
 4. Check to see if the snakes new position has resulted in its death and the end of the game
 */
 void carGame::update() {
-	box2d.update();
+	box2d_.update();
 
 	if (current_state_ == IN_PROGRESS) {
 		//ofCircle car_rect(game_car_.getXPos(), game_car_.getYPos(), 5.0, 5.0);
@@ -58,10 +57,10 @@ void carGame::draw() {
 	drawTrack();
 	drawCar();
 
-	for (int i = 0; i < circles.size(); i++) {
+	for (int i = 0; i < circles_.size(); i++) {
 		ofFill();
 		ofSetHexColor(0x90d4e3);
-		circles[i].get()->draw();
+		circles_[i].get()->draw();
 	}
 }
 
@@ -100,9 +99,9 @@ void carGame::keyPressed(int key) {
 		//	should_update_ = false;
 		//}
 		if (upper_key == 'A' || key == OF_KEY_LEFT) {
-			circles.push_back(shared_ptr<ofxBox2dCircle>(new ofxBox2dCircle));
-			circles.back().get()->setPhysics(3.0, 0.53, 0.1);
-			circles.back().get()->setup(box2d.getWorld(), 200, 200, 10);
+			circles_.push_back(shared_ptr<ofxBox2dCircle>(new ofxBox2dCircle));
+			circles_.back().get()->setPhysics(3.0, 0.53, 0.1);
+			circles_.back().get()->setup(box2d_.getWorld(), 200, 200, 10);
 			right_btn_hold_ = true;
 		}
 		//else if ((upper_key == 'S') && current_direction != UP && current_direction != DOWN) {
@@ -179,12 +178,15 @@ void carGame::drawCar() {
 	ofSetColor(ofColor(150, 40, 255));
 
 	//handles rotation as well
-	ofPushMatrix();
-	ofTranslate(game_car_.getXPos(), game_car_.getYPos(), 0);
-	ofRotateZ(game_car_.getAngle());
-	ofTranslate(-game_car_.getXPos(), -game_car_.getYPos(), 0);
-	ofDrawRectangle(game_car_.getXPos(), game_car_.getYPos(), game_car_.getWidth(), game_car_.getHeight());
-	ofPopMatrix();
+	//ofPushMatrix();
+	//ofTranslate(game_car_.getXPos(), game_car_.getYPos(), 0);
+	//ofRotateZ(game_car_.getAngle());
+	//ofTranslate(-game_car_.getXPos(), -game_car_.getYPos(), 0);
+	//ofDrawRectangle(game_car_.getXPos(), game_car_.getYPos(), game_car_.getWidth(), game_car_.getHeight());
+	//ofPopMatrix();
+
+	game_car_.getBody()->setRotation(game_car_.getAngle());
+	game_car_.getBody()->draw();
 }
 
 void carGame::drawGameOver() {
@@ -205,6 +207,14 @@ void carGame::drawTopScores() {
 
 void racingai::carGame::drawTrack() {
 	game_track_.getSegments()[0].draw();
+}
+
+void racingai::carGame::initBox2d() {
+	box2d_.init();
+	box2d_.setGravity(0, 5);
+	box2d_.createGround();
+	box2d_.setFPS(60.0);
+	box2d_.registerGrabbing();
 }
 
 void carGame::drawGamePaused() {

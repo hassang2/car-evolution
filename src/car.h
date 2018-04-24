@@ -1,5 +1,6 @@
-#include "ofMain.h"
 #pragma once
+#include "ofMain.h"
+#include "ofxBox2d.h"
 
 namespace racingai {
 
@@ -11,8 +12,7 @@ namespace racingai {
 		double angle_ = 0.0;
 		double speed_ = 1.5;
 		ofVec2f position_;
-		ofRectangle body_;
-
+		ofxBox2dRect* body_;
 
 		double score_ = 0.0;
 
@@ -29,6 +29,7 @@ namespace racingai {
 		int getScore() const; // Gets the number of food items the snake has eaten
 		void swerveRight(); //swerves the car to right
 		void swerveLeft(); //swerves the car to left
+		ofxBox2dRect* getBody() const;
 		double getXPos() const;
 		double getYPos() const;
 		double getAngle() const;

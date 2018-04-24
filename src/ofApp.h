@@ -25,9 +25,11 @@ namespace racingai {
 		Car game_car_; // The object that represents the user controlled car
 		Track game_track_; // the track object used in the game
 		
-		ofxBox2d box2d;           // the box2d world
+		ofxBox2d box2d_;           // the box2d world
 		ofPolyline drawing;         // we draw with this first
-						   
+					
+		vector    <shared_ptr<ofxBox2dCircle> > circles_;         // default box2d circles
+
 	    //Score tracking
 		std::vector<int> top_scores_;
 		int lowest_score_ = INT_MAX;
@@ -43,6 +45,8 @@ namespace racingai {
 		void drawTopScores();
 		void drawTrack();
 
+		void initBox2d();
+
 		// Resets the game objects to their original state.
 		void reset();
 
@@ -50,8 +54,6 @@ namespace racingai {
 		void evaluateScore();
 		int findLowestScoreIndex();
 	public:
-
-		vector    <shared_ptr<ofxBox2dCircle> > circles;         // default box2d circles
 
 		// Function used for one time setup
 		void setup();
