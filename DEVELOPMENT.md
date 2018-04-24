@@ -22,9 +22,11 @@
 * Circle now can move to right and left with A or D or left/right arrows
 * changed the circle to rectangle.
 * Rectnagle now rotates properly when it turns right or left
+* Now using box2d physics engine for collisions
+* car collision is now working
 
 ### TODO
 
+* create a track
 * Figure out a way to save the drawn track
-* Consider how collision would work with the track and car
 
