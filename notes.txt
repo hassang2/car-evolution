@@ -24,3 +24,12 @@ starter genome format :
     Node:
          >> node_id >> traitnum >> nodety >> nodepl
 
+
+
+
+Game:
+
+    Contact listener for intersection detection
+    Edge Shape for drawing track
+
+

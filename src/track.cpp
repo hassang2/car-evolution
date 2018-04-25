@@ -1,24 +1,34 @@
 #include "track.h"
 
-racingai::Track::Track() {
-	setup();
+using namespace racingai;
+Track::Track() {
 }
 
-void racingai::Track::setup() {
-	ofPolyline a;
-	a.curveTo(350, 100);  // These curves are Catmull-Rom splines
-	a.curveTo(350, 100);  // Necessary Duplicate for Control Point
-	a.curveTo(400, 150);
-	a.curveTo(450, 100);
-	a.curveTo(500, 150);
-	a.curveTo(550, 100);
-	a.curveTo(550, 100);
-
-	segments_.push_back(a);
+void Track::update() {
+	ground_.clear();
+	ground_.addVertexes(groundLine_);
+	ground_.create(box2d_->getWorld());
 }
 
-vector<ofPolyline> racingai::Track::getSegments() {
-	return segments_;
+void Track::setup(ofxBox2d* box) {
+	box2d_ = box;
+	groundLine_.addVertex(10, 10);
+	groundLine_.addVertex(10, 40);
+	groundLine_.addVertex(500, 600);
+	groundLine_.close();
 }
+
+void racingai::Track::draw() {
+	ground_.updateShape();
+	ground_.draw();
+}
+
+ofxBox2dEdge Track::getGround() const {
+	return ground_;
+}
+
+//vector<ofPolyline> racingai::Track::getSegments() {
+//	return segments_;
+//}
 
 

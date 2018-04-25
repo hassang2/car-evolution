@@ -25,8 +25,7 @@ namespace racingai {
 		Car game_car_; // The object that represents the user controlled car
 		Track game_track_; // the track object used in the game
 		
-		ofxBox2d box2d_;           // the box2d world
-		ofPolyline drawing;         // we draw with this first
+		ofxBox2d* box2d_;           // the box2d world
 					
 		vector    <shared_ptr<ofxBox2dCircle> > circles_;         // default box2d circles
 
@@ -39,11 +38,9 @@ namespace racingai {
 		bool left_btn_hold_ = false;
 
 		// Private helper methods to render various aspects of the game on screen.
-		void drawCar();
 		void drawGameOver();
 		void drawGamePaused();
 		void drawTopScores();
-		void drawTrack();
 
 		void initBox2d();
 

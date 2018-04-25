@@ -29,6 +29,8 @@ namespace racingai {
 		int getScore() const; // Gets the number of food items the snake has eaten
 		void swerveRight(); //swerves the car to right
 		void swerveLeft(); //swerves the car to left
+		void draw();
+		void setup(ofxBox2d* box);
 		ofxBox2dRect* getBody() const;
 		double getXPos() const;
 		double getYPos() const;
