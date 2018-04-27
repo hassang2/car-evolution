@@ -5,13 +5,13 @@
 namespace racingai {
 
 	class Car {
-		double SWERVE_AMOUNT = 5.0;
+		double SWERVE_AMOUNT = 3.7;
 		double WIDTH = 40.0;
 		double HEIGHT = 20.0;
 	private:
 		double angle_ = 0.0;
-		double speed_ = 1.5;
-		ofVec2f position_;
+		double speed_ = 4.0;
+		//ofVec2f position_;
 		ofxBox2dRect* body_;
 
 		double score_ = 0.0;
@@ -31,10 +31,12 @@ namespace racingai {
 		void swerveLeft(); //swerves the car to left
 		void draw();
 		void setup(ofxBox2d* box);
+		void setSpeed(double s);
 		ofxBox2dRect* getBody() const;
 		double getXPos() const;
 		double getYPos() const;
 		double getAngle() const;
+		double getSpeed() const;
 		double getHeight() const;
 		double getWidth() const;
 		bool intersects(ofPolyline line) const;

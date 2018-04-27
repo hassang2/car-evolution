@@ -8,25 +8,26 @@ ofVec2f Car::getBodySize() const {
 };
 
 Car::Car() {
-	position_.set(100, 100);
 	body_ = new ofxBox2dRect();
 	body_->setPhysics(3.0, 0.53, 0.1);
 }
 
 void Car::setup(ofxBox2d* box) {
-	body_->setup(box->getWorld(), 200, 200, 40, 20);
-	//body_->body->SetType(b2_kinematicBody);
-	b2Vec2 velocity(-speed_, 0);
-	body_->body->SetLinearVelocity(velocity);
+	body_->setup(box->getWorld(), -500, -500, 40, 20);
+}
+
+void racingai::Car::setSpeed(double s) {
+	speed_ = s;
 }
 
 void Car::update() {
-	//position_.set(position_.x + cos(angle_ * PI / 180) * speed_, position_.y + sin(angle_ * PI / 180) * speed_);
-	//body_->setPosition(position_);
+	body_->setPosition(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
+}
 
-	b2Vec2 velocity(cos(angle_ * PI / 180) * speed_, sin(angle_ * PI / 180) * speed_);
-	body_->body->SetLinearVelocity(velocity);
-
+void Car::draw() {
+	ofSetColor(ofColor(150, 40, 255));
+	body_->setRotation(angle_);
+	body_->draw();
 }
 
 bool Car::isDead() const {
@@ -55,26 +56,24 @@ void Car::swerveLeft() {
 	angle_ = fmod(angle_ + SWERVE_AMOUNT, 360);
 }
 
-void Car::draw() {
-	ofSetColor(ofColor(150, 40, 255));
-	body_->setRotation(angle_);
-	body_->draw();
-}
-
 ofxBox2dRect * Car::getBody() const {
 	return body_;
 }
 
 double Car::getXPos() const {
-	return position_.x;
+	return body_->getPosition().x;
 }
 
 double Car::getYPos() const {
-	return position_.y;
+	return body_->getPosition().y;
 }
 
 double Car::getAngle() const {
 	return angle_;
+}
+
+double racingai::Car::getSpeed() const {
+	return speed_;
 }
 
 double Car::getHeight() const {

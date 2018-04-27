@@ -13,11 +13,12 @@ void carGame::setup() {
 
 	initBox2d();
 
-	game_car_.setup(box2d_);
-	game_track_.setup(box2d_);
+	game_car_ = new Car();
+	game_car_->setup(box2d_);
+	game_track_.setup(box2d_, game_car_);
+	game_track_.loadTrack("../coordinates");
 
 	srand(static_cast<unsigned>(time(0))); // Seed random with current time
-
 }
 
 /*
@@ -35,10 +36,13 @@ void carGame::update() {
 
 	if (current_state_ == IN_PROGRESS) {
 		//ofCircle car_rect(game_car_.getXPos(), game_car_.getYPos(), 5.0, 5.0);
-		if (right_btn_hold_) game_car_.swerveRight();
-		if (left_btn_hold_) game_car_.swerveLeft();
-		game_car_.update();
+		if (right_btn_hold_) game_car_->swerveRight();
+		if (left_btn_hold_) game_car_->swerveLeft();
+
+		//Order matters : track should be updated first
 		game_track_.update();
+		game_car_->update();
+
 		//if (game_car_.isDead()) {
 		//	current_state_ = FINISHED;
 		//	evaluateScore();
@@ -62,18 +66,20 @@ void carGame::draw() {
 	}
 
 	game_track_.draw();
-	game_car_.draw();
+	game_car_->draw();
 
 	for (int i = 0; i < circles_.size(); i++) {
 		ofFill();
 		ofSetHexColor(0x90d4e3);
 		circles_[i].get()->draw();
 	}
-
 	//draw FPS
 	ofSetColor(255);
 	ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate()), 10, 10);
+
+	ofDrawBitmapString("(" + ofToString(ofGetMouseX()) + ", " + ofToString(ofGetMouseY()) + ")", 10, 30);
 }
+
 
 /*
 Function that handles actions based on user key presses
@@ -95,36 +101,34 @@ void carGame::keyPressed(int key) {
 	}
 
 	int upper_key = toupper(key); // Standardize on upper case
-
-	if (upper_key == 'P' && current_state_ != FINISHED) {
-		// Pause or unpause
-		current_state_ = (current_state_ == IN_PROGRESS) ? PAUSED : IN_PROGRESS;
-		drawTopScores();
-	}
-	else if (current_state_ == IN_PROGRESS) {
-
-		// If current direction has changed to a valid new one, force an immediate update and skip the next frame update
-		//if (upper_key == 'W' && current_direction != DOWN && current_direction != UP) {
-		//	game_snake_.setDirection(UP);
-		//	update();
-		//	should_update_ = false;
-		//}
-		if (upper_key == 'A' || key == OF_KEY_LEFT) {
-			circles_.push_back(shared_ptr<ofxBox2dCircle>(new ofxBox2dCircle));
-			circles_.back().get()->setPhysics(3.0, 0.53, 0.1);
-			circles_.back().get()->setup(box2d_->getWorld(), 200, 200, 10);
+	if (current_state_ == IN_PROGRESS) {
+		switch (upper_key) {
+		case 'W':
+			game_track_.printPaths();
+			break;
+		case 'A':
 			right_btn_hold_ = true;
-		}
-		//else if ((upper_key == 'S') && current_direction != UP && current_direction != DOWN) {
-		//	game_snake_.setDirection(DOWN);
-		//	update();
-		//	should_update_ = false;
-		//}
-		else if (upper_key == 'D' || key == OF_KEY_RIGHT) {
+			break;
+		case 'D':
 			left_btn_hold_ = true;
-		} else if (upper_key == 'R') {
+			break;
+		case 'S':
+			if (game_car_->getSpeed() > 1.0) game_car_->setSpeed(0.0);
+			else game_car_->setSpeed(3.0);
+			break;
+		case 'P':
+			game_track_.addPoint(ofGetMouseX(), ofGetMouseY());
+			break;
+		case 'L':
+			game_track_.removePoint();
+			break;
+		case 'R':
 			reset();
-		} else if (upper_key == 'Q') {
+			break;
+		case 'B':
+			game_track_.saveTrack();
+			break;
+		case 'Q':
 			std::exit(0);
 		}
 	}
@@ -137,21 +141,30 @@ void carGame::keyReleased(int key) {
 	if (current_state_ == IN_PROGRESS) {
 		if (upper_key == 'A' || key == OF_KEY_LEFT) {
 			right_btn_hold_ = false;
-		} else if (upper_key == 'D' || key == OF_KEY_RIGHT) {
+		}
+		else if (upper_key == 'D' || key == OF_KEY_RIGHT) {
 			left_btn_hold_ = false;
 		}
 	}
 }
 
+void carGame::mousePressed(int x, int y, int button) {
+	if (button == OF_MOUSE_BUTTON_LEFT) game_track_.addPoint(x, y);
+	else if (button == OF_MOUSE_BUTTON_RIGHT) game_track_.removePoint();
+}
+
+
+
 void carGame::reset() {
-	game_car_ = Car();
+	// delete current car?
+	game_car_ = new Car();
 	current_state_ = IN_PROGRESS;
 }
 
 void racingai::carGame::evaluateScore() {
 	if (current_state_ == FINISHED) {
 
-		int total_score = game_car_.getScore();
+		int total_score = game_car_->getScore();
 
 		if (top_scores_.size() < 10) {
 			top_scores_.push_back(total_score);
@@ -186,7 +199,7 @@ int racingai::carGame::findLowestScoreIndex() {
 //}
 
 void carGame::drawGameOver() {
-	string lose_message = "You Lost! Final Score: " + game_car_.getScore();
+	string lose_message = "You Lost! Final Score: " + game_car_->getScore();
 	ofSetColor(0, 0, 0);
 	ofDrawBitmapString(lose_message, ofGetWindowWidth() / 4, 50);
 	drawTopScores();
@@ -204,10 +217,10 @@ void carGame::drawTopScores() {
 void racingai::carGame::initBox2d() {
 	box2d_ = new ofxBox2d();
 	box2d_->init();
-	box2d_->setGravity(0, 5);
+	box2d_->setGravity(0, 0);
 	box2d_->createGround();
 	box2d_->setFPS(60.0);
-	box2d_->registerGrabbing();
+	//box2d_->registerGrabbing();
 }
 
 void carGame::drawGamePaused() {

@@ -22,9 +22,9 @@ namespace racingai {
 	class carGame : public ofBaseApp {
 	private:
 		GameState current_state_ = IN_PROGRESS; // The current state of the game, used to determine possible actions
-		Car game_car_; // The object that represents the user controlled car
+		Car* game_car_; // The object that represents the user controlled car
 		Track game_track_; // the track object used in the game
-		
+
 		ofxBox2d* box2d_;           // the box2d world
 					
 		vector    <shared_ptr<ofxBox2dCircle> > circles_;         // default box2d circles
@@ -62,6 +62,8 @@ namespace racingai {
 		// Event driven functions, called on appropriate user action
 		void keyPressed(int key);
 		void keyReleased(int key);
+		void mousePressed(int x, int y, int button);
+
 		//void windowResized(int w, int h);
 	};
 } // namespace racingai
