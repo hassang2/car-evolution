@@ -5,12 +5,12 @@
 namespace racingai {
 
 	class Car {
-		double SWERVE_AMOUNT = 3.7;
+		double SWERVE_AMOUNT = 4.0;
 		double WIDTH = 40.0;
 		double HEIGHT = 20.0;
 	private:
 		double angle_ = 0.0;
-		double speed_ = 4.0;
+		double speed_ = 6.0;
 		//ofVec2f position_;
 		ofxBox2dRect* body_;
 

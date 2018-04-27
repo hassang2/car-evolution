@@ -15,8 +15,8 @@ void carGame::setup() {
 
 	game_car_ = new Car();
 	game_car_->setup(box2d_);
-	game_track_.setup(box2d_, game_car_);
-	game_track_.loadTrack("../coordinates");
+	game_track_.setup(box2d_, game_car_, "../tracks/track1");
+	//game_track_.loadTrack("../tracks/track1");
 
 	srand(static_cast<unsigned>(time(0))); // Seed random with current time
 }
@@ -104,7 +104,6 @@ void carGame::keyPressed(int key) {
 	if (current_state_ == IN_PROGRESS) {
 		switch (upper_key) {
 		case 'W':
-			game_track_.printPaths();
 			break;
 		case 'A':
 			right_btn_hold_ = true;

@@ -17,13 +17,13 @@ namespace racingai {
 		ofxBox2d* box2d_;        //box2d engine
 		Car* game_car_;
 		vector<ofPoint> vertices_;
-		vector<ofPoint> added_vertices_;
-		double global_x_ = ofGetWindowWidth() / 2;
-		double global_y_ = ofGetWindowHeight() / 2;
+		//vector<ofPoint> added_vertices_;
+		double global_x_ = 0;
+		double global_y_ = 0;
 	public:
 		Track();
 		void update();
-		void setup(ofxBox2d* box, Car* car);
+		void setup(ofxBox2d* box, Car* car, string file_path);
 		void draw();
 		void center();
 
@@ -35,17 +35,17 @@ namespace racingai {
 
 		void loadTrack(std::string path);
 		void saveTrack() const;
-		void printPaths() const;
 		//int getGlobalX() const;
 		//int getGlobalY() const;
 		void setGlobalX(double x);
 		void setGlobalY(double y);
 
 		//converts window coordinates to global coordinates
-		ofPoint getGlobalPoint(double x, double y);
-
+		ofPoint getGlobalPoint(double x, double y) const;
+		ofPoint getGlobalPoint(ofPoint point) const;
 		//converts global coordinates to window coordinates
-		ofPoint getLocalPoint(double x, double y);
+		ofPoint getLocalPoint(double x, double y) const;
+		ofPoint getLocalPoint(ofPoint point) const;
 		ofxBox2dEdge getGround() const;
 		vector<ofPolyline> getSegments();
 	};

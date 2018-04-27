@@ -13,7 +13,7 @@ Car::Car() {
 }
 
 void Car::setup(ofxBox2d* box) {
-	body_->setup(box->getWorld(), -500, -500, 40, 20);
+	body_->setup(box->getWorld(), 0, 0, 40, 20);
 }
 
 void racingai::Car::setSpeed(double s) {
