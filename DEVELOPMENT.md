@@ -24,9 +24,11 @@
 * Rectnagle now rotates properly when it turns right or left
 * Now using box2d physics engine for collisions
 * car collision is now working
+* added track edditing
+* added track saving and loading
 
 ### TODO
 
-* create a track
-* Figure out a way to save the drawn track
+* Figure out the score system
+* Figure out how to get the distance of the front of the car from the wall (in multiple directions)
 
