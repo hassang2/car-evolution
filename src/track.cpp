@@ -10,8 +10,6 @@ void Track::setup(ofxBox2d* box, Car* car, string file_path) {
 	loadTrack(file_path);
 }
 
-
-
 void racingai::Track::saveTrack() const {
 
 	//find an unused index for the track name
@@ -24,16 +22,15 @@ void racingai::Track::saveTrack() const {
 	}
 
 	std::ofstream ofs("../tracks/" + file_name, std::ios::out);
-	
-	for (int i = 0; i < groundLine_.getVertices().size() - 1; i++) {
-		ofPoint global_point = getGlobalPoint(groundLine_.getVertices()[i]);
-		ofs << "(" << global_point.x << ", " << global_point.y << ")" << std::endl;
+
+	for (int i = 0; i < edges_.size(); i++) {
+		for (int k = 0; k < edges_[i]->getVertices().size(); k++) {
+			ofPoint global_point = getGlobalPoint(edges_[i]->getVertices()[k]);
+			ofs << "(" << global_point.x << ", " << global_point.y << ")" << std::endl;
+		}
+		ofs << "---" << std::endl;
 	}
-
-	//to prevent a new line character at the end of the file
-	ofPoint global_point = getGlobalPoint(groundLine_.getVertices()[groundLine_.getVertices().size() - 1]);
-	ofs << "(" << global_point.x << ", " << global_point.y << ")";
-
+	
 	ofs.close();
 
 	std::cout << "Track saved as " << file_name << std::endl;
@@ -41,98 +38,93 @@ void racingai::Track::saveTrack() const {
 
 void racingai::Track::loadTrack(std::string path) {
 	std::cout << "loading track" << std::endl;
-	std::ifstream inFile;
-	inFile.open(path);
+	std::ifstream in_file;
+	in_file.open(path);
 
 	string line;
 
-	if (!inFile.good()) {
+	if (!in_file.good()) {
 		std::cout << "not a valid track" << std::endl;
 		return;
 	}
-	while (inFile.good()) {
-		getline(inFile, line);
-		int comma_index = line.find(",");
-		int x = std::stoi(line.substr(1, comma_index));
-		int y = std::stoi(line.substr(comma_index + 1, line.length() - 1));
+	while (in_file.good()) {
+		getline(in_file, line);
+		if (line.find("---") == string::npos) {
+			std::cout << line << std::endl;
+			int comma_index = line.find(",");
+			int x = std::stoi(line.substr(1, comma_index));
+			int y = std::stoi(line.substr(comma_index + 1, line.length() - 1));
 
-		ofPoint new_point = getLocalPoint(ofPoint(x, y));
-		vertices_.push_back(new_point);
+			edges_.back().get()->addVertex(x, y);
+		} else {
+			edges_.push_back(make_shared<ofxBox2dEdge>());
+		}
 	}
 
-	//vertices_.insert(vertices_.begin(), vertices_.front());
-	//vertices_.push_back(vertices_.back());
-
-	groundLine_.addVertices(vertices_);
-
-	//scaling the size
-	//vector<ofPoint> old_points = groundLine_.getVertices();
-	//groundLine_ = ofPolyline();
-
-	//for (ofPoint &point : vertices_) {
-	//	point = ofPoint(ofMap(point.x, 0, 500, 0, 5000) - 10 * ofGetWindowWidth() / 2,  ofMap(point.y, 0, 500, 0 , 5000) - 10 * ofGetWindowWidth() / 2);
-	//	groundLine_.curveTo(point);
-	//}
-
-	//vertices_.push_back(vertices_.back());
-	//groundLine_.addVertex(vertices_.back());
-	inFile.close();
+	in_file.close();
 	std::cout << "finished loading" << std::endl;
-
 }
 
 void Track::update() {
 	center();
 
-	//creating the edges
-	ground_.clear();
-	ground_.addVertexes(groundLine_);
-	ground_.create(box2d_->getWorld());
+	//creating the edges_
+	for (std::shared_ptr<ofxBox2dEdge> edge : edges_) {
+		edge.get()->create(box2d_->getWorld());
+	}
 }
 
 void Track::center() {
-	vector<ofPoint> old_points = groundLine_.getVertices();
-	groundLine_ = ofPolyline();
+	for (std::shared_ptr<ofxBox2dEdge> edge : edges_) {
+		vector<ofPoint> old_points = edge.get()->getVertices();
+		edge.get()->clear();
+		
+		double dx = cos(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() + ofGetWindowWidth() / 2 - game_car_->getXPos();
+		double dy = sin(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() + ofGetWindowHeight() / 2 - game_car_->getYPos();
 
-	double dx = cos(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() + ofGetWindowWidth() / 2 - game_car_->getXPos();
-	double dy = sin(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() + ofGetWindowHeight() / 2 - game_car_->getYPos();
-	global_x_ += dx;
-	global_y_ += dy;
-	for (ofPoint point : old_points) {
-		groundLine_.addVertex(point.x + dx, point.y + dy);
+		global_x_ += dx;
+		global_y_ += dy;
+		for (ofPoint point : old_points) {
+			edge.get()->addVertex(point.x + dx, point.y + dy);
+		}
 	}
+}
+
+
+void racingai::Track::addEdge() {
+	if (edges_.size() > 0) 	edges_.back()->simplify();
+	edges_.push_back(make_shared<ofxBox2dEdge>());
+}
+
+void racingai::Track::removeEdge() {
+	if (edges_.size() > 0) edges_.pop_back();
+	std::cout << "Removed last curve" << std::endl;
 }
 
 void racingai::Track::draw() {
-	ground_.updateShape();
-	ground_.draw();
+
+	//for (std::shared_ptr<ofxBox2dEdge> edge : edges_) {
+	//	edge->updateShape();
+	//	edge->draw();
+	//}
+	for (int i = 0; i<edges_.size(); i++) {
+		edges_[i].get()->draw();
+	}
 }
 
 void racingai::Track::addPoint(int x, int y) {
-	ofPoint new_point = ofPoint(x, y);
-	vertices_.push_back(new_point);
-	vertices_.push_back(new_point);
-	groundLine_.addVertex(new_point);
-	groundLine_.addVertex(new_point);
-
-	update();
+	edges_.back().get()->addVertex(x, y);
 	std::cout << "Added point" << std::endl;
+	update();
 }
 
 void racingai::Track::removePoint() {
-	vector<ofPoint> old_points = groundLine_.getVertices();
-	groundLine_ = ofPolyline();
-	old_points.pop_back();
-	old_points.pop_back();
-
-	ofPoint back = vertices_.back();
-
-	for (ofPoint point : old_points) {
-		groundLine_.addVertex(point.x, point.y);
+	if (edges_.back().get()->getVertices().size == 0) return;
+	vector<ofPoint> old_points = edges_.back().get()->getVertices();
+	edges_.back().get()->clear();
+	for (int i = 0; i < old_points.size() - 1; i++) {
+		edges_.back().get()->addVertex(old_points[i]);
 	}
-
-	update();
-	std::cout << "Removed last point" << std::endl;
 }
 
 ofPoint racingai::Track::getLocalPoint(double x, double y) const {
@@ -141,10 +133,6 @@ ofPoint racingai::Track::getLocalPoint(double x, double y) const {
 
 ofPoint racingai::Track::getLocalPoint(ofPoint point) const {
 	return getLocalPoint(point.x, point.y);
-}
-
-ofxBox2dEdge Track::getGround() const {
-	return ground_;
 }
 
 //int racingai::Track::getGlobalX() const {

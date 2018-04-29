@@ -116,10 +116,10 @@ void carGame::keyPressed(int key) {
 			else game_car_->setSpeed(3.0);
 			break;
 		case 'P':
-			game_track_.addPoint(ofGetMouseX(), ofGetMouseY());
+			game_track_.addScoreLine();
 			break;
 		case 'L':
-			game_track_.removePoint();
+			game_track_.removeEdge();
 			break;
 		case 'R':
 			reset();
@@ -127,11 +127,13 @@ void carGame::keyPressed(int key) {
 		case 'B':
 			game_track_.saveTrack();
 			break;
+		case 'N':
+			game_track_.addEdge();
+			break;
 		case 'Q':
 			std::exit(0);
 		}
 	}
-
 }
 
 void carGame::keyReleased(int key) {
@@ -150,6 +152,10 @@ void carGame::keyReleased(int key) {
 void carGame::mousePressed(int x, int y, int button) {
 	if (button == OF_MOUSE_BUTTON_LEFT) game_track_.addPoint(x, y);
 	else if (button == OF_MOUSE_BUTTON_RIGHT) game_track_.removePoint();
+}
+
+void carGame::mouseDragged(int x, int y, int button) {
+	game_track_.addPoint(x, y);
 }
 
 
