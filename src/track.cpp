@@ -8,6 +8,7 @@ void Track::setup(ofxBox2d* box, Car* car, string file_path) {
 	box2d_ = box;
 	game_car_ = car;
 	loadTrack(file_path);
+	setupRectangles();
 }
 
 void racingai::Track::saveTrack() const {
@@ -34,6 +35,26 @@ void racingai::Track::saveTrack() const {
 	ofs.close();
 
 	std::cout << "Track saved as " << file_name << std::endl;
+}
+
+void racingai::Track::setupRectangles() {
+	rectangles_.clear();
+	for (shared_ptr<ofxBox2dEdge> edge : edges_) {
+		if (edge.get()->getVertices().size() < 3) continue;
+		for (int i = 0; i < edge.get()->getVertices().size() - 1; i++) {
+			auto rect = std::make_shared<ofxBox2dRect>();
+			b2Vec2 p1(edge.get()->getVertices()[i].x, edge.get()->getVertices()[i].y);
+			b2Vec2 p2(edge.get()->getVertices()[i + 1].x, edge.get()->getVertices()[i + 1].y);
+
+			double length = b2Distance(p1, p2);
+			double slope = (p2.y - p1.y) / (p2.x - p1.x);
+
+			rect.get()->setPhysics(3.0, 0.53, 0.1);
+			rect.get()->setup(box2d_->getWorld(), (p1.x + p2.x) / 2, (p1.y + p2.y) / 2, 5, length);
+			rect.get()->setRotation(atan(slope) * 180 / PI + 90);
+			rectangles_.push_back(rect);
+		}
+	}
 }
 
 void racingai::Track::loadTrack(std::string path) {
@@ -72,6 +93,11 @@ void Track::update() {
 	for (std::shared_ptr<ofxBox2dEdge> edge : edges_) {
 		edge.get()->create(box2d_->getWorld());
 	}
+	setupRectangles();
+	//for (ofxBox2dRect rect : rectangles_) {
+	//	//rect.create(box2d_->getWorld());
+	//	rect.create();
+	//}
 }
 
 void Track::center() {
@@ -129,6 +155,10 @@ void racingai::Track::draw() {
 	for (int i = 0; i<edges_.size(); i++) {
 		edges_[i].get()->draw();
 	}
+
+	for (shared_ptr<ofxBox2dRect> rect : rectangles_) {
+		rect.get()->draw();
+	}
 }
 
 void racingai::Track::addPoint(int x, int y) {
@@ -138,7 +168,7 @@ void racingai::Track::addPoint(int x, int y) {
 	} else {
 		edges_.back().get()->addVertex(x, y);
 		std::cout << "Added point" << std::endl;
-		update();
+		//update();
 	}
 }
 

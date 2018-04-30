@@ -10,6 +10,7 @@ namespace racingai {
 		Car* game_car_;
 
 		vector <shared_ptr<ofxBox2dEdge> > edges_;
+		vector <shared_ptr<ofxBox2dRect>> rectangles_;
 		ofPolyline score_line_ = ofPolyline();
 		ofxBox2d* box2d_;        //box2d engine
 		
@@ -17,7 +18,6 @@ namespace racingai {
 		double global_y_ = 0;
 	
 		bool score_line_edit_ = false;   //flag if score line editing is enabled/disabled
-	
 	
 	public:
 		Track();
@@ -35,6 +35,7 @@ namespace racingai {
 		void removePoint();
 		void loadTrack(std::string path);
 		void saveTrack() const;
+		void setupRectangles();
 		//int getGlobalX() const;
 		//int getGlobalY() const;
 		void setGlobalX(double x);
