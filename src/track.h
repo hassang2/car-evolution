@@ -35,7 +35,7 @@ namespace racingai {
 		void removePoint();
 		void loadTrack(std::string path);
 		void saveTrack() const;
-		void setupRectangles();
+		void updateRectangles();
 		//int getGlobalX() const;
 		//int getGlobalY() const;
 		void setGlobalX(double x);

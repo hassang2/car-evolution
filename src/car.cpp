@@ -1,37 +1,38 @@
 #include "car.h"
 #include <cmath>
 
-using namespace racingai;
+//using namespace racingai;
 
-ofVec2f Car::getBodySize() const {
+ofVec2f racingai::Car::getBodySize() const {
 	return body_size_;
 };
 
-Car::Car() {
+racingai::Car::Car() {
 	body_ = new ofxBox2dRect();
 	body_->setPhysics(3.0, 0.53, 0.1);
 }
 
-void Car::setup(ofxBox2d* box) {
-	body_->setup(box->getWorld(), 0, 0, 40, 20);
-	//initSensors();
+void racingai::Car::setup(ofxBox2d* box) {
+	box2d_ = box;
+	body_->setup(box2d_->getWorld(), 0, 0, 40, 20);
+	initSensors();
 }
 
 void racingai::Car::setSpeed(double s) {
 	speed_ = s;
 }
 
-void Car::update() {
+void racingai::Car::update() {
 	body_->setPosition(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
 }
 
-void Car::draw() {
+void racingai::Car::draw() {
 	ofSetColor(ofColor(150, 40, 255));
 	body_->setRotation(angle_);
 	body_->draw();
 }
 
-bool Car::isDead() const {
+bool racingai::Car::isDead() const {
 	// Car is dead if the head is off screen
 	//if (head_->position.x < 0
 	//	|| head_->position.y < 0
@@ -44,7 +45,28 @@ bool Car::isDead() const {
 	return false;
 }
 
-void Car::initSensors() {
+void racingai::Car::updateSensorValues() {
+
+
+	for (Sensor& sensor : sensors_) {
+		double closestFraction = 1;
+		b2Vec2 intersectionNormal(0, 0);
+		//input = sensor.input;
+		for (b2Body* b = box2d_->getWorld()->GetBodyList(); b; b = b->GetNext()) {
+			for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext()) {
+				if (!f->RayCast(&sensor.output, sensor.input, 0)) continue;
+				if (sensor.output.fraction < closestFraction) {
+					closestFraction = sensor.output.fraction;
+					intersectionNormal = sensor.output.normal;
+				}
+			}
+		}
+		b2Vec2 intersectionPoint = sensor.input.p1 + closestFraction * (sensor.input.p2 - sensor.input.p1);
+		sensor.value = ofDist(intersectionPoint.x, intersectionPoint.y, sensor.input.p1.x, sensor.input.p1.y);
+	}
+}
+
+void racingai::Car::initSensors() {
 	//middle
 	Sensor middle_sensor;
 	middle_sensor.length = 8;
@@ -88,32 +110,32 @@ void Car::initSensors() {
 	sensors_.push_back(right_sensor);
 }
 
-int Car::getScore() const {
+int racingai::Car::getScore() const {
 	return score_;
 }
 
-void Car::swerveRight() {
+void racingai::Car::swerveRight() {
 	angle_ -= SWERVE_AMOUNT;
 	if (angle_ < 0) angle_ += 360;
 }
 
-void Car::swerveLeft() {
+void racingai::Car::swerveLeft() {
 	angle_ = fmod(angle_ + SWERVE_AMOUNT, 360);
 }
 
-ofxBox2dRect * Car::getBody() const {
+ofxBox2dRect * racingai::Car::getBody() const {
 	return body_;
 }
 
-double Car::getXPos() const {
+double racingai::Car::getXPos() const {
 	return body_->getPosition().x;
 }
 
-double Car::getYPos() const {
+double racingai::Car::getYPos() const {
 	return body_->getPosition().y;
 }
 
-double Car::getAngle() const {
+double racingai::Car::getAngle() const {
 	return angle_;
 }
 
@@ -121,10 +143,10 @@ double racingai::Car::getSpeed() const {
 	return speed_;
 }
 
-double Car::getHeight() const {
+double racingai::Car::getHeight() const {
 	return HEIGHT;
 }
 
-double Car::getWidth() const {
+double racingai::Car::getWidth() const {
 	return WIDTH;
 }

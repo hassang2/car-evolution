@@ -2,6 +2,7 @@
 #include "ofMain.h"
 #include "ofxBox2d.h"
 
+
 namespace racingai {
 
 	struct Sensor{
@@ -9,18 +10,6 @@ namespace racingai {
 		b2RayCastOutput output;
 		double value;
 		double length;
-	};
-
-	struct b2RayCastInput {
-		b2Vec2 p1;
-		b2Vec2 p2;
-		float32 maxFraction;
-	};
-
-
-	struct b2RayCastOutput {
-		b2Vec2 normal;
-		float32 fraciton;
 	};
 
 	class Car {
@@ -31,7 +20,7 @@ namespace racingai {
 		double angle_ = 0.0;
 		double speed_ = 6.0;
 		ofxBox2dRect* body_;
-
+		ofxBox2d* box2d_;
 		double score_ = 0.0;
 
 		ofVec2f screen_dims_; // The current screen dimensions (needed to calculate values on resize()
@@ -53,6 +42,8 @@ namespace racingai {
 		void setup(ofxBox2d* box);
 		void setSpeed(double s);
 		void initSensors();
+		void updateSensorValues();
+
 		ofxBox2dRect* getBody() const;
 		double getXPos() const;
 		double getYPos() const;
@@ -62,3 +53,4 @@ namespace racingai {
 		double getWidth() const;
 	};
 } // namespace racingai
+
