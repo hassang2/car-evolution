@@ -4,6 +4,25 @@
 
 namespace racingai {
 
+	struct Sensor{
+		b2RayCastInput input;
+		b2RayCastOutput output;
+		double value;
+		double length;
+	};
+
+	struct b2RayCastInput {
+		b2Vec2 p1;
+		b2Vec2 p2;
+		float32 maxFraction;
+	};
+
+
+	struct b2RayCastOutput {
+		b2Vec2 normal;
+		float32 fraciton;
+	};
+
 	class Car {
 		double SWERVE_AMOUNT = 4.0;
 		double WIDTH = 40.0;
@@ -11,7 +30,6 @@ namespace racingai {
 	private:
 		double angle_ = 0.0;
 		double speed_ = 6.0;
-		//ofVec2f position_;
 		ofxBox2dRect* body_;
 
 		double score_ = 0.0;
@@ -19,6 +37,8 @@ namespace racingai {
 		ofVec2f screen_dims_; // The current screen dimensions (needed to calculate values on resize()
 		static const float kbody_size_modifier_; // The proportion of the screen width a body square is
 		ofVec2f body_size_; // the size of a snake body piece based on kbody_size_modifier_
+
+		vector<Sensor> sensors_;
 
 	public:
 		Car();
@@ -32,6 +52,7 @@ namespace racingai {
 		void draw();
 		void setup(ofxBox2d* box);
 		void setSpeed(double s);
+		void initSensors();
 		ofxBox2dRect* getBody() const;
 		double getXPos() const;
 		double getYPos() const;
@@ -39,6 +60,5 @@ namespace racingai {
 		double getSpeed() const;
 		double getHeight() const;
 		double getWidth() const;
-		bool intersects(ofPolyline line) const;
 	};
 } // namespace racingai

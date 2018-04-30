@@ -10,10 +10,15 @@ namespace racingai {
 		Car* game_car_;
 
 		vector <shared_ptr<ofxBox2dEdge> > edges_;
-		ofPolyline score_line_;
+		ofPolyline score_line_ = ofPolyline();
 		ofxBox2d* box2d_;        //box2d engine
+		
 		double global_x_ = 0;
 		double global_y_ = 0;
+	
+		bool score_line_edit_ = false;   //flag if score line editing is enabled/disabled
+	
+	
 	public:
 		Track();
 		void update();
@@ -22,20 +27,19 @@ namespace racingai {
 		void center();
 		void addEdge();
 		void removeEdge();
-		void addScoreLine();
+		void toggleScoreLineEdit();
 		//adds an edge to the track
 		void addPoint(int x, int y);
 
 		//removes the last drawn edge of the track
 		void removePoint();
-
 		void loadTrack(std::string path);
 		void saveTrack() const;
 		//int getGlobalX() const;
 		//int getGlobalY() const;
 		void setGlobalX(double x);
 		void setGlobalY(double y);
-
+		int getScore();
 		//converts window coordinates to global coordinates
 		ofPoint getGlobalPoint(double x, double y) const;
 		ofPoint getGlobalPoint(ofPoint point) const;

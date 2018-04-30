@@ -78,6 +78,17 @@ void carGame::draw() {
 	ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate()), 10, 10);
 
 	ofDrawBitmapString("(" + ofToString(ofGetMouseX()) + ", " + ofToString(ofGetMouseY()) + ")", 10, 30);
+	ofDrawBitmapString("[A] move left", 10, 50);
+	ofDrawBitmapString("[D] move right", 10, 70);
+	ofDrawBitmapString("[N] add new track edge", 10, 90);
+	ofDrawBitmapString("[P] add score line", 10, 110);
+	ofDrawBitmapString("[L] remove last curve", 10, 130);
+	ofDrawBitmapString("[right mouse] draw", 10, 150);
+	ofDrawBitmapString("[left mouse] remove last point", 10, 170);
+	ofDrawBitmapString("[B] save track", 10, 190);
+	ofDrawBitmapString("[Q] quit", 10, 210);
+
+	ofDrawBitmapString("Score: " + std::to_string(game_track_.getScore()) , ofGetWindowWidth() / 2 - 10, 30);
 }
 
 
@@ -116,7 +127,7 @@ void carGame::keyPressed(int key) {
 			else game_car_->setSpeed(3.0);
 			break;
 		case 'P':
-			game_track_.addScoreLine();
+			game_track_.toggleScoreLineEdit();
 			break;
 		case 'L':
 			game_track_.removeEdge();
