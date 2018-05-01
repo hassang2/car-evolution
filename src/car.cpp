@@ -24,71 +24,77 @@ void racingai::Car::setSpeed(double s) {
 
 void racingai::Car::update() {
 	body_->setPosition(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
+	updateSensorValues();
 }
 
 void racingai::Car::draw() {
 	ofSetColor(ofColor(150, 40, 255));
 	body_->setRotation(angle_);
 	body_->draw();
-}
-
-bool racingai::Car::isDead() const {
-	// Car is dead if the head is off screen
-	//if (head_->position.x < 0
-	//	|| head_->position.y < 0
-	//	|| head_->position.x > screen_dims_.x - body_size_.x
-	//	|| head_->position.y > screen_dims_.y - body_size_.y) {
-	//	return true;
-	//}
-
-	// Car is not dead yet :D
-	return false;
+	drawSensors();
 }
 
 void racingai::Car::updateSensorValues() {
+	initSensors();
+	//RayCaster call_back;
 
+	for (Sensor sensor : sensors_) {
+		RayCaster call_back;
 
-	for (Sensor& sensor : sensors_) {
-		double closestFraction = 1;
-		b2Vec2 intersectionNormal(0, 0);
-		//input = sensor.input;
-		for (b2Body* b = box2d_->getWorld()->GetBodyList(); b; b = b->GetNext()) {
-			for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext()) {
-				if (!f->RayCast(&sensor.output, sensor.input, 0)) continue;
-				if (sensor.output.fraction < closestFraction) {
-					closestFraction = sensor.output.fraction;
-					intersectionNormal = sensor.output.normal;
-				}
-			}
+		b2Vec2 p1 = sensor.input.p1;
+		b2Vec2 p2 = sensor.input.p2;
+		p1.x /= box2d_->scale;
+		p1.y /= box2d_->scale;
+		p2.x /= box2d_->scale;
+		p2.y /= box2d_->scale;
+
+		box2d_->getWorld()->RayCast(&call_back, p1, p2);
+
+		if (call_back.didCollide()) {
+			b2Vec2 intersection = call_back.getIntersectionPoint();
+			sensor.value = ofDist(sensor.input.p1.x, sensor.input.p1.y, intersection.x * box2d_->scale, intersection.y * box2d_->scale);
+			std::cout << sensor.value << std::endl;
 		}
-		b2Vec2 intersectionPoint = sensor.input.p1 + closestFraction * (sensor.input.p2 - sensor.input.p1);
-		sensor.value = ofDist(intersectionPoint.x, intersectionPoint.y, sensor.input.p1.x, sensor.input.p1.y);
+	}
+}
+
+void racingai::Car::drawSensors() {
+	ofSetColor(66, 244, 212);
+	for (Sensor sensor : sensors_) {
+		sensor.line = make_shared<ofPolyline>();
+		sensor.line.get()->clear();
+		sensor.line.get()->addVertex(sensor.input.p1.x, sensor.input.p1.y);
+		sensor.line.get()->addVertex(sensor.input.p2.x, sensor.input.p2.y);
+		sensor.line.get()->draw();
 	}
 }
 
 void racingai::Car::initSensors() {
+	sensors_.clear();
+
 	//middle
 	Sensor middle_sensor;
-	middle_sensor.length = 8;
+	middle_sensor.length = 120;
 
-	double x_m = ofGetWindowWidth() / 2 + WIDTH / 2 * cos(angle_);
-	double y_m = ofGetWindowHeight() / 2 + WIDTH / 2 * sin(angle_);
+	double x_m = ofGetWindowWidth() / 2 + WIDTH / 2 * cos(angle_ * PI / 180);
+	double y_m = ofGetWindowHeight() / 2 + WIDTH / 2 * sin(angle_ * PI / 180);
 	b2Vec2 p1_m(x_m, y_m);
-	b2Vec2 p2_m = p1_m + middle_sensor.length * b2Vec2(sin(angle_), cos(angle_));
+	b2Vec2 p2_m = p1_m + middle_sensor.length * b2Vec2(cos(angle_ * PI / 180), sin(angle_ * PI / 180));
 
 	middle_sensor.input.p1 = p1_m;
 	middle_sensor.input.p2 = p2_m;
 	middle_sensor.input.maxFraction = 1.0;
 	sensors_.push_back(middle_sensor);
 
+	
 	//Left
 	Sensor left_sensor;
-	left_sensor.length = 10;
+	left_sensor.length = 120;
 
-	double x_l = ofGetWindowWidth() / 2 + WIDTH / 2 * cos(angle_) - HEIGHT / 2 * sin(angle_);
-	double y_l = ofGetWindowHeight() / 2 + WIDTH / 2 * sin(angle_) - HEIGHT / 2 * cos(angle_);
+	double x_l = ofGetWindowWidth() / 2 + WIDTH / 2 * cos(angle_ * PI / 180) + HEIGHT / 2 * sin(angle_ * PI / 180);
+	double y_l = ofGetWindowHeight() / 2 + WIDTH / 2 * sin(angle_ * PI / 180) - HEIGHT / 2 * cos(angle_ * PI / 180);
 	b2Vec2 p1_l(x_l, y_l);
-	b2Vec2 p2_l = p1_l + left_sensor.length * b2Vec2(sin(angle_ + 15), cos(angle_ + 15));
+	b2Vec2 p2_l = p1_l + left_sensor.length * b2Vec2(cos((angle_ - 25) * PI / 180), sin((angle_ - 25) * PI / 180));
 
 	left_sensor.input.p1 = p1_l;
 	left_sensor.input.p2 = p2_l;
@@ -97,17 +103,18 @@ void racingai::Car::initSensors() {
 
 	//Right
 	Sensor right_sensor;
-	right_sensor.length = 10;
+	right_sensor.length = 120;
 
-	double x_r = ofGetWindowWidth() / 2 + WIDTH / 2 * cos(angle_) + HEIGHT / 2 * sin(angle_);
-	double y_r = ofGetWindowHeight() / 2 + WIDTH / 2 * sin(angle_) + HEIGHT / 2 * cos(angle_);
+	double x_r = ofGetWindowWidth() / 2 + WIDTH / 2 * cos(angle_ * PI / 180) - HEIGHT / 2 * sin(angle_ * PI / 180);
+	double y_r = ofGetWindowHeight() / 2 + WIDTH / 2 * sin(angle_ * PI / 180) + HEIGHT / 2 * cos(angle_ * PI / 180);
 	b2Vec2 p1_r(x_r, y_r);
-	b2Vec2 p2_r = p1_r + right_sensor.length * b2Vec2(sin(angle_ - 15), cos(angle_ - 15));
+	b2Vec2 p2_r = p1_r + right_sensor.length * b2Vec2(cos((angle_ + 25) * PI / 180), sin((angle_ + 25) * PI / 180));
 	
 	right_sensor.input.p1 = p1_r;
 	right_sensor.input.p2 = p2_r;
 	right_sensor.input.maxFraction = 1.0;
 	sensors_.push_back(right_sensor);
+	
 }
 
 int racingai::Car::getScore() const {
@@ -149,4 +156,23 @@ double racingai::Car::getHeight() const {
 
 double racingai::Car::getWidth() const {
 	return WIDTH;
+}
+
+
+vector<racingai::Sensor> racingai::Car::getSensors() const{
+	return sensors_;
+}
+
+float32 racingai::RayCaster::ReportFixture(b2Fixture * fixture, const b2Vec2 & point, const b2Vec2 & normal, float32 fraction) {
+	collide = true;
+	intersection_point_ = point;
+	return fraction;
+}
+
+b2Vec2 racingai::RayCaster::getIntersectionPoint() const {
+	return intersection_point_;
+}
+
+bool racingai::RayCaster::didCollide() const {
+	return collide;
 }

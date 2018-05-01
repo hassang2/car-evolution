@@ -7,9 +7,10 @@ namespace racingai {
 
 	struct Sensor{
 		b2RayCastInput input;
-		b2RayCastOutput output;
 		double value;
 		double length;
+		shared_ptr<ofPolyline> line = shared_ptr<ofPolyline>();
+		void setValue(double v) { value = v; }
 	};
 
 	class Car {
@@ -31,19 +32,21 @@ namespace racingai {
 
 	public:
 		Car();
-		ofVec2f getBodySize() const; // gets the size of a body segment, used for rendering
-		bool isDead() const; // Determines if the current state of the snake is dead
+		void setup(ofxBox2d* box);
+
 		void update(); // updates the snake one body square in the current direction
-		void resize(int w, int h); // Resizes the snake to a new width and height
 		int getScore() const; // Gets the number of food items the snake has eaten
 		void swerveRight(); //swerves the car to right
 		void swerveLeft(); //swerves the car to left
 		void draw();
-		void setup(ofxBox2d* box);
 		void setSpeed(double s);
+
+		//sensors
 		void initSensors();
 		void updateSensorValues();
+		void drawSensors();
 
+		ofVec2f getBodySize() const;
 		ofxBox2dRect* getBody() const;
 		double getXPos() const;
 		double getYPos() const;
@@ -51,6 +54,18 @@ namespace racingai {
 		double getSpeed() const;
 		double getHeight() const;
 		double getWidth() const;
+		vector<Sensor> getSensors() const;
+	};
+	
+	class RayCaster : public b2RayCastCallback {
+	public:
+		float32 ReportFixture(b2Fixture* fixture, const b2Vec2& point, const b2Vec2& normal, float32 fraction);
+		b2Vec2 getIntersectionPoint() const;
+		bool didCollide() const;
+
+	private:
+		bool collide = false;
+		b2Vec2 intersection_point_;
 	};
 } // namespace racingai
 

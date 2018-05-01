@@ -12,7 +12,7 @@ void carGame::setup() {
 	ofSetWindowTitle("AI Racing");
 
 	initBox2d();
-
+	
 	game_car_ = new Car();
 	game_car_->setup(box2d_);
 	game_track_.setup(box2d_, game_car_, "../tracks/track1");

@@ -53,7 +53,6 @@ void racingai::Track::updateRectangles() {
 			rect.get()->setup(box2d_->getWorld(), (p1.x + p2.x) / 2, (p1.y + p2.y) / 2, length, 5);
 			rect.get()->setRotation(atan(slope) * 180 / PI);
 			rect.get()->body->SetType(b2_staticBody);
-
 			rectangles_.push_back(rect);
 		}
 	}
@@ -73,7 +72,6 @@ void racingai::Track::loadTrack(std::string path) {
 	while (in_file.good()) {
 		getline(in_file, line);
 		if (line.find("---") == string::npos) {
-			std::cout << line << std::endl;
 			int comma_index = line.find(",");
 			int x = std::stoi(line.substr(1, comma_index));
 			int y = std::stoi(line.substr(comma_index + 1, line.length() - 1));
@@ -97,43 +95,45 @@ void Track::update() {
 }
 
 void Track::center() {
+	//centering edges
 	for (std::shared_ptr<ofxBox2dEdge> edge : edges_) {
 
 		vector<ofPoint> old_points = edge.get()->getVertices();
 		edge.get()->clear();
 		
-		double dx = cos(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() + ofGetWindowWidth() / 2 - game_car_->getXPos();
-		double dy = sin(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() + ofGetWindowHeight() / 2 - game_car_->getYPos();
+		double dx = cos(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() - ofGetWindowWidth() / 2 + game_car_->getXPos();
+		double dy = sin(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() - ofGetWindowHeight() / 2 + game_car_->getYPos();
 
 		global_x_ += dx;
 		global_y_ += dy;
 		for (ofPoint point : old_points) {
-			edge.get()->addVertex(point.x + dx, point.y + dy);
+			edge.get()->addVertex(point.x - dx, point.y - dy);
 		}
 	}
 
+	//centering rectangles
 	for (std::shared_ptr<ofxBox2dRect> rect : rectangles_) {
 		ofPoint old_pos = rect.get()->getPosition();
 		double rotation = rect.get()->getRotation();
-		double dx = cos(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() + ofGetWindowWidth() / 2 - game_car_->getXPos();
-		double dy = sin(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() + ofGetWindowHeight() / 2 - game_car_->getYPos();
+		double dx = cos(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() - ofGetWindowWidth() / 2 + game_car_->getXPos();
+		double dy = sin(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() - ofGetWindowHeight() / 2 + game_car_->getYPos();
 
-		rect.get()->setPosition(old_pos.x + dx , old_pos.y + dy);
+		rect.get()->setPosition(old_pos.x - dx , old_pos.y - dy);
 		rect.get()->setRotation(rotation);
 	}
 
 
-	//Drawing score line
+	//centering score line
 	vector<ofPoint> old_score_points = score_line_.getVertices();
 	score_line_.clear();
 
-	double dx = cos(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() + ofGetWindowWidth() / 2 - game_car_->getXPos();
-	double dy = sin(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() + ofGetWindowHeight() / 2 - game_car_->getYPos();
+	double dx = cos(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() - ofGetWindowWidth() / 2 + game_car_->getXPos();
+	double dy = sin(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() - ofGetWindowHeight() / 2 + game_car_->getYPos();
 
 	global_x_ += dx;
 	global_y_ += dy;
 	for (ofPoint point : old_score_points) {
-		score_line_.addVertex(point.x + dx, point.y + dy);
+		score_line_.addVertex(point.x - dx, point.y - dy);
 	}
 	
 }
