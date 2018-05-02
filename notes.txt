@@ -22,7 +22,7 @@ starter genome format :
     gene : 
         >> traitnum >> input node num >> output node num >> weight >> recur >> innovation_num >> mutation_num >> enable;
     Node:
-         >> node_id >> traitnum >> nodety >> nodepl
+         >> node_id >> traitnum >> nodetype >> nodeplace
 
 
 

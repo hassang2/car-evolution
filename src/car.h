@@ -18,8 +18,9 @@ namespace racingai {
 		double WIDTH = 40.0;
 		double HEIGHT = 20.0;
 	private:
+		bool dead_ = false;
 		double angle_ = 0.0;
-		double speed_ = 6.0;
+		double speed_ = 0.0;
 		ofxBox2dRect* body_;
 		ofxBox2d* box2d_;
 		double score_ = 0.0;
@@ -40,7 +41,8 @@ namespace racingai {
 		void swerveLeft(); //swerves the car to left
 		void draw();
 		void setSpeed(double s);
-
+		int calculateScore();
+		bool isDead() const { return dead_; }
 		//sensors
 		void initSensors();
 		void updateSensorValues();
@@ -55,6 +57,7 @@ namespace racingai {
 		double getHeight() const;
 		double getWidth() const;
 		vector<Sensor> getSensors() const;
+		vector<float> getSensorValues() const;
 	};
 	
 	class RayCaster : public b2RayCastCallback {

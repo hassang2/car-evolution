@@ -14,22 +14,123 @@
   <component name="ChangeListManager">
     <list default="true" id="fdebe038-62e2-4106-8588-e71a418b965e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/CHANGES" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/experiments.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/experiments.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/experiments.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_11" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_13" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_14" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_16" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_18" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_20" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_21" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_22" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_23" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_24" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_25" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_27" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_28" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_29" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_30" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_60" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_90" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gene.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gene.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gene.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/genome.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/genome.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/genome.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/innovation.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/innovation.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/innovation.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/link.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/link.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/link.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neat" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/neat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neat.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neat.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neat.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neatmain.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neatmain.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neatmain.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/network.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/network.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/network.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/nnode.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/nnode.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/nnode.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/oppositestartergenes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/organism.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/organism.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/organism.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/p2mpar3bare.ne" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/p2nv.ne" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/p2test.ne" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/params256.ne" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/pole1startgenes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/pole2_markov.ne" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/pole2startgenes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/pole2startgenes.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/pole2startgenes1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/pole2startgenes2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/population.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/population.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/population.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/posnegstarter.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/species.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/species.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/species.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/test.ne" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/trait.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/trait.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/trait.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/xorstartgenes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/xorstartgenes - Copy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/xorstartgenes2" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/final-project-hassang2_debug.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/final-project-hassang2_debug.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/final-project-hassang2_debug.exp" beforeDir="false" afterPath="$PROJECT_DIR$/bin/final-project-hassang2_debug.exp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/final-project-hassang2_debug.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/bin/final-project-hassang2_debug.ilk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/final-project-hassang2_debug.lib" beforeDir="false" afterPath="$PROJECT_DIR$/bin/final-project-hassang2_debug.lib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/final-project-hassang2_debug.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/final-project-hassang2_debug.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/final_project_hassang2.dir/NEAT.1.2.1/genome.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/final_project_hassang2.dir/NEAT.1.2.1/genome.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/src/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project-hassang2.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/final-project-hassang2.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project-hassang2.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/final-project-hassang2.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/final-project-hassang2.vcxproj.user" beforeDir="false" afterPath="$PROJECT_DIR$/final-project-hassang2.vcxproj.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/car.obj" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/car.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/CL.command.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/CL.read.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/CL.write.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/final-project-hassang2.write.1u.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/final-project-hassang2.write.1u.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/link.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/link.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/link.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/link.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/final-project-hassang2.log" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/final-project-hassang2.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/main.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/ofApp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/ofApp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/track.obj" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/track.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/vc140.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/vc140.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/car.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/car.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/car.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/car.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ofApp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ofApp.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ofApp.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/ofApp.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/track.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/track.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/track.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/track.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,20 +143,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="neatmain.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/neatmain.cpp">
+        <entry file="file://$PROJECT_DIR$/NEAT/neatmain.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2650">
-              <caret line="106" column="16" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
+            <state relative-caret-position="2275">
+              <caret line="113" column="22" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
               <folding>
                 <element signature="e#938#957#0" expanded="true" />
               </folding>
@@ -63,56 +155,34 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
       <file leaf-file-name="experiments.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/experiments.h">
+        <entry file="file://$PROJECT_DIR$/NEAT/experiments.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1275">
-              <caret line="51" selection-start-line="51" selection-end-line="51" />
+            <state relative-caret-position="181">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="experiments.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/experiments.cpp">
+        <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/experiments.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="465" column="20" selection-start-line="465" selection-start-column="20" selection-end-line="465" selection-end-column="20" />
+            <state relative-caret-position="-1344">
+              <caret line="214" column="29" selection-start-line="214" selection-start-column="26" selection-end-line="214" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <file leaf-file-name="experiments.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/experiments.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="genome.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/genome.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11625">
-              <caret line="465" column="19" selection-start-line="465" selection-start-column="19" selection-end-line="465" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="genome.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/genome.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="population.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/population.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12850">
-              <caret line="514" column="47" selection-start-line="514" selection-start-column="47" selection-end-line="514" selection-end-column="47" />
+            <state relative-caret-position="162">
+              <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -146,6 +216,11 @@
       <find>overall_average</find>
       <find>winner is</find>
       <find>winner</find>
+      <find>exit</find>
+      <find>inFile</find>
+      <find>done</find>
+      <find>&quot;don</find>
+      <find>epoch</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -159,12 +234,13 @@
         <option value="$PROJECT_DIR$/neat.1.1/finaldir/neat.h" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
         <option value="$PROJECT_DIR$/NEAT.1.2.1/experiments.h" />
-        <option value="$PROJECT_DIR$/NEAT.1.2.1/genome.cpp" />
         <option value="$PROJECT_DIR$/NEAT.1.2.1/neatmain.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/main.cpp" />
         <option value="$PROJECT_DIR$/NEAT.1.2.1/population.cpp" />
+        <option value="$PROJECT_DIR$/NEAT.1.2.1/genome.cpp" />
         <option value="$PROJECT_DIR$/NEAT.1.2.1/experiments.cpp" />
+        <option value="$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/experiments.cpp" />
       </list>
     </option>
   </component>
@@ -175,16 +251,44 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-9" />
-    <option name="width" value="978" />
-    <option name="height" value="1039" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1047" />
+    <option name="width" value="880" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="final_project_hassang2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="final-project-hassang2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="final_project_hassang2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="final-project-hassang2" type="462c0819:PsiDirectoryNode" />
+              <item name="NEAT.1.2.1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="final_project_hassang2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="final-project-hassang2" type="462c0819:PsiDirectoryNode" />
+              <item name="NEAT.1.2.1" type="462c0819:PsiDirectoryNode" />
+              <item name="NEAT.1.2.1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="final_project_hassang2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -211,9 +315,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.main">
-    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="final_project_hassang2" RUN_TARGET_NAME="main" EXPLICIT_BUILD_TARGET_NAME="all" />
-    <configuration name="final_project_hassang2" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="final_project_hassang2" TARGET_NAME="final_project_hassang2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="final_project_hassang2" RUN_TARGET_NAME="main" />
+  <component name="RunManager" selected="Application.final_project_hassang2">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="final_project_hassang2" RUN_TARGET_NAME="final_project_hassang2" EXPLICIT_BUILD_TARGET_NAME="all" />
+    <configuration name="final_project_hassang2" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="final_project_hassang2" TARGET_NAME="final_project_hassang2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="final_project_hassang2" RUN_TARGET_NAME="final_project_hassang2" />
     <configuration name="main" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="final_project_hassang2" TARGET_NAME="main" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="final_project_hassang2" RUN_TARGET_NAME="main" />
     <list>
       <item itemvalue="Application.Build All" />
@@ -238,18 +342,19 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21090000" />
+    <option name="totallyTimeSpent" value="27137000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="838" y="0" width="704" height="830" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.19791667" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.28695652" />
       <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info active="true" anchor="bottom" id="CMake" order="11" visible="true" weight="0.32965517" />
+      <window_info anchor="bottom" id="Messages" order="0" weight="0.32827586" />
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.33333334" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.32965517" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.21617852" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -270,7 +375,6 @@
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="2" />
-      <window_info anchor="bottom" id="Messages" order="0" weight="0.3324138" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
   </component>
@@ -282,46 +386,17 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/NEAT/neatmain.cpp</url>
+          <line>30</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="3" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc/LocalState/rootfs/usr/include/c++/5/fstream">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="480" column="6" selection-start-line="480" selection-start-column="6" selection-end-line="480" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
-    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/nnode.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-650">
-          <caret line="121" column="8" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/nnode.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="90" column="30" lean-forward="true" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/gene.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="91" column="33" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/network.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="377" column="43" selection-start-line="377" selection-start-column="35" selection-end-line="377" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc/LocalState/rootfs/usr/include/c++/5/istream">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
@@ -554,31 +629,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/neat.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-10525">
           <caret line="137" column="21" lean-forward="true" selection-start-line="137" selection-start-column="21" selection-end-line="137" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/genome.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11625">
-          <caret line="465" column="19" selection-start-line="465" selection-start-column="19" selection-end-line="465" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/genome.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -589,17 +643,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/genome.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/genome.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1762">
+          <caret line="217" lean-forward="true" selection-start-line="217" selection-end-line="217" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/neatmain.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2650">
-          <caret line="106" column="16" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
+        <state relative-caret-position="538">
+          <caret line="113" column="18" lean-forward="true" selection-start-line="113" selection-start-column="18" selection-end-line="113" selection-end-column="18" />
           <folding>
             <element signature="e#938#957#0" expanded="true" />
           </folding>
@@ -608,15 +676,65 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/experiments.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
+        <state relative-caret-position="312">
           <caret line="51" selection-start-line="51" selection-end-line="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/experiments.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="465" column="20" selection-start-line="465" selection-start-column="20" selection-end-line="465" selection-end-column="20" />
+        <state relative-caret-position="371">
+          <caret line="294" lean-forward="true" selection-start-line="294" selection-end-line="294" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT/experiments.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT/neatmain.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2275">
+          <caret line="113" column="22" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
+          <folding>
+            <element signature="e#938#957#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/experiments.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT/experiments.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/experiments.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1344">
+          <caret line="214" column="29" selection-start-line="214" selection-start-column="26" selection-end-line="214" selection-end-column="29" />
         </state>
       </provider>
     </entry>

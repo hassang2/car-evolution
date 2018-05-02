@@ -6,35 +6,10 @@ Track::Track() {
 
 void Track::setup(ofxBox2d* box, Car* car, string file_path) {
 	box2d_ = box;
-	game_car_ = car;
+	cars_.push_back(car);
+	focus_car_ = car;
 	loadTrack(file_path);
 	updateRectangles();
-}
-
-void racingai::Track::saveTrack() const {
-
-	//find an unused index for the track name
-	int file_index = 1;
-	string file_name = "track" + ofToString(file_index);
-	ifstream f("../tracks/" + file_name);
-	while (ifstream("../tracks/" + file_name).good()) {
-		file_index++;
-		file_name = "track" + ofToString(file_index);
-	}
-
-	std::ofstream ofs("../tracks/" + file_name, std::ios::out);
-
-	for (int i = 0; i < edges_.size(); i++) {
-		for (int k = 0; k < edges_[i]->getVertices().size(); k++) {
-			ofPoint global_point = getGlobalPoint(edges_[i]->getVertices()[k]);
-			ofs << "(" << global_point.x << ", " << global_point.y << ")" << std::endl;
-		}
-		ofs << "---" << std::endl;
-	}
-	
-	ofs.close();
-
-	std::cout << "Track saved as " << file_name << std::endl;
 }
 
 void racingai::Track::updateRectangles() {
@@ -58,6 +33,41 @@ void racingai::Track::updateRectangles() {
 	}
 }
 
+void racingai::Track::saveTrack() const {
+
+	//find an unused index for the track name
+	int file_index = 1;
+	string file_name = "track" + ofToString(file_index);
+	ifstream f("../tracks/" + file_name);
+	while (ifstream("../tracks/" + file_name).good()) {
+		file_index++;
+		file_name = "track" + ofToString(file_index);
+	}
+
+	std::ofstream ofs("../tracks/" + file_name, std::ios::out);
+
+	for (int i = 0; i < edges_.size(); i++) {
+		for (int k = 0; k < edges_[i]->getVertices().size(); k++) {
+			ofPoint global_point = getGlobalPoint(edges_[i]->getVertices()[k]);
+			ofs << "(" << global_point.x << ", " << global_point.y << ")" << std::endl;
+		}
+		ofs << "---" << std::endl;
+	}
+
+	ofs << "SCORE_LINE" << std::endl;
+
+	for (ofPoint point : score_line_.getVertices()) {
+		ofPoint global_point = getGlobalPoint(point);
+		ofs << "(" << global_point.x << ", " << global_point.y << ")" << std::endl;
+	}
+
+	ofs << "---";
+
+	ofs.close();
+
+	std::cout << "Track saved as " << file_name << std::endl;
+}
+
 void racingai::Track::loadTrack(std::string path) {
 	std::cout << "loading track" << std::endl;
 	std::ifstream in_file;
@@ -69,14 +79,21 @@ void racingai::Track::loadTrack(std::string path) {
 		std::cout << "not a valid track" << std::endl;
 		return;
 	}
+	bool score_line_flag = false;
 	while (in_file.good()) {
 		getline(in_file, line);
-		if (line.find("---") == string::npos) {
+		if (line.find("SCORE_LINE") != string::npos) {
+			score_line_flag = true;
+		} else if (line.find("---") == string::npos) {
 			int comma_index = line.find(",");
-			int x = std::stoi(line.substr(1, comma_index));
-			int y = std::stoi(line.substr(comma_index + 1, line.length() - 1));
+			int x = std::stoi(line.substr(1, comma_index)) - 170;
+			int y = std::stoi(line.substr(comma_index + 1, line.length() - 1)) + 455;
 
-			edges_.back().get()->addVertex(x, y);
+			if (score_line_flag) {
+				score_line_.addVertex(x, y);
+			} else {
+				edges_.back().get()->addVertex(x, y);
+			}
 		} else {
 			edges_.push_back(make_shared<ofxBox2dEdge>());
 		}
@@ -95,19 +112,23 @@ void Track::update() {
 }
 
 void Track::center() {
+	
 	//centering edges
 	for (std::shared_ptr<ofxBox2dEdge> edge : edges_) {
+		auto draw_edge shared_ptr<ofxBox2dEdge>();
+
 
 		vector<ofPoint> old_points = edge.get()->getVertices();
 		edge.get()->clear();
 		
-		double dx = cos(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() - ofGetWindowWidth() / 2 + game_car_->getXPos();
-		double dy = sin(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() - ofGetWindowHeight() / 2 + game_car_->getYPos();
+		double dx = cos(cars_[0]->getAngle() * PI / 180) * cars_[0]->getSpeed() - ofGetWindowWidth() / 2 + cars_[0]->getXPos();
+		double dy = sin(cars_[0]->getAngle() * PI / 180) * cars_[0]->getSpeed() - ofGetWindowHeight() / 2 + cars_[0]->getYPos();
 
 		global_x_ += dx;
 		global_y_ += dy;
+
 		for (ofPoint point : old_points) {
-			edge.get()->addVertex(point.x - dx, point.y - dy);
+			draw_edge.get()->addVertex(point.x - dx, point.y - dy);
 		}
 	}
 
@@ -115,8 +136,9 @@ void Track::center() {
 	for (std::shared_ptr<ofxBox2dRect> rect : rectangles_) {
 		ofPoint old_pos = rect.get()->getPosition();
 		double rotation = rect.get()->getRotation();
-		double dx = cos(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() - ofGetWindowWidth() / 2 + game_car_->getXPos();
-		double dy = sin(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() - ofGetWindowHeight() / 2 + game_car_->getYPos();
+
+		double dx = cos(cars_[0]->getAngle() * PI / 180) * cars_[0]->getSpeed() - ofGetWindowWidth() / 2 + cars_[0]->getXPos();
+		double dy = sin(cars_[0]->getAngle() * PI / 180) * cars_[0]->getSpeed() - ofGetWindowHeight() / 2 + cars_[0]->getYPos();
 
 		rect.get()->setPosition(old_pos.x - dx , old_pos.y - dy);
 		rect.get()->setRotation(rotation);
@@ -127,11 +149,11 @@ void Track::center() {
 	vector<ofPoint> old_score_points = score_line_.getVertices();
 	score_line_.clear();
 
-	double dx = cos(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() - ofGetWindowWidth() / 2 + game_car_->getXPos();
-	double dy = sin(game_car_->getAngle() * PI / 180) * game_car_->getSpeed() - ofGetWindowHeight() / 2 + game_car_->getYPos();
+	double dx = cos(cars_[0]->getAngle() * PI / 180) * cars_[0]->getSpeed() - ofGetWindowWidth() / 2 + cars_[0]->getXPos();
+	double dy = sin(cars_[0]->getAngle() * PI / 180) * cars_[0]->getSpeed() - ofGetWindowHeight() / 2 + cars_[0]->getYPos();
 
-	global_x_ += dx;
-	global_y_ += dy;
+	//global_x_ += dx;
+	//global_y_ += dy;
 	for (ofPoint point : old_score_points) {
 		score_line_.addVertex(point.x - dx, point.y - dy);
 	}
@@ -144,14 +166,15 @@ void racingai::Track::addEdge() {
 }
 
 void racingai::Track::removeEdge() {
-	if (score_line_edit_) {
-		score_line_.clear();
-	} else {
-		if (edges_.size() > 0) edges_.pop_back();
-		std::cout << "Removed last curve" << std::endl;
-	}
+	//if (score_line_edit_) {
+	//	score_line_.clear();
+	//} else {
+	//	if (edges_.size() > 0) edges_.pop_back();
+	//	if (rectangles_.size() > 0) rectangles_.pop_back();
+	//	std::cout << "Removed last curve" << std::endl;
+	//}
 }
-
+	
 void racingai::Track::toggleScoreLineEdit() {
 	score_line_edit_ = !score_line_edit_;
 	string io = score_line_edit_ ? "on" : "off";
@@ -190,7 +213,7 @@ void racingai::Track::removePoint() {
 		for (int i = 0; i < old_points.size() - 1; i++) {
 			score_line_.addVertex(old_points[i]);
 		}
-		//removing track point
+	//removing track point
 	} else {
 		if (edges_.back().get()->getVertices().size() == 0) return;
 		vector<ofPoint> old_points = edges_.back().get()->getVertices();
@@ -198,6 +221,7 @@ void racingai::Track::removePoint() {
 		for (int i = 0; i < old_points.size() - 1; i++) {
 			edges_.back().get()->addVertex(old_points[i]);
 		}
+		rectangles_.pop_back();
 	}
 }
 
@@ -215,22 +239,6 @@ void racingai::Track::setGlobalX(double x) {
 
 void racingai::Track::setGlobalY(double y) {
 	global_y_ = y;
-}
-
-
-int racingai::Track::getScore() {
-	ofPolyline a;
-	int closest_index = 0;
-	ofPoint car_position(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
-	double shortest_distance = INT_MAX;
-	for (int i = 0; i < score_line_.getVertices().size(); i++) {
-		double distance = score_line_[i].distance(car_position);
-		if (distance < shortest_distance) {
-			shortest_distance = distance;
-			closest_index = i;
-		}
-	}
-	return closest_index;
 }
 
 ofPoint racingai::Track::getGlobalPoint(double x, double y) const {

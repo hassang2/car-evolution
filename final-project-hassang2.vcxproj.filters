@@ -211,6 +211,19 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
+    <ClCompile Include="NEAT\experiments.cpp" />
+    <ClCompile Include="NEAT\gene.cpp" />
+    <ClCompile Include="NEAT\genome.cpp" />
+    <ClCompile Include="NEAT\innovation.cpp" />
+    <ClCompile Include="NEAT\link.cpp" />
+    <ClCompile Include="NEAT\neat.cpp" />
+    <ClCompile Include="NEAT\neatmain.cpp" />
+    <ClCompile Include="NEAT\network.cpp" />
+    <ClCompile Include="NEAT\nnode.cpp" />
+    <ClCompile Include="NEAT\organism.cpp" />
+    <ClCompile Include="NEAT\population.cpp" />
+    <ClCompile Include="NEAT\species.cpp" />
+    <ClCompile Include="NEAT\trait.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -497,8 +510,18 @@
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h">
       <Filter>addons\ofxGui\src</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="icon.rc" />
+    <ClInclude Include="NEAT\experiments.h" />
+    <ClInclude Include="NEAT\gene.h" />
+    <ClInclude Include="NEAT\genome.h" />
+    <ClInclude Include="NEAT\innovation.h" />
+    <ClInclude Include="NEAT\link.h" />
+    <ClInclude Include="NEAT\neat.h" />
+    <ClInclude Include="NEAT\neatmain.h" />
+    <ClInclude Include="NEAT\network.h" />
+    <ClInclude Include="NEAT\nnode.h" />
+    <ClInclude Include="NEAT\organism.h" />
+    <ClInclude Include="NEAT\population.h" />
+    <ClInclude Include="NEAT\species.h" />
+    <ClInclude Include="NEAT\trait.h" />
   </ItemGroup>
 </Project>

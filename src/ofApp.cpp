@@ -15,9 +15,10 @@ void carGame::setup() {
 	
 	game_car_ = new Car();
 	game_car_->setup(box2d_);
-	game_track_.setup(box2d_, game_car_, "../tracks/track1");
+	game_track_.setup(box2d_, game_car_, "../tracks/track4");
 	//game_track_.loadTrack("../tracks/track1");
 
+	//neat();
 	srand(static_cast<unsigned>(time(0))); // Seed random with current time
 }
 
@@ -88,7 +89,7 @@ void carGame::draw() {
 	ofDrawBitmapString("[B] save track", 10, 190);
 	ofDrawBitmapString("[Q] quit", 10, 210);
 
-	ofDrawBitmapString("Score: " + std::to_string(game_track_.getScore()) , ofGetWindowWidth() / 2 - 10, 30);
+	ofDrawBitmapString("Score: " + std::to_string(game_car_->getScore()) , ofGetWindowWidth() / 2 - 10, 30);
 }
 
 

@@ -171,6 +171,19 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="NEAT\experiments.cpp" />
+    <ClCompile Include="NEAT\gene.cpp" />
+    <ClCompile Include="NEAT\genome.cpp" />
+    <ClCompile Include="NEAT\innovation.cpp" />
+    <ClCompile Include="NEAT\link.cpp" />
+    <ClCompile Include="NEAT\neat.cpp" />
+    <ClCompile Include="NEAT\neatmain.cpp" />
+    <ClCompile Include="NEAT\network.cpp" />
+    <ClCompile Include="NEAT\nnode.cpp" />
+    <ClCompile Include="NEAT\organism.cpp" />
+    <ClCompile Include="NEAT\population.cpp" />
+    <ClCompile Include="NEAT\species.cpp" />
+    <ClCompile Include="NEAT\trait.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\aicpp.cpp" />
@@ -241,6 +254,19 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="NEAT\experiments.h" />
+    <ClInclude Include="NEAT\gene.h" />
+    <ClInclude Include="NEAT\genome.h" />
+    <ClInclude Include="NEAT\innovation.h" />
+    <ClInclude Include="NEAT\link.h" />
+    <ClInclude Include="NEAT\neat.h" />
+    <ClInclude Include="NEAT\neatmain.h" />
+    <ClInclude Include="NEAT\network.h" />
+    <ClInclude Include="NEAT\nnode.h" />
+    <ClInclude Include="NEAT\organism.h" />
+    <ClInclude Include="NEAT\population.h" />
+    <ClInclude Include="NEAT\species.h" />
+    <ClInclude Include="NEAT\trait.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\ai.h" />
     <ClInclude Include="src\car.h" />
@@ -323,13 +349,6 @@
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
       <Project>{5837595d-aca9-485c-8e76-729040ce4b0b}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="icon.rc">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(OF_ROOT)\libs\openFrameworksCompiled\project\vs</AdditionalIncludeDirectories>
-    </ResourceCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>

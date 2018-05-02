@@ -7,8 +7,8 @@ namespace racingai {
 	class Track {
 	private:
 		ofVec2f position_;
-		Car* game_car_;
-
+		vector<Car*> cars_;
+		Car* focus_car_;
 		vector <shared_ptr<ofxBox2dEdge> > edges_;
 		vector <shared_ptr<ofxBox2dRect>> rectangles_;
 		ofPolyline score_line_ = ofPolyline();
@@ -40,7 +40,6 @@ namespace racingai {
 		//int getGlobalY() const;
 		void setGlobalX(double x);
 		void setGlobalY(double y);
-		int getScore();
 		//converts window coordinates to global coordinates
 		ofPoint getGlobalPoint(double x, double y) const;
 		ofPoint getGlobalPoint(ofPoint point) const;

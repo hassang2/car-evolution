@@ -23,7 +23,7 @@ void racingai::Car::setSpeed(double s) {
 }
 
 void racingai::Car::update() {
-	body_->setPosition(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
+	body_->setPosition((ofGetWindowWidth() / 2), (ofGetWindowHeight() / 2));
 	updateSensorValues();
 }
 
@@ -53,7 +53,6 @@ void racingai::Car::updateSensorValues() {
 		if (call_back.didCollide()) {
 			b2Vec2 intersection = call_back.getIntersectionPoint();
 			sensor.value = ofDist(sensor.input.p1.x, sensor.input.p1.y, intersection.x * box2d_->scale, intersection.y * box2d_->scale);
-			std::cout << sensor.value << std::endl;
 		}
 	}
 }
@@ -86,7 +85,6 @@ void racingai::Car::initSensors() {
 	middle_sensor.input.maxFraction = 1.0;
 	sensors_.push_back(middle_sensor);
 
-	
 	//Left
 	Sensor left_sensor;
 	left_sensor.length = 120;
@@ -114,11 +112,26 @@ void racingai::Car::initSensors() {
 	right_sensor.input.p2 = p2_r;
 	right_sensor.input.maxFraction = 1.0;
 	sensors_.push_back(right_sensor);
-	
 }
 
-int racingai::Car::getScore() const {
+int racingai::Car::getScore() const{
 	return score_;
+}
+
+int racingai::Car::calculateScore() {
+	//ofPolyline a;
+	//int closest_index = 0;
+	//ofPoint car_position(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
+	//double shortest_distance = INT_MAX;
+	//for (int i = 0; i < score_line_.getVertices().size(); i++) {
+	//	double distance = score_line_[i].distance(car_position);
+	//	if (distance < shortest_distance) {
+	//		shortest_distance = distance;
+	//		closest_index = i;
+	//	}
+	//}
+	//return closest_index;
+	return 1;
 }
 
 void racingai::Car::swerveRight() {
@@ -162,6 +175,15 @@ double racingai::Car::getWidth() const {
 vector<racingai::Sensor> racingai::Car::getSensors() const{
 	return sensors_;
 }
+
+vector<float> racingai::Car::getSensorValues() const {
+	vector<float> values;
+	for (Sensor sensor : sensors_) {
+		values.push_back(sensor.value);
+	}
+	return values;
+}
+
 
 float32 racingai::RayCaster::ReportFixture(b2Fixture * fixture, const b2Vec2 & point, const b2Vec2 & normal, float32 fraction) {
 	collide = true;
