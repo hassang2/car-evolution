@@ -4,31 +4,34 @@
 #define NO_SCREEN_OUT
 
 
-Population * carAI(int gens) {
-	Population *pop = 0;
-	Genome *start_genome;
+void NEAT::Neat::init(int gens) {
+
+	//Loading paramets from file
+	//***********RANDOM SETUP***************//
+	/* Seed the random-number generator with current time so that
+	the numbers will be different every time we run.    */
+	//srand((unsigned)time(NULL));
+
+	//Load in the params
+	if (NEAT::load_neat_params("../NEAT/test.ne", true)) {
+		cout << "Loaded the Paramaters" << endl;
+	}
+	else {
+		cout << "COULD NOT LOAD THE PARAMETERS" << endl;
+	}
+
+	NEAT::Genome *start_genome;
 	char curword[20];
 	int id;
 
-	ostringstream *fnamebuf;
-	int gen;
+	generations_ = gens;
 
-	int* evals = new int[NEAT::num_runs];  //Hold records for each run
-	int* genes = new int[NEAT::num_runs];
-	int* nodes = new int[NEAT::num_runs];
-	int winnernum;
-	int winnergenes;
-	int winnernodes;
 	//For averaging
 	int totalevals = 0;
 	int totalgenes = 0;
 	int totalnodes = 0;
 	int expcount;
 	int samples;  //For averaging
-
-	memset(evals, 0, NEAT::num_runs * sizeof(int));
-	memset(genes, 0, NEAT::num_runs * sizeof(int));
-	memset(nodes, 0, NEAT::num_runs * sizeof(int));
 
 	ifstream iFile("../NEAT/car_ai_start_genome", ios::in);
 
@@ -39,92 +42,20 @@ Population * carAI(int gens) {
 	iFile >> curword;
 	iFile >> id;
 	cout << "Reading in Genome id " << id << endl;
-	start_genome = new Genome(id, iFile);
+	start_genome = new NEAT::Genome(id, iFile);
 	iFile.close();
 
-	for (expcount = 0; expcount < NEAT::num_runs; expcount++) {
-		//Spawn the Population
-		cout << "Spawning Population off Genome2" << endl;
+	//Spawn the Population
+	cout << "Spawning Population off Genome" << endl;
 
-		pop = new Population(start_genome, NEAT::pop_size);
+	pop = new NEAT::Population(start_genome, NEAT::pop_size);
 
-		cout << "Verifying Spawned Pop" << endl;
-		pop->verify();
-
-
-
-		for (gen = 1; gen <= gens; gen++) {
-			cout << "Epoch " << gen << endl;
-
-			//This is how to make a custom filename
-			fnamebuf = new ostringstream();
-			(*fnamebuf) << "gen_" << gen << ends;  //needs end marker
-
-#ifndef NO_SCREEN_OUT
-			cout << "name of fname: " << fnamebuf->str() << endl;
-#endif
-
-			char temp[50];
-			sprintf(temp, "gen_%d", gen);
-
-			//Check for success
-			//if successful then make this the last loop
-			if (AI_epoch(pop, gen, temp, winnernum, winnergenes, winnernodes)) {
-				//	if (xor_epoch(pop,gen,fnamebuf->str(),winnernum,winnergenes,winnernodes)) {
-				//Collect Stats on end of experiment
-				evals[expcount] = NEAT::pop_size*(gen - 1) + winnernum;
-				genes[expcount] = winnergenes;
-				nodes[expcount] = winnernodes;
-				gen = gens;
-			}
-
-			//Clear output filename
-			fnamebuf->clear();
-			delete fnamebuf;
-
-		}
-
-		if (expcount < NEAT::num_runs - 1) delete pop;
-
-	}
-
-	//Average and print stats
-	cout << "Nodes: " << endl;
-	for (expcount = 0; expcount < NEAT::num_runs; expcount++) {
-		cout << nodes[expcount] << endl;
-		totalnodes += nodes[expcount];
-	}
-
-	cout << "Genes: " << endl;
-	for (expcount = 0; expcount < NEAT::num_runs; expcount++) {
-		cout << genes[expcount] << endl;
-		totalgenes += genes[expcount];
-	}
-
-	cout << "Evals " << endl;
-	samples = 0;
-	for (expcount = 0; expcount < NEAT::num_runs; expcount++) {
-		cout << evals[expcount] << endl;
-		if (evals[expcount] > 0)
-		{
-			totalevals += evals[expcount];
-			samples++;
-		}
-	}
-
-	cout << "Failures: " << (NEAT::num_runs - samples) << " out of " << NEAT::num_runs << " runs" << endl;
-	cout << "Average Nodes: " << (samples > 0 ? (double)totalnodes / samples : 0) << endl;
-	cout << "Average Genes: " << (samples > 0 ? (double)totalgenes / samples : 0) << endl;
-	cout << "Average Evals: " << (samples > 0 ? (double)totalevals / samples : 0) << endl;
-
-	delete genes;
-	delete evals;
-	delete nodes;
-
-	return pop;
+	cout << "Verifying Spawned Pop..." << endl;
+	pop->verify();
+	cout << "Verified" << endl;
 }
 
-int AI_epoch(Population * pop, int generation, char * filename, int &winnernum, int &winnergenes, int &winnernodes) {
+int NEAT::Neat::evalPopulation() {
 	vector<Organism*>::iterator curorg;
 	vector<Species*>::iterator curspecies;
 	//char cfilename[100];
@@ -136,7 +67,7 @@ int AI_epoch(Population * pop, int generation, char * filename, int &winnernum, 
 
 	//Evaluate each organism on a test
 	for (curorg = (pop->organisms).begin(); curorg != (pop->organisms).end(); ++curorg) {
-		if (aiEvaluate(*curorg)) {
+		if (evalOrganism(*curorg)) {
 			win = true;
 			winnernum = (*curorg)->gnome->genome_id;
 			winnergenes = (*curorg)->gnome->extrons();
@@ -167,9 +98,11 @@ int AI_epoch(Population * pop, int generation, char * filename, int &winnernum, 
 	//  pop->snapshot();
 
 	//Only print to file every print_every generations
+	char temp[50];
+	sprintf(temp, "gen_%d", current_gen_);
 	if (win ||
-		((generation % (NEAT::print_every)) == 0))
-		pop->print_to_file_by_species(filename);
+		((current_gen_ % (NEAT::print_every)) == 0))
+		pop->print_to_file_by_species(temp);
 
 
 	if (win) {
@@ -184,13 +117,13 @@ int AI_epoch(Population * pop, int generation, char * filename, int &winnernum, 
 
 	}
 
-	pop->epoch(generation);
+	pop->epoch(current_gen_);
 
 	if (win) return 1;
 	else return 0;
 }
 
-bool aiEvaluate(Organism * org) {
+void NEAT::Neat::getOrganismOutput(Organism * org) {
 	Network *net;
 	//double out[4]; //The four outputs
 	double this_out[3]; //The current output
@@ -218,7 +151,7 @@ bool aiEvaluate(Organism * org) {
 	//Load and activate the network on each input
 
 
-	vector<float> sensor_values = org->car_.getSensorValues();
+	vector<float> sensor_values = org->getCar()->getSensorValues();
 
 	net->load_sensors(sensor_values);
 
@@ -251,39 +184,28 @@ bool aiEvaluate(Organism * org) {
 
 	switch (max_index) {
 	case 1:
-		org->car_.swerveLeft();
+		org->getCar()->swerveLeft();
 		break;
 	case 2:
-		org->car_.swerveRight();
+		org->getCar()->swerveRight();
 		break;
 	case 3:
 		break;
 	}
 
-	if (success) {
-		org->fitness = org->car_.getScore();
-		org->error = 1 / org->fitness;
-	}
-	else {
-		//The network is flawed (shouldnt happen)
-		cout << "Flawed Network" << std::endl;
-		org->fitness = 0.001;
-	}
+	if (!success) cout << "Flawed Network" << std::endl;
 
-#ifndef NO_SCREEN_OUT
-	cout << "Org " << (org->gnome)->genome_id << "                                     error: " << errorsum << "  [" << out[0] << " " << out[1] << " " << out[2] << " " << out[3] << "]" << endl;
-	cout << "Org " << (org->gnome)->genome_id << "                                     fitness: " << org->fitness << endl;
-#endif
+}
 
-	if (org->error<0.05) { 
-	//if (0 < 0.2) {
-		//if ((out[0] < 0.5) && (out[1] >= 0.5) && (out[2] >= 0.5) && (out[3] < 0.5)) {
+bool NEAT::Neat::evalOrganism(Organism* org) {
+	org->fitness = org->getCar()->getScore();
+	org->error = 1.0 / org->fitness;
+
+	if (org->fitness > 50) {
 		org->winner = true;
 		return true;
-	}
-	else {
+	} else {
 		org->winner = false;
 		return false;
 	}
-
 }

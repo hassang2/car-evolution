@@ -1,38 +1,88 @@
 #include "track.h"
 
-using namespace racingai;
-Track::Track() {
+racingai::Track::Track() {
 }
 
-void Track::setup(ofxBox2d* box, Car* car, string file_path) {
+void racingai::Track::setup(ofxBox2d* box, vector<Car*> cars_list, Universe* world, string file_path) {
 	box2d_ = box;
-	cars_.push_back(car);
-	focus_car_ = car;
+	world_ = world;
+	cars_ = cars_list;
+	for (Car* car : cars_) {
+		car->setup(box, world);
+	}
+	focus_car_ = cars_[0];
 	loadTrack(file_path);
-	updateRectangles();
+	setupRectangles();
 }
 
-void racingai::Track::updateRectangles() {
-	rectangles_.clear();
-	for (shared_ptr<ofxBox2dEdge> edge : edges_) {
-		if (edge.get()->getVertices().size() < 2) continue;
-		for (int i = 0; i < edge.get()->getVertices().size() - 1; i++) {
-			auto rect = std::make_shared<ofxBox2dRect>();
-			b2Vec2 p1(edge.get()->getVertices()[i].x, edge.get()->getVertices()[i].y);
-			b2Vec2 p2(edge.get()->getVertices()[i + 1].x, edge.get()->getVertices()[i + 1].y);
+void racingai::Track::update() {
 
-			double length = b2Distance(p1, p2);
-			double slope = (p2.y - p1.y) / (p2.x - p1.x);
-
-			rect.get()->setPhysics(3.0, 0.53, 0.1);
-			rect.get()->setup(box2d_->getWorld(), (p1.x + p2.x) / 2, (p1.y + p2.y) / 2, length, 5);
-			rect.get()->setRotation(atan(slope) * 180 / PI);
-			rect.get()->body->SetType(b2_staticBody);
-			rectangles_.push_back(rect);
+	//pick a new focus car if current one is dead
+	if (focus_car_->isDead()) {
+		for (Car* car : cars_) {
+			if (!car->isDead()) focus_car_ = car;
 		}
 	}
 }
 
+void racingai::Track::draw() {
+	//centers and draws around the focus car
+	center();
+}
+
+void racingai::Track::center() {
+	ofPoint local_point = world_->getLocalPoint(focus_car_->getXPos(), focus_car_->getYPos());
+	double dx = cos(focus_car_->getAngle() * PI / 180) * focus_car_->getSpeed() - ofGetWindowWidth() / 2 + local_point.x;
+	double dy = sin(focus_car_->getAngle() * PI / 180) * focus_car_->getSpeed() - ofGetWindowHeight() / 2 + local_point.y;
+
+	if (focus_car_->isDead()) {
+		dx = 0;
+		dy = 0;
+	}
+
+	world_->setGlobalX(world_->getGlobalX() + dx);
+	world_->setGlobalY(world_->getGlobalY() + dy);
+
+	//centering / drawing edges
+	for (std::shared_ptr<ofxBox2dEdge> edge : edges_) {
+		ofPolyline draw_edge;
+
+		for (ofPoint point : edge.get()->getVertices()) {
+			ofPoint local_point = world_->getLocalPoint(point.x, point.y);
+			draw_edge.addVertex(local_point.x, local_point.y);
+		}
+		draw_edge.draw();
+	}
+
+	//centering / drawing rectangles
+	ofSetColor(219, 47, 8);
+	for (std::shared_ptr<ofxBox2dRect> rect : rectangles_) {
+		ofPoint old_pos = rect.get()->getPosition();
+		double rotation = rect.get()->getRotation();
+		ofRectangle draw_rect(0, 0, rect.get()->getWidth(), rect.get()->getHeight());
+
+		ofPoint local_point = world_->getLocalPoint(old_pos.x, old_pos.y);
+		draw_rect.setPosition(local_point.x, local_point.y);
+
+		ofSetRectMode(OF_RECTMODE_CENTER);
+		ofPushMatrix();
+		ofTranslate(draw_rect.getX(), draw_rect.getY(), 0);
+		ofRotateZ(rotation);
+		ofTranslate(-draw_rect.getX(), -draw_rect.getY(), 0);
+		ofDrawRectangle(draw_rect);
+		ofPopMatrix();
+	}
+
+	//centering score line
+	ofSetColor(255, 255, 255);
+	ofPolyline draw_line;
+	for (ofPoint point : score_line_.getVertices()) {
+		ofPoint local_point = world_->getLocalPoint(point.x, point.y);
+		draw_line.addVertex(local_point.x, local_point.y);
+	}
+
+	draw_line.draw();
+}
 void racingai::Track::saveTrack() const {
 
 	//find an unused index for the track name
@@ -48,7 +98,7 @@ void racingai::Track::saveTrack() const {
 
 	for (int i = 0; i < edges_.size(); i++) {
 		for (int k = 0; k < edges_[i]->getVertices().size(); k++) {
-			ofPoint global_point = getGlobalPoint(edges_[i]->getVertices()[k]);
+			ofPoint global_point = world_->getGlobalPoint(edges_[i]->getVertices()[k]);
 			ofs << "(" << global_point.x << ", " << global_point.y << ")" << std::endl;
 		}
 		ofs << "---" << std::endl;
@@ -57,7 +107,7 @@ void racingai::Track::saveTrack() const {
 	ofs << "SCORE_LINE" << std::endl;
 
 	for (ofPoint point : score_line_.getVertices()) {
-		ofPoint global_point = getGlobalPoint(point);
+		ofPoint global_point = world_->getGlobalPoint(point);
 		ofs << "(" << global_point.x << ", " << global_point.y << ")" << std::endl;
 	}
 
@@ -103,61 +153,30 @@ void racingai::Track::loadTrack(std::string path) {
 	std::cout << "finished loading" << std::endl;
 }
 
-void Track::update() {
-	center();
-	//creating the edges_
-	for (std::shared_ptr<ofxBox2dEdge> edge : edges_) {
-		edge.get()->create(box2d_->getWorld());
-	}
-}
+void racingai::Track::setupRectangles() {
+	rectangles_.clear();
+	for (shared_ptr<ofxBox2dEdge> edge : edges_) {
+		if (edge.get()->getVertices().size() < 2) continue;
+		for (int i = 0; i < edge.get()->getVertices().size() - 1; i++) {
+			auto rect = std::make_shared<ofxBox2dRect>();
 
-void Track::center() {
-	
-	//centering edges
-	for (std::shared_ptr<ofxBox2dEdge> edge : edges_) {
-		auto draw_edge shared_ptr<ofxBox2dEdge>();
+			b2Vec2 p1(edge.get()->getVertices()[i].x, edge.get()->getVertices()[i].y);
+			b2Vec2 p2(edge.get()->getVertices()[i + 1].x, edge.get()->getVertices()[i + 1].y);
 
+			double length = b2Distance(p1, p2);
+			double slope = (p2.y - p1.y) / (p2.x - p1.x);
 
-		vector<ofPoint> old_points = edge.get()->getVertices();
-		edge.get()->clear();
-		
-		double dx = cos(cars_[0]->getAngle() * PI / 180) * cars_[0]->getSpeed() - ofGetWindowWidth() / 2 + cars_[0]->getXPos();
-		double dy = sin(cars_[0]->getAngle() * PI / 180) * cars_[0]->getSpeed() - ofGetWindowHeight() / 2 + cars_[0]->getYPos();
+			rect.get()->fixture.filter.categoryBits = 0x0004;
+			rect.get()->fixture.filter.maskBits = 0x0002;
+			rect.get()->setPhysics(3.0, 0.53, 0.1);
+			rect.get()->setup(box2d_->getWorld(), (p1.x + p2.x) / 2, (p1.y + p2.y) / 2, length, 5);
+			rect.get()->setRotation(atan(slope) * 180 / PI);
+			rect.get()->body->SetType(b2_staticBody);
+			rect->setData(new ContactData());
 
-		global_x_ += dx;
-		global_y_ += dy;
-
-		for (ofPoint point : old_points) {
-			draw_edge.get()->addVertex(point.x - dx, point.y - dy);
+			rectangles_.push_back(rect);
 		}
 	}
-
-	//centering rectangles
-	for (std::shared_ptr<ofxBox2dRect> rect : rectangles_) {
-		ofPoint old_pos = rect.get()->getPosition();
-		double rotation = rect.get()->getRotation();
-
-		double dx = cos(cars_[0]->getAngle() * PI / 180) * cars_[0]->getSpeed() - ofGetWindowWidth() / 2 + cars_[0]->getXPos();
-		double dy = sin(cars_[0]->getAngle() * PI / 180) * cars_[0]->getSpeed() - ofGetWindowHeight() / 2 + cars_[0]->getYPos();
-
-		rect.get()->setPosition(old_pos.x - dx , old_pos.y - dy);
-		rect.get()->setRotation(rotation);
-	}
-
-
-	//centering score line
-	vector<ofPoint> old_score_points = score_line_.getVertices();
-	score_line_.clear();
-
-	double dx = cos(cars_[0]->getAngle() * PI / 180) * cars_[0]->getSpeed() - ofGetWindowWidth() / 2 + cars_[0]->getXPos();
-	double dy = sin(cars_[0]->getAngle() * PI / 180) * cars_[0]->getSpeed() - ofGetWindowHeight() / 2 + cars_[0]->getYPos();
-
-	//global_x_ += dx;
-	//global_y_ += dy;
-	for (ofPoint point : old_score_points) {
-		score_line_.addVertex(point.x - dx, point.y - dy);
-	}
-	
 }
 
 void racingai::Track::addEdge() {
@@ -174,6 +193,11 @@ void racingai::Track::removeEdge() {
 	//	std::cout << "Removed last curve" << std::endl;
 	//}
 }
+
+void racingai::Track::setCars(vector <Car*> new_cars) {
+	cars_ = new_cars;
+	focus_car_ = cars_[0];
+}
 	
 void racingai::Track::toggleScoreLineEdit() {
 	score_line_edit_ = !score_line_edit_;
@@ -181,27 +205,15 @@ void racingai::Track::toggleScoreLineEdit() {
 	std::cout << "Score edit is " << io << std::endl;
 }
 
-void racingai::Track::draw() {
-	score_line_.draw();
-	for (int i = 0; i<edges_.size(); i++) {
-		edges_[i].get()->draw();
-	}
-
-	ofSetColor(219, 47, 8);
-	for (shared_ptr<ofxBox2dRect> rect : rectangles_) {
-		rect.get()->draw();
-	}
-}
-
 void racingai::Track::addPoint(int x, int y) {
 	if (score_line_edit_) {
-		score_line_.addVertex(x, y);
+		score_line_.addVertex(world_->getGlobalPoint(x, y));
 		std::cout << "Added score point" << std::endl;
 	} else {
-		edges_.back().get()->addVertex(x, y);
+		edges_.back().get()->addVertex(world_->getGlobalPoint(x, y));
 		std::cout << "Added point" << std::endl;
 	}
-	updateRectangles();
+	setupRectangles();
 }
 
 void racingai::Track::removePoint() {
@@ -223,29 +235,4 @@ void racingai::Track::removePoint() {
 		}
 		rectangles_.pop_back();
 	}
-}
-
-ofPoint racingai::Track::getLocalPoint(double x, double y) const {
-	return ofPoint(x, y);
-}
-
-ofPoint racingai::Track::getLocalPoint(ofPoint point) const {
-	return getLocalPoint(point.x, point.y);
-}
-
-void racingai::Track::setGlobalX(double x) {
-	global_x_ = x;
-}
-
-void racingai::Track::setGlobalY(double y) {
-	global_y_ = y;
-}
-
-ofPoint racingai::Track::getGlobalPoint(double x, double y) const {
-	ofPoint global_point(x + global_x_, y + global_y_);
-	return global_point;
-}
-
-ofPoint racingai::Track::getGlobalPoint(ofPoint point) const {
-	return getGlobalPoint(point.x, point.y);
 }

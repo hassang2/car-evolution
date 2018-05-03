@@ -1,7 +1,7 @@
 #pragma once
 #include "ofMain.h"
 #include "ofxBox2d.h"
-
+#include "world.h"
 
 namespace racingai {
 
@@ -13,51 +13,71 @@ namespace racingai {
 		void setValue(double v) { value = v; }
 	};
 
+	//a class to register contacts in the game
+	class ContactData {
+	private:
+		bool in_contact = false;
+
+	public:
+		void setFalse() { in_contact = false; }
+		void setTrue() { in_contact = true; }
+		bool isInContact() { return in_contact; }
+	};
+
 	class Car {
-		double SWERVE_AMOUNT = 4.0;
+		double SWERVE_AMOUNT = 3.5;
 		double WIDTH = 40.0;
 		double HEIGHT = 20.0;
+
 	private:
 		bool dead_ = false;
 		double angle_ = 0.0;
-		double speed_ = 0.0;
-		ofxBox2dRect* body_;
+		double speed_ = 6.0;
+		ofxBox2dRect body_;
 		ofxBox2d* box2d_;
+		Universe* world_;
 		double score_ = 0.0;
-
-		ofVec2f screen_dims_; // The current screen dimensions (needed to calculate values on resize()
-		static const float kbody_size_modifier_; // The proportion of the screen width a body square is
-		ofVec2f body_size_; // the size of a snake body piece based on kbody_size_modifier_
-
 		vector<Sensor> sensors_;
 
 	public:
+		//Car
 		Car();
-		void setup(ofxBox2d* box);
+		//Car(const Car &source);
+		~Car();
+		//Car &operator=(const Car &source);      // Copy assignment operator
 
+		void setup(ofxBox2d* box, Universe* world);
 		void update(); // updates the snake one body square in the current direction
-		int getScore() const; // Gets the number of food items the snake has eaten
 		void swerveRight(); //swerves the car to right
 		void swerveLeft(); //swerves the car to left
 		void draw();
 		void setSpeed(double s);
+		void resetState();
 		int calculateScore();
-		bool isDead() const { return dead_; }
+
 		//sensors
 		void initSensors();
 		void updateSensorValues();
 		void drawSensors();
+		void updateSensors();
 
-		ofVec2f getBodySize() const;
-		ofxBox2dRect* getBody() const;
-		double getXPos() const;
-		double getYPos() const;
-		double getAngle() const;
+		//contact listeners
+		void contactStart(ofxBox2dContactArgs &e);
+		void contactEnd(ofxBox2dContactArgs &e);
+
+		//Getters
+		ofxBox2dRect getBody();
+		double getXPos();
+		double getYPos();
+		double getAngle();
 		double getSpeed() const;
 		double getHeight() const;
 		double getWidth() const;
 		vector<Sensor> getSensors() const;
 		vector<float> getSensorValues() const;
+		bool isDead() { return dead_; }
+		int getScore() const; // Gets the number of food items the snake has eaten
+
 	};
 	
 	class RayCaster : public b2RayCastCallback {

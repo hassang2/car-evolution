@@ -8,6 +8,7 @@
 #include "car.h"
 #include "track.h"
 #include "ofxBox2d.h"
+#include "world.h"
 
 #include "../NEAT/neat.h"
 #include "../NEAT/population.h"
@@ -24,15 +25,15 @@ namespace racingai {
 	};
 
 	class carGame : public ofBaseApp {
+		int MAX_GENS = 10;
 	private:
 		GameState current_state_ = IN_PROGRESS; // The current state of the game, used to determine possible actions
-		Car* game_car_; // The object that represents the user controlled car
 		Track game_track_; // the track object used in the game
-
+		vector<Car*> cars_;
 		ofxBox2d* box2d_;           // the box2d world
-
-		vector    <shared_ptr<ofxBox2dCircle> > circles_;         // default box2d circles
-
+		Universe world_;
+		NEAT::Neat neat_;
+		
 		//Score tracking
 		std::vector<int> top_scores_;
 		int lowest_score_ = INT_MAX;
@@ -69,50 +70,5 @@ namespace racingai {
 		void mousePressed(int x, int y, int button);
 		void mouseDragged(int x, int y, int button);
 		//void windowResized(int w, int h);
-		int neat() {
-			//list<NNode*> nodelist;
-
-			int pause;
-
-			NEAT::Population *p = 0;
-
-			//***********RANDOM SETUP***************//
-			/* Seed the random-number generator with current time so that
-				the numbers will be different every time we run.    */
-			srand((unsigned)time(NULL));
-
-			//Load in the params
-			if (NEAT::load_neat_params("../NEAT/test.ne", true)) {
-				cout << "Loaded the Paramaters" << endl;
-			} else {
-				cout << "COULD NOT LOAD THE PARAMETERS" << endl;
-			}
-
-			int choice;
-
-			//cout << "Please choose an experiment: " << endl;
-			//cout << "1 - Car AI " << endl;
-			//cout << " " << endl;
-			//cout << " " << endl;
-			//cout << " " << endl;
-			//cout << "Number: ";
-
-			//cin >> choice;
-			//switch (choice) {
-			//case 1:
-			//	p = carAI(100);
-			//	break;
-			//case 4:
-			//	break;
-			//default:
-			//	cout << "Not an available option." << endl;
-			//}
-
-			p = carAI(100);
-
-			delete p;
-
-			return (0);
-		};
 	};
 } // namespace racingai

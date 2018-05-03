@@ -2,10 +2,14 @@
 #include "ofApp.h"
 #include <iostream>
 
+#include "../NEAT/experiments.h"
+
 using namespace racingai;
 
 // Setup method
 void carGame::setup() {
+	srand(static_cast<unsigned>(time(0))); // Seed random with current time
+
 	ofSetLogLevel(OF_LOG_ERROR);
 	ofBackgroundHex(0x1F2C30);
 	ofSetRectMode(OF_RECTMODE_CENTER);     // 0,0 is at center of a rectangle now
@@ -13,40 +17,59 @@ void carGame::setup() {
 
 	initBox2d();
 	
-	game_car_ = new Car();
-	game_car_->setup(box2d_);
-	game_track_.setup(box2d_, game_car_, "../tracks/track4");
-	//game_track_.loadTrack("../tracks/track1");
+	world_ = Universe();
+
+	//game_track_ = Track();
+
+	//cars_.push_back(make_shared<Car>());
+	//cars_.push_back(make_shared<Car>());
+
+	neat_.init(MAX_GENS);
+
+	//collect car objects from organsisms to be used in the game
+	//vector<NEAT::Organism*>::iterator curorg;
+	//for (curorg = neat_.getpopulation()->organisms.begin(); curorg != (neat_.getpopulation()->organisms).end(); ++curorg) {
+	//	cars_.push_back((*curorg)->getCar());
+	//}
+
+	vector<Car*> beep;
+	//beep.push_back((*neat_.getpopulation()->organisms.begin())->getCar());
+	beep.push_back(new Car());
+	//cars_.push_back(new Car());
+	//test.push_back(10);
+	//std::cout << test.size() << std::endl;
+	game_track_.setup(box2d_, beep, &world_, "../tracks/track4");
 
 	//neat();
-	srand(static_cast<unsigned>(time(0))); // Seed random with current time
 }
 
-/*
-Update function called before every draw
-If the function should update when it is called it will:
-1. Check to see if the game is in progress, if it is paused or over it should not update.
-2. Check to see if the current head of the snake intersects the food pellet. If so:
-* The snake should grow by length 1 in its current direction
-* The food should be moved to a new random location
-3. Update the snake in the current direction it is moving
-4. Check to see if the snakes new position has resulted in its death and the end of the game
-*/
 void carGame::update() {
 	box2d_->update();
 
 	if (current_state_ == IN_PROGRESS) {
-		//ofCircle car_rect(game_car_.getXPos(), game_car_.getYPos(), 5.0, 5.0);
-		if (right_btn_hold_) game_car_->swerveRight();
-		if (left_btn_hold_) game_car_->swerveLeft();
-
 		//Order matters : track should be updated first
 		game_track_.update();
-		game_car_->update();
+		
+		if (!game_track_.getFocusCar()->isDead()) {
+			if (right_btn_hold_) game_track_.getFocusCar()->swerveRight();
+			if (left_btn_hold_) game_track_.getFocusCar()->swerveLeft();
 
-		//if (game_car_.isDead()) {
-		//	current_state_ = FINISHED;
-		//	evaluateScore();
+			game_track_.getFocusCar()->update();
+		}
+
+		bool finish = true;
+		for (Car* car : cars_) {
+			if (!car->isDead()) {
+				finish = false;
+				break;
+			}
+		}
+		//if (finish) {
+		//	if (neat_.evalPopulation()) {
+		//		std::cout << "Optimal car Found";
+		//	} else if (neat_.getCurrentGen() < MAX_GENS) {
+		//		reset();
+		//	}
 		//}
 	}
 }
@@ -67,13 +90,12 @@ void carGame::draw() {
 	}
 
 	game_track_.draw();
-	game_car_->draw();
+	//for (Car* car : cars_) {
+	//	car->draw();
+	//}
+	if (!game_track_.getFocusCar()->isDead()) game_track_.getFocusCar()->draw();
 
-	for (int i = 0; i < circles_.size(); i++) {
-		ofFill();
-		ofSetHexColor(0x90d4e3);
-		circles_[i].get()->draw();
-	}
+
 	//draw FPS
 	ofSetColor(255);
 	ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate()), 10, 10);
@@ -89,23 +111,9 @@ void carGame::draw() {
 	ofDrawBitmapString("[B] save track", 10, 190);
 	ofDrawBitmapString("[Q] quit", 10, 210);
 
-	ofDrawBitmapString("Score: " + std::to_string(game_car_->getScore()) , ofGetWindowWidth() / 2 - 10, 30);
+	ofDrawBitmapString("Score: " + std::to_string(game_track_.getFocusCar()->getScore()) , ofGetWindowWidth() / 2 - 10, 30);
 }
 
-
-/*
-Function that handles actions based on user key presses
-1. if key == F12, toggle fullscreen
-2. if key == p and game is not over, toggle pause
-3. if game is in progress handle WASD action
-4. if key == r and game is over reset it
-
-WASD logic:
-Let dir be the direction that corresponds to a key
-if current direction is not dir (Prevents key spamming to rapidly update the snake)
-and current_direction is not opposite of dir (Prevents the snake turning and eating itself)
-Update direction of snake and force a game update (see ofApp.h for why)
-*/
 void carGame::keyPressed(int key) {
 	if (key == OF_KEY_F12) {
 		ofToggleFullscreen();
@@ -124,8 +132,11 @@ void carGame::keyPressed(int key) {
 			left_btn_hold_ = true;
 			break;
 		case 'S':
-			if (game_car_->getSpeed() > 1.0) game_car_->setSpeed(0.0);
-			else game_car_->setSpeed(3.0);
+			if (game_track_.getFocusCar()->getSpeed() > 0.0) {
+				game_track_.getFocusCar()->setSpeed(0.0);
+			} else if (!game_track_.getFocusCar()->isDead()) {
+				game_track_.getFocusCar()->setSpeed(3.0);
+			}
 			break;
 		case 'P':
 			game_track_.toggleScoreLineEdit();
@@ -134,7 +145,6 @@ void carGame::keyPressed(int key) {
 			game_track_.removeEdge();
 			break;
 		case 'R':
-			reset();
 			break;
 		case 'B':
 			game_track_.saveTrack();
@@ -172,16 +182,26 @@ void carGame::mouseDragged(int x, int y, int button) {
 
 
 
-void carGame::reset() {
-	// delete current car?
-	game_car_ = new Car();
+void carGame::reset() {	
+	Car sample;
+	for (Car* car : cars_) {
+		car->resetState();
+	}
+
+	cars_.clear();
+	vector<NEAT::Organism*>::iterator curorg;
+	for (curorg = neat_.getpopulation()->organisms.begin(); curorg != (neat_.getpopulation()->organisms).end(); ++curorg) {
+		cars_.push_back((*curorg)->getCar());
+	}
+
+	game_track_.setCars(cars_);
+
 	current_state_ = IN_PROGRESS;
 }
 
 void racingai::carGame::evaluateScore() {
 	if (current_state_ == FINISHED) {
-
-		int total_score = game_car_->getScore();
+		int total_score = game_track_.getFocusCar()->getScore();
 
 		if (top_scores_.size() < 10) {
 			top_scores_.push_back(total_score);
@@ -210,13 +230,8 @@ int racingai::carGame::findLowestScoreIndex() {
 	return index;
 }
 
-//void carGame::windowResized(int w, int h) {
-//	game_food_.resize(w, h);
-//	game_snake_.resize(w, h);
-//}
-
 void carGame::drawGameOver() {
-	string lose_message = "You Lost! Final Score: " + game_car_->getScore();
+	string lose_message = "You Lost! Final Score: " + game_track_.getFocusCar()->getScore();
 	ofSetColor(0, 0, 0);
 	ofDrawBitmapString(lose_message, ofGetWindowWidth() / 4, 50);
 	drawTopScores();
@@ -234,10 +249,10 @@ void carGame::drawTopScores() {
 void racingai::carGame::initBox2d() {
 	box2d_ = new ofxBox2d();
 	box2d_->init();
+	box2d_->enableEvents();   // <-- turn on the event listener
 	box2d_->setGravity(0, 0);
 	box2d_->createGround();
 	box2d_->setFPS(60.0);
-	//box2d_->registerGrabbing();
 }
 
 void carGame::drawGamePaused() {

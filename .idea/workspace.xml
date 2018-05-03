@@ -14,105 +14,23 @@
   <component name="ChangeListManager">
     <list default="true" id="fdebe038-62e2-4106-8588-e71a418b965e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/CHANGES" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/experiments.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/experiments.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/experiments.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_10" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_11" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_13" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_14" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_16" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_18" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_20" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_21" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_22" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_23" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_24" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_25" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_27" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_28" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_29" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_30" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_60" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_9" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gen_90" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gene.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gene.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/gene.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/genome.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/genome.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/genome.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/innovation.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/innovation.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/innovation.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/link.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/link.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/link.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neat" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/neat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neat.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neat.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neat.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neatmain.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neatmain.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/neatmain.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/network.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/network.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/network.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/nnode.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/nnode.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/nnode.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/oppositestartergenes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/organism.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/organism.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/organism.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/p2mpar3bare.ne" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/p2nv.ne" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/p2test.ne" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/params256.ne" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/pole1startgenes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/pole2_markov.ne" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/pole2startgenes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/pole2startgenes.original" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/pole2startgenes1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/pole2startgenes2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/population.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/population.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/population.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/posnegstarter.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/species.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/species.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/species.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/test.ne" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/trait.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/trait.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/trait.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/xorstartgenes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/xorstartgenes - Copy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/xorstartgenes2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/experiments.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/experiments.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT/car_ai_start_genome" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT/car_ai_start_genome" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT/experiments.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT/experiments.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT/experiments.h" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT/experiments.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT/genome.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT/genome.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT/organism.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT/organism.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT/organism.h" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT/organism.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEAT/test.ne" beforeDir="false" afterPath="$PROJECT_DIR$/NEAT/test.ne" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/final-project-hassang2_debug.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/final-project-hassang2_debug.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/final-project-hassang2_debug.exp" beforeDir="false" afterPath="$PROJECT_DIR$/bin/final-project-hassang2_debug.exp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/final-project-hassang2_debug.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/bin/final-project-hassang2_debug.ilk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/final-project-hassang2_debug.lib" beforeDir="false" afterPath="$PROJECT_DIR$/bin/final-project-hassang2_debug.lib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/final-project-hassang2_debug.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/final-project-hassang2_debug.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/final_project_hassang2.dir/NEAT.1.2.1/genome.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/final_project_hassang2.dir/NEAT.1.2.1/genome.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/main.dir/src/main.cpp.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project-hassang2.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/final-project-hassang2.vcxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/final-project-hassang2.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/final-project-hassang2.vcxproj.filters" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/final-project-hassang2.vcxproj.user" beforeDir="false" afterPath="$PROJECT_DIR$/final-project-hassang2.vcxproj.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/car.obj" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/car.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/experiments.obj" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/experiments.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/CL.command.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/CL.read.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/CL.write.1.tlog" afterDir="false" />
@@ -121,16 +39,20 @@
       <change beforePath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/link.read.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/final-pr.7FD42DF7.tlog/link.write.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/final-project-hassang2.log" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/final-project-hassang2.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/genome.obj" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/genome.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/main.obj" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/main.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/ofApp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/ofApp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/organism.obj" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/organism.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/population.obj" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/population.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/species.obj" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/species.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/track.obj" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/track.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/vc140.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/vc140.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/car.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/car.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/car.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/car.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ofApp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ofApp.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ofApp.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/ofApp.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/track.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/track.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/track.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/track.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -146,12 +68,7 @@
       <file leaf-file-name="neatmain.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NEAT/neatmain.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2275">
-              <caret line="113" column="22" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
-              <folding>
-                <element signature="e#938#957#0" expanded="true" />
-              </folding>
-            </state>
+            <state relative-caret-position="-200" />
           </provider>
         </entry>
       </file>
@@ -163,8 +80,8 @@
       <file leaf-file-name="experiments.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NEAT/experiments.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="806">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
             </state>
           </provider>
         </entry>
@@ -172,8 +89,39 @@
       <file leaf-file-name="experiments.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/experiments.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1344">
-              <caret line="214" column="29" selection-start-line="214" selection-start-column="26" selection-end-line="214" selection-end-column="29" />
+            <state relative-caret-position="281">
+              <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#607#0" />
+                <element signature="e#3690#5709#0" />
+                <element signature="e#3918#3999#0" />
+                <element signature="e#5711#7721#0" />
+                <element signature="e#7723#9822#0" />
+                <element signature="e#9824#11446#0" />
+                <element signature="e#11448#12224#0" />
+                <element signature="e#11519#11600#0" />
+                <element signature="e#11616#11696#0" />
+                <element signature="e#12226#14454#0" />
+                <element signature="e#14458#14530#0" />
+                <element signature="e#14682#14988#0" />
+                <element signature="e#14682#16090#0" />
+                <element signature="e#16312#22995#0" />
+                <element signature="e#22997#23067#0" />
+                <element signature="e#23263#29820#0" />
+                <element signature="e#29822#31720#0" />
+                <element signature="e#29924#30018#0" />
+                <element signature="e#31722#31961#0" />
+                <element signature="e#31963#35155#0" />
+                <element signature="e#33374#33566#0" />
+                <element signature="e#35157#36086#0" />
+                <element signature="e#35429#35734#0" />
+                <element signature="e#36088#37637#0" />
+                <element signature="e#37639#38890#0" />
+                <element signature="e#38892#39465#0" />
+                <element signature="e#39467#39776#0" />
+                <element signature="e#39778#39988#0" />
+                <element signature="e#39990#40295#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -181,8 +129,8 @@
       <file leaf-file-name="experiments.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/experiments.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+            <state relative-caret-position="115">
+              <caret line="39" column="17" selection-start-line="39" selection-end-line="40" />
             </state>
           </provider>
         </entry>
@@ -251,8 +199,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1047" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
     <option name="width" value="880" />
     <option name="height" value="1038" />
   </component>
@@ -342,10 +291,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27137000" />
+    <option name="totallyTimeSpent" value="29260000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="838" y="0" width="704" height="830" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.28695652" />
@@ -354,7 +303,7 @@
       <window_info anchor="bottom" id="CMake" order="11" weight="0.33333334" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.21617852" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.2137931" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -386,13 +335,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/NEAT/neatmain.cpp</url>
-          <line>30</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="3" />
     </breakpoint-manager>
   </component>
@@ -706,35 +648,61 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NEAT/neatmain.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2275">
-          <caret line="113" column="22" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
-          <folding>
-            <element signature="e#938#957#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-200" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/experiments.h">
+    <entry file="file://$PROJECT_DIR$/NEAT/experiments.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+        <state relative-caret-position="806">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NEAT/experiments.h">
+    <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/experiments.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="115">
+          <caret line="39" column="17" selection-start-line="39" selection-end-line="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NEAT.1.2.1/NEAT.1.2.1/experiments.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1344">
-          <caret line="214" column="29" selection-start-line="214" selection-start-column="26" selection-end-line="214" selection-end-column="29" />
+        <state relative-caret-position="281">
+          <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#607#0" />
+            <element signature="e#3690#5709#0" />
+            <element signature="e#3918#3999#0" />
+            <element signature="e#5711#7721#0" />
+            <element signature="e#7723#9822#0" />
+            <element signature="e#9824#11446#0" />
+            <element signature="e#11448#12224#0" />
+            <element signature="e#11519#11600#0" />
+            <element signature="e#11616#11696#0" />
+            <element signature="e#12226#14454#0" />
+            <element signature="e#14458#14530#0" />
+            <element signature="e#14682#14988#0" />
+            <element signature="e#14682#16090#0" />
+            <element signature="e#16312#22995#0" />
+            <element signature="e#22997#23067#0" />
+            <element signature="e#23263#29820#0" />
+            <element signature="e#29822#31720#0" />
+            <element signature="e#29924#30018#0" />
+            <element signature="e#31722#31961#0" />
+            <element signature="e#31963#35155#0" />
+            <element signature="e#33374#33566#0" />
+            <element signature="e#35157#36086#0" />
+            <element signature="e#35429#35734#0" />
+            <element signature="e#36088#37637#0" />
+            <element signature="e#37639#38890#0" />
+            <element signature="e#38892#39465#0" />
+            <element signature="e#39467#39776#0" />
+            <element signature="e#39778#39988#0" />
+            <element signature="e#39990#40295#0" />
+          </folding>
         </state>
       </provider>
     </entry>

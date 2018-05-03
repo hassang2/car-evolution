@@ -17,9 +17,11 @@ namespace NEAT {
 	//   i.e. The genotype and phenotype together
 	// ---------------------------------------------  
 	class Organism {
+	private:
+		racingai::Car* car_;
 
 	public:
-		racingai::Car car_;
+		racingai::Car* NEAT::Organism::getCar() { return car_; }
 
 		double fitness;  //A measure of fitness for the Organism
 		double orig_fitness;  //A fitness measure that won't change during adjustments

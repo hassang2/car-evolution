@@ -224,6 +224,12 @@
     <ClCompile Include="NEAT\population.cpp" />
     <ClCompile Include="NEAT\species.cpp" />
     <ClCompile Include="NEAT\trait.cpp" />
+    <ClCompile Include="src\world.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sensor.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -523,5 +529,11 @@
     <ClInclude Include="NEAT\population.h" />
     <ClInclude Include="NEAT\species.h" />
     <ClInclude Include="NEAT\trait.h" />
+    <ClInclude Include="src\world.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sensor.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

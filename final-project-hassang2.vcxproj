@@ -188,6 +188,7 @@
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\aicpp.cpp" />
     <ClCompile Include="src\car.cpp" />
+    <ClCompile Include="src\sensor.cpp" />
     <ClCompile Include="src\track.cpp" />
     <ClCompile Include="..\..\..\addons\ofxBox2d-stable\src\ofxBox2d.cpp" />
     <ClCompile Include="..\..\..\addons\ofxBox2d-stable\src\ofxBox2dBaseShape.cpp" />
@@ -252,6 +253,7 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSlider.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
+    <ClCompile Include="src\world.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NEAT\experiments.h" />
@@ -270,6 +272,7 @@
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\ai.h" />
     <ClInclude Include="src\car.h" />
+    <ClInclude Include="src\sensor.h" />
     <ClInclude Include="src\track.h" />
     <ClInclude Include="..\..\..\addons\ofxBox2d-stable\src\ofxBox2d.h" />
     <ClInclude Include="..\..\..\addons\ofxBox2d-stable\src\ofxBox2dBaseShape.h" />
@@ -344,6 +347,7 @@
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSlider.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h" />
+    <ClInclude Include="src\world.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

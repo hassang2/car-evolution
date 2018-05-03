@@ -18,6 +18,8 @@
 using namespace NEAT;
 
 Organism::Organism(double fit, Genome *g,int gen, const char* md) {
+	car_ = new racingai::Car();
+
 	fitness=fit;
 	orig_fitness=fitness;
 	gnome=g;
@@ -51,7 +53,8 @@ Organism::Organism(double fit, Genome *g,int gen, const char* md) {
 }
 
 Organism::Organism(const Organism& org)
-{
+{	
+	car_ = org.car_;
 	fitness = org.fitness;
 	orig_fitness = org.orig_fitness;
 	gnome = new Genome(*(org.gnome));	// Associative relationship
@@ -82,6 +85,7 @@ Organism::Organism(const Organism& org)
 Organism::~Organism() {
 	delete net;
 	delete gnome;
+	delete car_;
 }
 
 void Organism::update_phenotype() {

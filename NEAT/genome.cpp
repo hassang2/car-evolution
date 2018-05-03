@@ -121,7 +121,7 @@ Genome::Genome(int id, std::ifstream &iFile) {
 
 	//Loop until file is finished, parsing each line
 	while (!done) {
-        //std::cout << curline << std::endl;
+        std::cout << curline << std::endl;
 
 		if (curwordnum > wordcount || wordcount == 0) {
 			iFile.getline(curline, sizeof(curline));
@@ -214,6 +214,8 @@ Genome::Genome(int id, std::ifstream &iFile) {
 
             //std::cout<<"Added gene " << newgene << std::endl;
 		}
+
+		std::cout << "finished" << std::endl;
 
 	}
 
@@ -755,7 +757,7 @@ bool Genome::verify() {
 			++curnode;
 
 		if (curnode==nodes.end()) {
-			//cout<<"MISSING iNODE FROM GENE NOT IN NODES OF GENOME!!"<<endl;
+			std::cout << "MISSING iNODE FROM GENE NOT IN NODES OF GENOME!!" << std::endl;
 			//cin>>pause;
 			return false;
 		}
@@ -767,7 +769,7 @@ bool Genome::verify() {
 			++curnode;
 
 		if (curnode==nodes.end()) {
-			//cout<<"MISSING oNODE FROM GENE NOT IN NODES OF GENOME!!"<<endl;
+			std::cout << "MISSING oNODE FROM GENE NOT IN NODES OF GENOME!!" << std::endl;
 			//cin>>pause;
 			return false;
 		}
@@ -778,7 +780,7 @@ bool Genome::verify() {
 	last_id=0;
 	for(curnode=nodes.begin();curnode!=nodes.end();++curnode) {
 		if ((*curnode)->node_id<last_id) {
-			//cout<<"ALERT: NODES OUT OF ORDER in "<<this<<endl;
+			std::cout << "ALERT: NODES OUT OF ORDER in "<< this << std::endl;
 			//cin>>pause;
 			return false;
 		}
@@ -795,7 +797,7 @@ bool Genome::verify() {
 				((((*curgene)->lnk)->is_recurrent)==(((*curgene2)->lnk)->is_recurrent))&&
 				((((((*curgene2)->lnk)->in_node)->node_id)==((((*curgene)->lnk)->in_node)->node_id))&&
 				(((((*curgene2)->lnk)->out_node)->node_id)==((((*curgene)->lnk)->out_node)->node_id)))) {
-					//cout<<"ALERT: DUPLICATE GENES: "<<(*curgene)<<(*curgene2)<<endl;
+					std::cout<<"ALERT: DUPLICATE GENES: "<<(*curgene)<<(*curgene2)<<std::endl;
 					//cout<<"INSIDE GENOME: "<<this<<endl;
 
 					//cin>>pause;

@@ -10,8 +10,8 @@ My project probably will not look as complex and impressive but I will try to co
 #### NEAT C++
 I will be using NEAT C++ [library](http://nn.cs.utexas.edu/?neat-c) to evolve my network.
 
-#### Game Library
-This is unlikely, but I might use a library to develop my game. This will depend on how using a library will make things for me easier and if it is worth my time to learn how to use the library. I am saying this is unlikely because I believe openFrameWorks also provides some nice interfances for developing games and graphical applications which is probably enough for my needs.
+#### ofxBox2
+For collision, movement, and other physics necessities I am using ofxBox2d with is an openFrameworks wraper for box2d physics engine. Not much documentation for the wrapper but there are some resources for the original engine.
 
 ## The Game
 
