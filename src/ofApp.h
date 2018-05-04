@@ -27,6 +27,7 @@ namespace racingai {
 	class carGame : public ofBaseApp {
 		int MAX_GENS = 10;
 	private:
+		ofTrueTypeFont font;
 		GameState current_state_ = IN_PROGRESS; // The current state of the game, used to determine possible actions
 		Track game_track_; // the track object used in the game
 		ofxBox2d* box2d_;           // the box2d world

@@ -8,6 +8,7 @@ using namespace racingai;
 
 // Setup method
 void carGame::setup() {
+	font.loadFont("Verdana.ttf", 15);
 	srand(static_cast<unsigned>(time(0))); // Seed random with current time
 
 	ofSetLogLevel(OF_LOG_ERROR);
@@ -19,7 +20,7 @@ void carGame::setup() {
 
 	world_ = Universe();
 
-	neat_.init(10);
+	neat_.init(50);
 
 	vector<shared_ptr<Car> > cars;
 
@@ -101,24 +102,22 @@ void carGame::draw() {
 		if (!car.get()->isDead()) car.get()->draw();
 	} 
 
-
-	//draw FPS
 	ofSetColor(255);
-	ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate()), 10, 10);
+	font.drawString("FPS: " + ofToString(ofGetFrameRate()), 10, 20);
+	
+	font.drawString("[A] move left", 10, 45);
+	font.drawString("[D] move right", 10, 70);
+	font.drawString("[N] add new track edge", 10, 95);
+	font.drawString("[P] add score line", 10, 120);
+	font.drawString("[L] remove last curve", 10, 145);
+	font.drawString("[right mouse] draw", 10, 170);
+	font.drawString("[left mouse] remove last point", 10, 195);
+	font.drawString("[B] save track", 10, 220);
+	font.drawString("[Q] quit", 10, 245);
 
-	ofDrawBitmapString("(" + ofToString(ofGetMouseX()) + ", " + ofToString(ofGetMouseY()) + ")", 10, 30);
-	ofDrawBitmapString("[A] move left", 10, 50);
-	ofDrawBitmapString("[D] move right", 10, 70);
-	ofDrawBitmapString("[N] add new track edge", 10, 90);
-	ofDrawBitmapString("[P] add score line", 10, 110);
-	ofDrawBitmapString("[L] remove last curve", 10, 130);
-	ofDrawBitmapString("[right mouse] draw", 10, 150);
-	ofDrawBitmapString("[left mouse] remove last point", 10, 170);
-	ofDrawBitmapString("[B] save track", 10, 190);
-	ofDrawBitmapString("[Q] quit", 10, 210);
+	font.drawString("Score: " + std::to_string(game_track_.getFocusCar()->getScore()), ofGetWindowWidth() / 2 - 10, 30);
 
-	ofDrawBitmapString("Score: " + std::to_string(game_track_.getFocusCar()->getScore()), ofGetWindowWidth() / 2 - 10, 30);
-
+	font.drawString("Generation: " + std::to_string(neat_.getCurrentGen()), 30, ofGetWindowHeight() - 50);
 }
 
 void carGame::keyPressed(int key) {

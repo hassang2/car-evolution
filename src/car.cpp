@@ -62,6 +62,7 @@ void racingai::Car::update() {
 
 void racingai::Car::draw() {
 
+	ofSetColor(21, 89, 15);
 	ofPoint local_point = world_->getLocalPoint(position_);
 
 	ofRectangle draw_rect(local_point.x, local_point.y, body_.getWidth(), body_.getHeight());
