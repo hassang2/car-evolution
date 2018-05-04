@@ -8,7 +8,7 @@ namespace racingai {
 
 	class Track {
 	private:
-		vector <Car*> cars_;
+		vector <shared_ptr <Car> > cars_;
 		Car* focus_car_;
 		Universe* world_;
 		vector <shared_ptr<ofxBox2dEdge> > edges_;
@@ -17,11 +17,13 @@ namespace racingai {
 		ofxBox2d* box2d_;        //box2d engine
 	
 		bool score_line_edit_ = false;   //flag if score line editing is enabled/disabled
+
+		void calculateScores();
 	
 	public:
 		Track();
 		void update();
-		void setup(ofxBox2d* box, vector <Car*> cars_list, Universe* world, string file_path);
+		void setup(ofxBox2d* box, vector <shared_ptr<Car> > cars_list, Universe* world, string file_path);
 		void draw();
 		void center();
 		void addEdge();
@@ -29,7 +31,7 @@ namespace racingai {
 		void toggleScoreLineEdit();
 
 		//sets the cars sets the focus_car to the first index of the list
-		void setCars(vector <Car*> new_cars);
+		void setCars(vector <shared_ptr<Car> > new_cars);
 		//adds an edge to the track
 		void addPoint(int x, int y);
 
@@ -38,6 +40,7 @@ namespace racingai {
 		void loadTrack(std::string path);
 		void saveTrack() const;
 		void setupRectangles();
+		vector<shared_ptr<Car> > getCars() { return cars_; }
 
 		Car* getFocusCar() { return focus_car_; }
 	};

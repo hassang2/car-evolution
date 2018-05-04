@@ -33,6 +33,7 @@ namespace racingai {
 		bool dead_ = false;
 		double angle_ = 0.0;
 		double speed_ = 6.0;
+		ofPoint position_;
 		ofxBox2dRect body_;
 		ofxBox2d* box2d_;
 		Universe* world_;
@@ -53,8 +54,7 @@ namespace racingai {
 		void draw();
 		void setSpeed(double s);
 		void resetState();
-		int calculateScore();
-
+		void setScore(int s) { score_ = s; }
 		//sensors
 		void initSensors();
 		void updateSensorValues();
@@ -67,8 +67,6 @@ namespace racingai {
 
 		//Getters
 		ofxBox2dRect getBody();
-		double getXPos();
-		double getYPos();
 		double getAngle();
 		double getSpeed() const;
 		double getHeight() const;
@@ -77,7 +75,7 @@ namespace racingai {
 		vector<float> getSensorValues() const;
 		bool isDead() { return dead_; }
 		int getScore() const; // Gets the number of food items the snake has eaten
-
+		ofPoint getPosition() { return position_; }
 	};
 	
 	class RayCaster : public b2RayCastCallback {

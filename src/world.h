@@ -5,8 +5,8 @@ namespace racingai {
 
 	class Universe {
 	private:
-		double global_x_ = 0;
-		double global_y_ = 0;
+		double global_x_ = -ofGetWindowWidth() / 2;
+		double global_y_ = -ofGetWindowHeight() / 2;
 
 	public:
 		double getGlobalX() { return global_x_; }
@@ -14,8 +14,8 @@ namespace racingai {
 		void setGlobalX(double x);
 		void setGlobalY(double y);
 		//converts window coordinates to global coordinates
-		ofPoint getGlobalPoint(double x, double y);
-		ofPoint getGlobalPoint(ofPoint point);
+		ofPoint getGlobalPoint(double x, double y) const;
+		ofPoint getGlobalPoint(ofPoint point) const;
 		//converts global coordinates to window coordinates
 		ofPoint getLocalPoint(double x, double y);
 		ofPoint getLocalPoint(ofPoint point);

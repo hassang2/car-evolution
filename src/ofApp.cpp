@@ -16,31 +16,25 @@ void carGame::setup() {
 	ofSetWindowTitle("AI Racing");
 
 	initBox2d();
-	
+
 	world_ = Universe();
 
-	//game_track_ = Track();
+	neat_.init(10);
 
-	//cars_.push_back(make_shared<Car>());
-	//cars_.push_back(make_shared<Car>());
-
-	neat_.init(MAX_GENS);
+	vector<shared_ptr<Car> > cars;
 
 	//collect car objects from organsisms to be used in the game
 	//vector<NEAT::Organism*>::iterator curorg;
 	//for (curorg = neat_.getpopulation()->organisms.begin(); curorg != (neat_.getpopulation()->organisms).end(); ++curorg) {
-	//	cars_.push_back((*curorg)->getCar());
+	//	cars.push_back((*curorg)->getCar());
 	//}
 
-	vector<Car*> beep;
-	//beep.push_back((*neat_.getpopulation()->organisms.begin())->getCar());
-	beep.push_back(new Car());
-	//cars_.push_back(new Car());
-	//test.push_back(10);
-	//std::cout << test.size() << std::endl;
-	game_track_.setup(box2d_, beep, &world_, "../tracks/track4");
+	for (NEAT::Organism* org : neat_.getpopulation()->organisms) {
+		cars.push_back(org->getCar());
+	}
 
-	//neat();
+
+	game_track_.setup(box2d_, cars, &world_, "../tracks/track4");
 }
 
 void carGame::update() {
@@ -49,29 +43,47 @@ void carGame::update() {
 	if (current_state_ == IN_PROGRESS) {
 		//Order matters : track should be updated first
 		game_track_.update();
-		
+
+
 		if (!game_track_.getFocusCar()->isDead()) {
 			if (right_btn_hold_) game_track_.getFocusCar()->swerveRight();
 			if (left_btn_hold_) game_track_.getFocusCar()->swerveLeft();
+		}
+		
+		//game_track_.getFocusCar()->update();
 
-			game_track_.getFocusCar()->update();
+		for (shared_ptr<Car> car : game_track_.getCars()) {
+			if (!car.get()->isDead()) car.get()->update();
 		}
 
+		for (NEAT::Organism* org : neat_.getpopulation()->organisms) {
+			if (!org->getCar()->isDead()) {
+				//order matters, update BEFORE getting output
+				org->getCar()->update();
+				neat_.getOrganismOutput(org);
+			}
+		}
+
+
 		bool finish = true;
-		for (Car* car : cars_) {
-			if (!car->isDead()) {
+		for (shared_ptr<Car> car : game_track_.getCars()) {
+			if (!car.get()->isDead()) {
 				finish = false;
 				break;
 			}
 		}
-		//if (finish) {
-		//	if (neat_.evalPopulation()) {
-		//		std::cout << "Optimal car Found";
-		//	} else if (neat_.getCurrentGen() < MAX_GENS) {
-		//		reset();
-		//	}
-		//}
+		if (finish) {
+			if (neat_.evalPopulation()) {
+				std::cout << "Optimal car Found";
+			}
+			else if (neat_.getCurrentGen() < MAX_GENS) {
+				std::cout << "resetting" << std::endl;
+
+				reset();
+			}
+		}
 	}
+
 }
 
 
@@ -82,6 +94,7 @@ Draws the current state of the game with the following logic
 3. Draw the current position of the food and of the snake
 */
 void carGame::draw() {
+
 	if (current_state_ == PAUSED) {
 		drawGamePaused();
 	}
@@ -90,11 +103,10 @@ void carGame::draw() {
 	}
 
 	game_track_.draw();
-	//for (Car* car : cars_) {
-	//	car->draw();
-	//}
-	if (!game_track_.getFocusCar()->isDead()) game_track_.getFocusCar()->draw();
 
+	for (shared_ptr<Car> car : game_track_.getCars()) {
+		if (!car.get()->isDead()) car.get()->draw();
+	} 
 
 	//draw FPS
 	ofSetColor(255);
@@ -111,7 +123,8 @@ void carGame::draw() {
 	ofDrawBitmapString("[B] save track", 10, 190);
 	ofDrawBitmapString("[Q] quit", 10, 210);
 
-	ofDrawBitmapString("Score: " + std::to_string(game_track_.getFocusCar()->getScore()) , ofGetWindowWidth() / 2 - 10, 30);
+	ofDrawBitmapString("Score: " + std::to_string(game_track_.getFocusCar()->getScore()), ofGetWindowWidth() / 2 - 10, 30);
+
 }
 
 void carGame::keyPressed(int key) {
@@ -134,7 +147,8 @@ void carGame::keyPressed(int key) {
 		case 'S':
 			if (game_track_.getFocusCar()->getSpeed() > 0.0) {
 				game_track_.getFocusCar()->setSpeed(0.0);
-			} else if (!game_track_.getFocusCar()->isDead()) {
+			}
+			else if (!game_track_.getFocusCar()->isDead()) {
 				game_track_.getFocusCar()->setSpeed(3.0);
 			}
 			break;
@@ -182,21 +196,21 @@ void carGame::mouseDragged(int x, int y, int button) {
 
 
 
-void carGame::reset() {	
-	Car sample;
-	for (Car* car : cars_) {
-		car->resetState();
-	}
+void carGame::reset() {
+	//Car sample;
+	//for (Car* car : cars_) {
+	//	car->resetState();
+	//}
 
-	cars_.clear();
-	vector<NEAT::Organism*>::iterator curorg;
-	for (curorg = neat_.getpopulation()->organisms.begin(); curorg != (neat_.getpopulation()->organisms).end(); ++curorg) {
-		cars_.push_back((*curorg)->getCar());
-	}
+	//cars_.clear();
+	//vector<NEAT::Organism*>::iterator curorg;
+	//for (curorg = neat_.getpopulation()->organisms.begin(); curorg != (neat_.getpopulation()->organisms).end(); ++curorg) {
+	//	cars_.push_back((*curorg)->getCar());
+	//}
 
-	game_track_.setCars(cars_);
+	//game_track_.setCars(cars_);
 
-	current_state_ = IN_PROGRESS;
+	//current_state_ = IN_PROGRESS;
 }
 
 void racingai::carGame::evaluateScore() {

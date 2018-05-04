@@ -1,6 +1,7 @@
 #include "experiments.h"
 #include <cstring>
 
+
 #define NO_SCREEN_OUT
 
 
@@ -65,6 +66,7 @@ int NEAT::Neat::evalPopulation() {
 
 	bool win = false;
 
+
 	//Evaluate each organism on a test
 	for (curorg = (pop->organisms).begin(); curorg != (pop->organisms).end(); ++curorg) {
 		if (evalOrganism(*curorg)) {
@@ -80,6 +82,7 @@ int NEAT::Neat::evalPopulation() {
 		}
 	}
 
+
 	//Average and max their fitnesses for dumping to file and snapshot
 	for (curspecies = (pop->species).begin(); curspecies != (pop->species).end(); ++curspecies) {
 
@@ -91,6 +94,7 @@ int NEAT::Neat::evalPopulation() {
 		(*curspecies)->compute_average_fitness();
 		(*curspecies)->compute_max_fitness();
 	}
+
 
 	//Take a snapshot of the population, so that it can be
 	//visualized later on
@@ -117,7 +121,9 @@ int NEAT::Neat::evalPopulation() {
 
 	}
 
+
 	pop->epoch(current_gen_);
+	current_gen_++;
 
 	if (win) return 1;
 	else return 0;
@@ -150,7 +156,6 @@ void NEAT::Neat::getOrganismOutput(Organism * org) {
 
 	//Load and activate the network on each input
 
-
 	vector<float> sensor_values = org->getCar()->getSensorValues();
 
 	net->load_sensors(sensor_values);
@@ -161,11 +166,13 @@ void NEAT::Neat::getOrganismOutput(Organism * org) {
 	//use depth to ensure relaxation
 	for (relax = 0; relax <= net_depth; relax++) {
 		success = net->activate();
-		std::cout << "there were" << net->outputs.size() << " outputs" << std::endl;
-
 		for (int i = 0; i < net->outputs.size(); i++) {
 			this_out[i] = net->outputs[i]->activation;
 		}
+	}
+
+	for (int i = 0; i < net->outputs.size(); i++) {
+		this_out[i] = net->outputs[i]->activation;
 	}
 
 	//??? IS this NEEDED?
@@ -201,10 +208,11 @@ bool NEAT::Neat::evalOrganism(Organism* org) {
 	org->fitness = org->getCar()->getScore();
 	org->error = 1.0 / org->fitness;
 
-	if (org->fitness > 50) {
+	if (org->fitness > 150) {
 		org->winner = true;
 		return true;
-	} else {
+	}
+	else {
 		org->winner = false;
 		return false;
 	}

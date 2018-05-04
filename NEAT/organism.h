@@ -18,10 +18,10 @@ namespace NEAT {
 	// ---------------------------------------------  
 	class Organism {
 	private:
-		racingai::Car* car_;
+		shared_ptr<racingai::Car> car_;
 
 	public:
-		racingai::Car* NEAT::Organism::getCar() { return car_; }
+		shared_ptr<racingai::Car> NEAT::Organism::getCar() { return car_; }
 
 		double fitness;  //A measure of fitness for the Organism
 		double orig_fitness;  //A fitness measure that won't change during adjustments

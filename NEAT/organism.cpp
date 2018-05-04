@@ -18,7 +18,7 @@
 using namespace NEAT;
 
 Organism::Organism(double fit, Genome *g,int gen, const char* md) {
-	car_ = new racingai::Car();
+	car_ = make_shared<racingai::Car>();
 
 	fitness=fit;
 	orig_fitness=fitness;
@@ -85,7 +85,6 @@ Organism::Organism(const Organism& org)
 Organism::~Organism() {
 	delete net;
 	delete gnome;
-	delete car_;
 }
 
 void Organism::update_phenotype() {

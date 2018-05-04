@@ -30,11 +30,12 @@ racingai::Car::~Car() {
 void racingai::Car::setup(ofxBox2d* box, Universe* world) {
 	box2d_ = box;
 	world_ = world;
-	
+
 	ofAddListener(box2d_->contactStartEvents, this, &Car::contactStart);
 	ofAddListener(box2d_->contactEndEvents, this, &Car::contactEnd);
 
-	body_.setup(box2d_->getWorld(), ofGetWindowWidth() / 2, ofGetWindowHeight() / 2, 40, 20);
+	position_ = ofPoint(0, 0);
+	body_.setup(box2d_->getWorld(), 0, 0, 40, 20);
 	body_.setVelocity(cos(angle_ * PI / 180) * speed_, sin(angle_ * PI / 180) * speed_);
 	body_.setData(new ContactData());
 
@@ -42,13 +43,14 @@ void racingai::Car::setup(ofxBox2d* box, Universe* world) {
 }
 
 void racingai::Car::update() {
+	position_ = body_.getPosition();
 	body_.setVelocity(cos(angle_ * PI / 180) * speed_, sin(angle_ * PI / 180) * speed_);
 	body_.setRotation(angle_);
-	
+
 	ContactData * data = (ContactData*)body_.getData();
 	if (data && data->isInContact()) {
 		dead_ = true;
-		body_.setVelocity(0,0);
+		body_.setVelocity(0, 0);
 	}
 
 	//updates the position
@@ -61,7 +63,8 @@ void racingai::Car::update() {
 void racingai::Car::draw() {
 	ofSetColor(ofColor(150, 40, 255));
 
-	ofPoint local_point = world_->getLocalPoint(body_.getPosition());
+	ofPoint local_point = world_->getLocalPoint(position_);
+
 	ofRectangle draw_rect(local_point.x, local_point.y, body_.getWidth(), body_.getHeight());
 
 	ofPushMatrix();
@@ -75,9 +78,9 @@ void racingai::Car::draw() {
 }
 
 void racingai::Car::updateSensorValues() {
-	for (Sensor sensor : sensors_) {
+	for (Sensor& sensor : sensors_) {
 		RayCaster call_back;
-		
+
 		b2Vec2 p1 = sensor.input.p1;
 		b2Vec2 p2 = sensor.input.p2;
 		p1.x /= box2d_->scale;
@@ -91,7 +94,11 @@ void racingai::Car::updateSensorValues() {
 			b2Vec2 intersection = call_back.getIntersectionPoint();
 			sensor.value = ofDist(sensor.input.p1.x, sensor.input.p1.y, intersection.x * box2d_->scale, intersection.y * box2d_->scale);
 		}
+		else {
+			sensor.value = sensor.length;
+		}
 	}
+
 }
 
 void racingai::Car::drawSensors() {
@@ -115,6 +122,7 @@ void racingai::Car::initSensors() {
 	Sensor middle_sensor;
 	middle_sensor.length = 120;
 
+	middle_sensor.value = middle_sensor.length;
 	double x_m = ofGetWindowWidth() / 2 + WIDTH / 2 * cos(angle_ * PI / 180);
 	double y_m = ofGetWindowHeight() / 2 + WIDTH / 2 * sin(angle_ * PI / 180);
 
@@ -131,9 +139,10 @@ void racingai::Car::initSensors() {
 	Sensor left_sensor;
 	left_sensor.length = 120;
 
+	left_sensor.value = left_sensor.length;
 	double x_l = ofGetWindowWidth() / 2 + WIDTH / 2 * cos(angle_ * PI / 180) + HEIGHT / 2 * sin(angle_ * PI / 180);
 	double y_l = ofGetWindowHeight() / 2 + WIDTH / 2 * sin(angle_ * PI / 180) - HEIGHT / 2 * cos(angle_ * PI / 180);
-	
+
 	ofPoint global_point_l = world_->getGlobalPoint(x_l, y_l);
 	b2Vec2 p1_l(global_point_l.x, global_point_l.y);
 	b2Vec2 p2_l = p1_l + left_sensor.length * b2Vec2(cos((angle_ - 25) * PI / 180), sin((angle_ - 25) * PI / 180));
@@ -146,14 +155,15 @@ void racingai::Car::initSensors() {
 	//Right
 	Sensor right_sensor;
 	right_sensor.length = 120;
+	right_sensor.value = right_sensor.length;
 
 	double x_r = ofGetWindowWidth() / 2 + WIDTH / 2 * cos(angle_ * PI / 180) - HEIGHT / 2 * sin(angle_ * PI / 180);
 	double y_r = ofGetWindowHeight() / 2 + WIDTH / 2 * sin(angle_ * PI / 180) + HEIGHT / 2 * cos(angle_ * PI / 180);
-	
+
 	ofPoint global_point_r = world_->getGlobalPoint(x_r, y_r);
 	b2Vec2 p1_r(global_point_r.x, global_point_r.y);
 	b2Vec2 p2_r = p1_r + right_sensor.length * b2Vec2(cos((angle_ + 25) * PI / 180), sin((angle_ + 25) * PI / 180));
-	
+
 	right_sensor.input.p1 = p1_r;
 	right_sensor.input.p2 = p2_r;
 	right_sensor.input.maxFraction = 1.0;
@@ -161,9 +171,11 @@ void racingai::Car::initSensors() {
 }
 
 void racingai::Car::updateSensors() {
+
+	ofPoint local_point = world_->getLocalPoint(body_.getPosition());
 	//middle
-	double x_m = ofGetWindowWidth() / 2 + WIDTH / 2 * cos(angle_ * PI / 180);
-	double y_m = ofGetWindowHeight() / 2 + WIDTH / 2 * sin(angle_ * PI / 180);
+	double x_m = local_point.x + WIDTH / 2 * cos(angle_ * PI / 180);
+	double y_m = local_point.y + WIDTH / 2 * sin(angle_ * PI / 180);
 
 	ofPoint global_point_m = world_->getGlobalPoint(x_m, y_m);
 	b2Vec2 p1_m(global_point_m.x, global_point_m.y);
@@ -173,8 +185,8 @@ void racingai::Car::updateSensors() {
 	sensors_[0].input.p2 = p2_m;
 
 	//Left
-	double x_l = ofGetWindowWidth() / 2 + WIDTH / 2 * cos(angle_ * PI / 180) + HEIGHT / 2 * sin(angle_ * PI / 180);
-	double y_l = ofGetWindowHeight() / 2 + WIDTH / 2 * sin(angle_ * PI / 180) - HEIGHT / 2 * cos(angle_ * PI / 180);
+	double x_l = local_point.x + WIDTH / 2 * cos(angle_ * PI / 180) + HEIGHT / 2 * sin(angle_ * PI / 180);
+	double y_l = local_point.y + WIDTH / 2 * sin(angle_ * PI / 180) - HEIGHT / 2 * cos(angle_ * PI / 180);
 
 	ofPoint global_point_l = world_->getGlobalPoint(x_l, y_l);
 	b2Vec2 p1_l(global_point_l.x, global_point_l.y);
@@ -184,8 +196,8 @@ void racingai::Car::updateSensors() {
 	sensors_[1].input.p2 = p2_l;
 
 	//Right
-	double x_r = ofGetWindowWidth() / 2 + WIDTH / 2 * cos(angle_ * PI / 180) - HEIGHT / 2 * sin(angle_ * PI / 180);
-	double y_r = ofGetWindowHeight() / 2 + WIDTH / 2 * sin(angle_ * PI / 180) + HEIGHT / 2 * cos(angle_ * PI / 180);
+	double x_r = local_point.x + WIDTH / 2 * cos(angle_ * PI / 180) - HEIGHT / 2 * sin(angle_ * PI / 180);
+	double y_r = local_point.y + WIDTH / 2 * sin(angle_ * PI / 180) + HEIGHT / 2 * cos(angle_ * PI / 180);
 
 	ofPoint global_point_r = world_->getGlobalPoint(x_r, y_r);
 	b2Vec2 p1_r(global_point_r.x, global_point_r.y);
@@ -205,24 +217,8 @@ void racingai::Car::resetState() {
 	body_.setVelocity(cos(angle_ * PI / 180) * speed_, sin(angle_ * PI / 180) * speed_);
 }
 
-int racingai::Car::getScore() const{
+int racingai::Car::getScore() const {
 	return score_;
-}
-
-int racingai::Car::calculateScore() {
-	//ofPolyline a;
-	//int closest_index = 0;
-	//ofPoint car_position(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
-	//double shortest_distance = INT_MAX;
-	//for (int i = 0; i < score_line_.getVertices().size(); i++) {
-	//	double distance = score_line_[i].distance(car_position);
-	//	if (distance < shortest_distance) {
-	//		shortest_distance = distance;
-	//		closest_index = i;
-	//	}
-	//}
-	//return closest_index;
-	return 1;
 }
 
 void racingai::Car::swerveRight() {
@@ -236,14 +232,6 @@ void racingai::Car::swerveLeft() {
 
 ofxBox2dRect racingai::Car::getBody() {
 	return body_;
-}
-
-double racingai::Car::getXPos() {
-	return body_.getPosition().x;
-}
-
-double racingai::Car::getYPos() {
-	return body_.getPosition().y;
 }
 
 double racingai::Car::getAngle() {
@@ -263,7 +251,7 @@ double racingai::Car::getWidth() const {
 }
 
 
-vector<racingai::Sensor> racingai::Car::getSensors() const{
+vector<racingai::Sensor> racingai::Car::getSensors() const {
 	return sensors_;
 }
 

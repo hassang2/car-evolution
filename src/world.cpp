@@ -1,3 +1,4 @@
+#pragma once
 #include "world.h"
 
 ofPoint racingai::Universe::getLocalPoint(double x, double y) {
@@ -16,10 +17,10 @@ void racingai::Universe::setGlobalY(double y) {
 	global_y_ = y;
 }
 
-ofPoint racingai::Universe::getGlobalPoint(double x, double y) {
+ofPoint racingai::Universe::getGlobalPoint(double x, double y) const {
 	return ofPoint(x + global_x_, y + global_y_);
 }
 
-ofPoint racingai::Universe::getGlobalPoint(ofPoint point) {
+ofPoint racingai::Universe::getGlobalPoint(ofPoint point) const {
 	return getGlobalPoint(point.x, point.y);
 }
