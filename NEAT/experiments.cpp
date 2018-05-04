@@ -67,6 +67,7 @@ int NEAT::Neat::evalPopulation() {
 	bool win = false;
 
 
+	std::cout << "Evaluating Organisms..." << std::endl;
 	//Evaluate each organism on a test
 	for (curorg = (pop->organisms).begin(); curorg != (pop->organisms).end(); ++curorg) {
 		if (evalOrganism(*curorg)) {
@@ -81,6 +82,8 @@ int NEAT::Neat::evalPopulation() {
 			}
 		}
 	}
+
+	std::cout << "Evaluation Complete" << std::endl;
 
 
 	//Average and max their fitnesses for dumping to file and snapshot
@@ -104,9 +107,9 @@ int NEAT::Neat::evalPopulation() {
 	//Only print to file every print_every generations
 	char temp[50];
 	sprintf(temp, "gen_%d", current_gen_);
-	if (win ||
-		((current_gen_ % (NEAT::print_every)) == 0))
-		pop->print_to_file_by_species(temp);
+	//if (win ||
+	//	((current_gen_ % (NEAT::print_every)) == 0))
+	//	pop->print_to_file_by_species(temp);
 
 
 	if (win) {
@@ -208,7 +211,7 @@ bool NEAT::Neat::evalOrganism(Organism* org) {
 	org->fitness = org->getCar()->getScore();
 	org->error = 1.0 / org->fitness;
 
-	if (org->fitness > 150) {
+	if (org->fitness > 300) {
 		org->winner = true;
 		return true;
 	}

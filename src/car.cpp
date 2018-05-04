@@ -61,7 +61,6 @@ void racingai::Car::update() {
 }
 
 void racingai::Car::draw() {
-	ofSetColor(ofColor(150, 40, 255));
 
 	ofPoint local_point = world_->getLocalPoint(position_);
 
@@ -213,7 +212,10 @@ void racingai::Car::setSpeed(double s) {
 
 void racingai::Car::resetState() {
 	dead_ = false;
-	body_.setPosition(ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
+	angle_ = 0;
+	body_.setPosition(0, 0);
+	position_ = ofPoint(0, 0);
+	score_ = 0;
 	body_.setVelocity(cos(angle_ * PI / 180) * speed_, sin(angle_ * PI / 180) * speed_);
 }
 

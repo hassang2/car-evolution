@@ -13,6 +13,7 @@ namespace racingai {
 		double getGlobalY() { return global_y_; }
 		void setGlobalX(double x);
 		void setGlobalY(double y);
+		void resetState();
 		//converts window coordinates to global coordinates
 		ofPoint getGlobalPoint(double x, double y) const;
 		ofPoint getGlobalPoint(ofPoint point) const;

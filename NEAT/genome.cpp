@@ -121,7 +121,7 @@ Genome::Genome(int id, std::ifstream &iFile) {
 
 	//Loop until file is finished, parsing each line
 	while (!done) {
-        std::cout << curline << std::endl;
+        //std::cout << curline << std::endl;
 
 		if (curwordnum > wordcount || wordcount == 0) {
 			iFile.getline(curline, sizeof(curline));
@@ -214,9 +214,6 @@ Genome::Genome(int id, std::ifstream &iFile) {
 
             //std::cout<<"Added gene " << newgene << std::endl;
 		}
-
-		std::cout << "finished" << std::endl;
-
 	}
 
 }

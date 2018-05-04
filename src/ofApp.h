@@ -29,7 +29,6 @@ namespace racingai {
 	private:
 		GameState current_state_ = IN_PROGRESS; // The current state of the game, used to determine possible actions
 		Track game_track_; // the track object used in the game
-		vector<shared_ptr<Car> > cars_;
 		ofxBox2d* box2d_;           // the box2d world
 		Universe world_;
 		NEAT::Neat neat_;

@@ -459,7 +459,6 @@ bool Species::reproduce(int generation, Population *pop,std::vector<Species*> &s
 	//for(curorg=organisms.begin();curorg!=organisms.end();++curorg) {
 	//  total_fitness+=(*curorg)->fitness;
 	//}
-
 	
 	//Check for a mistake
 	if ((expected_offspring>0)&&

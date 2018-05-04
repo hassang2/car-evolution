@@ -512,8 +512,8 @@ bool Population::epoch(int generation) {
 		total+=(*curorg)->fitness;
 	}
 	overall_average=total/total_organisms;
-	std::cout<<total << "  " <<total_organisms;
-	std::cout<<"Generation "<<generation<<": "<<"overall_average = "<<overall_average<<std::endl;
+	//std::cout << total << "  " << total_organisms << std::endl;
+	std::cout << "Generation " << generation << ": " << "overall_average = " << overall_average << std::endl;
 
 	//Now compute expected number of offspring for each individual organism
 	for(curorg=organisms.begin();curorg!=organisms.end();++curorg) {
@@ -772,10 +772,10 @@ bool Population::epoch(int generation) {
 						(*curspecies)->expected_offspring+=stolen_babies;
 						stolen_babies=0;
 					}
-
 	}
 
 
+	std::cout << "Performing Selection..." << std::endl;
 	//Kill off all Organisms marked for death.  The remainder
 	//will be allowed to reproduce.
 	curorg=organisms.begin();
@@ -802,8 +802,10 @@ bool Population::epoch(int generation) {
 		}
 
 	}
+	std::cout << "Selection Complete" << std::endl;
 
-	//cout<<"Reproducing"<<endl;
+
+	cout<<"Reproducing..."<<endl;
 
 	//Perform reproduction.  Reproduction is done on a per-Species
 	//basis.  (So this could be paralellized potentially.)
@@ -823,11 +825,13 @@ bool Population::epoch(int generation) {
 	curspecies=species.begin();
 	int last_id=(*curspecies)->id;
 	while(curspecies!=species.end()) {
+
 	  (*curspecies)->reproduce(generation,this,sorted_species);
 
 	  //Set the current species to the id of the last species checked
 	  //(the iterator must be reset because there were possibly vector insertions during reproduce)
 	  std::vector<Species*>::iterator curspecies2=species.begin();
+
 	  while(curspecies2!=species.end()) {
 	    if (((*curspecies2)->id)==last_id)
 	      curspecies=curspecies2;
@@ -843,8 +847,10 @@ bool Population::epoch(int generation) {
 
 	}
 
-	//cout<<"Reproduction Complete"<<endl;
+	cout<<"Reproduction Complete"<<endl;
 
+
+	cout << "Removing old organisms..." << endl;
 
 	//Destroy and remove the old generation from the organisms and species  
 	curorg=organisms.begin();
@@ -870,6 +876,8 @@ bool Population::epoch(int generation) {
 	  //std::cout<<"nnext org # "<<(*curorg)->gnome->genome_id<<std::endl;
 
 	}
+
+	cout << "Removing Complete" << endl;
 
 	//Remove all empty Species and age ones that survive
 	//As this happens, create master organism list for the new generation
@@ -940,7 +948,7 @@ bool Population::epoch(int generation) {
 
 	//cout<<"babies_stolen at end: "<<babies_stolen<<endl;
 
-	//cout<<"Epoch complete"<<endl; 
+	cout<<"Epoch complete"<<endl; 
 
 	return true;
 

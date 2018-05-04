@@ -24,11 +24,6 @@ void carGame::setup() {
 	vector<shared_ptr<Car> > cars;
 
 	//collect car objects from organsisms to be used in the game
-	//vector<NEAT::Organism*>::iterator curorg;
-	//for (curorg = neat_.getpopulation()->organisms.begin(); curorg != (neat_.getpopulation()->organisms).end(); ++curorg) {
-	//	cars.push_back((*curorg)->getCar());
-	//}
-
 	for (NEAT::Organism* org : neat_.getpopulation()->organisms) {
 		cars.push_back(org->getCar());
 	}
@@ -76,14 +71,12 @@ void carGame::update() {
 			if (neat_.evalPopulation()) {
 				std::cout << "Optimal car Found";
 			}
-			else if (neat_.getCurrentGen() < MAX_GENS) {
-				std::cout << "resetting" << std::endl;
-
+			else if (neat_.getCurrentGen() < 30) {
+				std::cout << "End of Generation" << std::endl;
 				reset();
 			}
 		}
 	}
-
 }
 
 
@@ -94,7 +87,6 @@ Draws the current state of the game with the following logic
 3. Draw the current position of the food and of the snake
 */
 void carGame::draw() {
-
 	if (current_state_ == PAUSED) {
 		drawGamePaused();
 	}
@@ -102,11 +94,13 @@ void carGame::draw() {
 		drawGameOver();
 	}
 
+
 	game_track_.draw();
 
 	for (shared_ptr<Car> car : game_track_.getCars()) {
 		if (!car.get()->isDead()) car.get()->draw();
 	} 
+
 
 	//draw FPS
 	ofSetColor(255);
@@ -197,20 +191,21 @@ void carGame::mouseDragged(int x, int y, int button) {
 
 
 void carGame::reset() {
-	//Car sample;
-	//for (Car* car : cars_) {
-	//	car->resetState();
-	//}
 
-	//cars_.clear();
-	//vector<NEAT::Organism*>::iterator curorg;
-	//for (curorg = neat_.getpopulation()->organisms.begin(); curorg != (neat_.getpopulation()->organisms).end(); ++curorg) {
-	//	cars_.push_back((*curorg)->getCar());
-	//}
+	std::cout << "Resetting Game State..." << std::endl;
 
-	//game_track_.setCars(cars_);
+	world_.resetState();
 
-	//current_state_ = IN_PROGRESS;
+	vector<shared_ptr<Car> > cars;
+	for (NEAT::Organism* org : neat_.getpopulation()->organisms) {
+		org->getCar()->setup(box2d_, &world_);
+		cars.push_back(org->getCar());
+	}
+
+	game_track_.setCars(cars);
+
+	current_state_ = IN_PROGRESS;
+	std::cout << "Reset Complete" << std::endl;
 }
 
 void racingai::carGame::evaluateScore() {

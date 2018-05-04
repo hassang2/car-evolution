@@ -24,3 +24,8 @@ ofPoint racingai::Universe::getGlobalPoint(double x, double y) const {
 ofPoint racingai::Universe::getGlobalPoint(ofPoint point) const {
 	return getGlobalPoint(point.x, point.y);
 }
+
+void racingai::Universe::resetState() {
+	global_x_ = -ofGetWindowWidth() / 2;
+	global_y_ = -ofGetWindowHeight() / 2;
+}
