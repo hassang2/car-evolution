@@ -86,7 +86,7 @@ void racingai::Track::center() {
 		draw_line.addVertex(local_point.x, local_point.y);
 	}
 
-	draw_line.draw();
+	//draw_line.draw();
 
 }
 void racingai::Track::saveTrack() const {

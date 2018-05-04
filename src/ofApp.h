@@ -42,6 +42,8 @@ namespace racingai {
 		bool right_btn_hold_ = false;
 		bool left_btn_hold_ = false;
 
+		bool evolution_mode;
+
 		// Private helper methods to render various aspects of the game on screen.
 		void drawGameOver();
 		void drawGamePaused();
@@ -55,6 +57,7 @@ namespace racingai {
 		//Score Tracking
 		void evaluateScore();
 		int findLowestScoreIndex();
+
 	public:
 
 		// Function used for one time setup

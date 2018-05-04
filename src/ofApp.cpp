@@ -15,20 +15,23 @@ void carGame::setup() {
 	ofBackgroundHex(0x1F2C30);
 	ofSetRectMode(OF_RECTMODE_CENTER);     // 0,0 is at center of a rectangle now
 	ofSetWindowTitle("AI Racing");
+	evolution_mode = false;
 
 	initBox2d();
-
 	world_ = Universe();
 
 	neat_.init(50);
 
 	vector<shared_ptr<Car> > cars;
 
-	//collect car objects from organsisms to be used in the game
-	for (NEAT::Organism* org : neat_.getpopulation()->organisms) {
-		cars.push_back(org->getCar());
+	if (evolution_mode) {
+		//collect car objects from organsisms to be used in the game
+		for (NEAT::Organism* org : neat_.getpopulation()->organisms) {
+			cars.push_back(org->getCar());
+		}
+	} else {
+		cars.push_back(make_shared<Car>());
 	}
-
 
 	game_track_.setup(box2d_, cars, &world_, "../tracks/track4");
 }
@@ -41,25 +44,26 @@ void carGame::update() {
 		game_track_.update();
 
 
-		if (!game_track_.getFocusCar()->isDead()) {
+		if (!game_track_.getFocusCar()->isDead() && !evolution_mode) {
 			if (right_btn_hold_) game_track_.getFocusCar()->swerveRight();
 			if (left_btn_hold_) game_track_.getFocusCar()->swerveLeft();
 		}
-		
-		//game_track_.getFocusCar()->update();
 
-		for (shared_ptr<Car> car : game_track_.getCars()) {
-			if (!car.get()->isDead()) car.get()->update();
-		}
-
-		for (NEAT::Organism* org : neat_.getpopulation()->organisms) {
-			if (!org->getCar()->isDead()) {
-				//order matters, update BEFORE getting output
-				org->getCar()->update();
-				neat_.getOrganismOutput(org);
+		if (evolution_mode) {
+			for (NEAT::Organism* org : neat_.getpopulation()->organisms) {
+				if (!org->getCar()->isDead()) {
+					//order matters, update BEFORE getting output
+					org->getCar()->update();
+					neat_.getOrganismOutput(org);
+				}
+			}
+		} else {
+			for (shared_ptr<Car> car : game_track_.getCars()) {
+				if (!car.get()->isDead()) {
+					car.get()->update();
+				}
 			}
 		}
-
 
 		bool finish = true;
 		for (shared_ptr<Car> car : game_track_.getCars()) {
@@ -69,24 +73,21 @@ void carGame::update() {
 			}
 		}
 		if (finish) {
-			if (neat_.evalPopulation()) {
-				std::cout << "Optimal car Found";
-			}
-			else if (neat_.getCurrentGen() < 30) {
-				std::cout << "End of Generation" << std::endl;
+			if (evolution_mode) {
+				if (neat_.evalPopulation()) {
+					std::cout << "Optimal car Found";
+				}
+				else if (neat_.getCurrentGen() < 30) {
+					std::cout << "End of Generation" << std::endl;
+					reset();
+				}
+			} else {
 				reset();
 			}
 		}
 	}
 }
 
-
-/*
-Draws the current state of the game with the following logic
-1. If the game is paused draw the pause screen
-2. If the game is finished draw the game over screen and final score
-3. Draw the current position of the food and of the snake
-*/
 void carGame::draw() {
 	if (current_state_ == PAUSED) {
 		drawGamePaused();
@@ -95,16 +96,15 @@ void carGame::draw() {
 		drawGameOver();
 	}
 
-
 	game_track_.draw();
 
 	for (shared_ptr<Car> car : game_track_.getCars()) {
 		if (!car.get()->isDead()) car.get()->draw();
-	} 
+	}
 
 	ofSetColor(255);
 	font.drawString("FPS: " + ofToString(ofGetFrameRate()), 10, 20);
-	
+
 	font.drawString("[A] move left", 10, 45);
 	font.drawString("[D] move right", 10, 70);
 	font.drawString("[N] add new track edge", 10, 95);
@@ -117,7 +117,9 @@ void carGame::draw() {
 
 	font.drawString("Score: " + std::to_string(game_track_.getFocusCar()->getScore()), ofGetWindowWidth() / 2 - 10, 30);
 
-	font.drawString("Generation: " + std::to_string(neat_.getCurrentGen()), 30, ofGetWindowHeight() - 50);
+	if (evolution_mode) {
+		font.drawString("Generation: " + std::to_string(neat_.getCurrentGen()), 30, ofGetWindowHeight() - 50);
+	}
 }
 
 void carGame::keyPressed(int key) {
@@ -187,18 +189,21 @@ void carGame::mouseDragged(int x, int y, int button) {
 	game_track_.addPoint(x, y);
 }
 
-
-
 void carGame::reset() {
-
 	std::cout << "Resetting Game State..." << std::endl;
 
 	world_.resetState();
 
 	vector<shared_ptr<Car> > cars;
-	for (NEAT::Organism* org : neat_.getpopulation()->organisms) {
-		org->getCar()->setup(box2d_, &world_);
-		cars.push_back(org->getCar());
+	if (evolution_mode) {
+		for (NEAT::Organism* org : neat_.getpopulation()->organisms) {
+			org->getCar()->setup(box2d_, &world_);
+			cars.push_back(org->getCar());
+		}
+	} else {
+		shared_ptr<Car> car = make_shared<Car>();
+		car.get()->setup(box2d_, &world_);
+		cars.push_back(car);
 	}
 
 	game_track_.setCars(cars);

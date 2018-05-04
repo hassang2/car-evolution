@@ -1,28 +1,6 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (obj\Debug\) contains files shared from another project (final_project.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  experiments.cpp
-  organism.cpp
-  population.cpp
-  species.cpp
-  car.cpp
-  main.cpp
   ofApp.cpp
-  track.cpp
-c:\users\p_cat\openframeworks\of_v0.9.8_vs_release\addons\ofxbox2d-stable\libs\triangle\dpoint.hpp(477): warning C4002: too many actual parameters for macro 'assert' (compiling source file NEAT\population.cpp)
-c:\users\p_cat\openframeworks\of_v0.9.8_vs_release\addons\ofxbox2d-stable\libs\triangle\dpoint.hpp(477): warning C4002: too many actual parameters for macro 'assert' (compiling source file src\ofApp.cpp)
-c:\users\p_cat\openframeworks\of_v0.9.8_vs_release\addons\ofxbox2d-stable\libs\triangle\dpoint.hpp(477): warning C4002: too many actual parameters for macro 'assert' (compiling source file NEAT\species.cpp)
-c:\users\p_cat\openframeworks\of_v0.9.8_vs_release\addons\ofxbox2d-stable\libs\triangle\dpoint.hpp(477): warning C4002: too many actual parameters for macro 'assert' (compiling source file NEAT\organism.cpp)
-c:\users\p_cat\openframeworks\of_v0.9.8_vs_release\addons\ofxbox2d-stable\libs\triangle\dpoint.hpp(477): warning C4002: too many actual parameters for macro 'assert' (compiling source file src\main.cpp)
-c:\users\p_cat\openframeworks\of_v0.9.8_vs_release\addons\ofxbox2d-stable\libs\triangle\dpoint.hpp(477): warning C4002: too many actual parameters for macro 'assert' (compiling source file src\car.cpp)
-NEAT\population.cpp(70): warning C4101: 'count': unreferenced local variable
-c:\users\p_cat\openframeworks\of_v0.9.8_vs_release\addons\ofxbox2d-stable\libs\triangle\dpoint.hpp(477): warning C4002: too many actual parameters for macro 'assert' (compiling source file src\track.cpp)
-c:\users\p_cat\openframeworks\of_v0.9.8_vs_release\addons\ofxbox2d-stable\libs\triangle\dpoint.hpp(477): warning C4002: too many actual parameters for macro 'assert' (compiling source file NEAT\experiments.cpp)
-NEAT\population.cpp(431): warning C4101: 'pause': unreferenced local variable
-NEAT\species.cpp(432): warning C4101: 'pause': unreferenced local variable
-NEAT\species.cpp(452): warning C4101: 'marble': unreferenced local variable
-NEAT\species.cpp(453): warning C4101: 'spin': unreferenced local variable
-NEAT\experiments.cpp(35): warning C4101: 'samples': unreferenced local variable
-NEAT\experiments.cpp(34): warning C4101: 'expcount': unreferenced local variable
-NEAT\experiments.cpp(139): warning C4101: 'count': unreferenced local variable
+c:\users\p_cat\openframeworks\of_v0.9.8_vs_release\addons\ofxbox2d-stable\libs\triangle\dpoint.hpp(477): warning C4002: too many actual parameters for macro 'assert'
   final-project-hassang2.vcxproj -> C:\Users\P_Cat\openFrameworks\of_v0.9.8_vs_release\apps\myApps\final-project-hassang2\bin\final-project-hassang2_debug.exe
   final-project-hassang2.vcxproj -> bin\final-project-hassang2_debug.pdb (Full PDB)
   

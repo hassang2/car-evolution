@@ -145,7 +145,7 @@ void racingai::Car::initSensors() {
 
 	ofPoint global_point_l = world_->getGlobalPoint(x_l, y_l);
 	b2Vec2 p1_l(global_point_l.x, global_point_l.y);
-	b2Vec2 p2_l = p1_l + left_sensor.length * b2Vec2(cos((angle_ - 25) * PI / 180), sin((angle_ - 25) * PI / 180));
+	b2Vec2 p2_l = p1_l + left_sensor.length * b2Vec2(cos((angle_ - 45) * PI / 180), sin((angle_ - 45) * PI / 180));
 
 	left_sensor.input.p1 = p1_l;
 	left_sensor.input.p2 = p2_l;
@@ -162,7 +162,7 @@ void racingai::Car::initSensors() {
 
 	ofPoint global_point_r = world_->getGlobalPoint(x_r, y_r);
 	b2Vec2 p1_r(global_point_r.x, global_point_r.y);
-	b2Vec2 p2_r = p1_r + right_sensor.length * b2Vec2(cos((angle_ + 25) * PI / 180), sin((angle_ + 25) * PI / 180));
+	b2Vec2 p2_r = p1_r + right_sensor.length * b2Vec2(cos((angle_ + 45) * PI / 180), sin((angle_ + 45) * PI / 180));
 
 	right_sensor.input.p1 = p1_r;
 	right_sensor.input.p2 = p2_r;
