@@ -87,7 +87,6 @@ void racingai::Track::center() {
 	}
 
 	//draw_line.draw();
-
 }
 void racingai::Track::saveTrack() const {
 

@@ -15,7 +15,7 @@ void carGame::setup() {
 	ofBackgroundHex(0x1F2C30);
 	ofSetRectMode(OF_RECTMODE_CENTER);     // 0,0 is at center of a rectangle now
 	ofSetWindowTitle("AI Racing");
-	evolution_mode = false;
+	evolution_mode = true;
 
 	initBox2d();
 	world_ = Universe();
@@ -144,7 +144,7 @@ void carGame::keyPressed(int key) {
 				game_track_.getFocusCar()->setSpeed(0.0);
 			}
 			else if (!game_track_.getFocusCar()->isDead()) {
-				game_track_.getFocusCar()->setSpeed(3.0);
+				game_track_.getFocusCar()->setSpeed(6.0);
 			}
 			break;
 		case 'P':

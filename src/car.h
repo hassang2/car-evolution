@@ -32,7 +32,7 @@ namespace racingai {
 	private:
 		bool dead_ = false;
 		double angle_ = 0.0;
-		double speed_ = 8.0;
+		double speed_ = 20.0;
 		ofPoint position_;
 		ofxBox2dRect body_;
 		ofxBox2d* box2d_;

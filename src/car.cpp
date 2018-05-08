@@ -44,7 +44,7 @@ void racingai::Car::setup(ofxBox2d* box, Universe* world) {
 
 void racingai::Car::update() {
 	position_ = body_.getPosition();
-	body_.setVelocity(cos(angle_ * PI / 180) * speed_, sin(angle_ * PI / 180) * speed_);
+	body_.setVelocity(cos(angle_ * PI / 180) * 20, sin(angle_ * PI / 180) * 20);
 	body_.setRotation(angle_);
 
 	ContactData * data = (ContactData*)body_.getData();
