@@ -3,7 +3,7 @@
 An AI trained with genetic algorithm playing a track racing game created in openFramework
 
 ## Motivation
-This is my final project for CS 126 course. Since I am relly interested in machine learning I decided to pick a ML project to learn more about it.
+This is my final project for CS 126 course. Since I am really interested in machine learning I decided to pick a ML project to learn more about it.
 
 ## Features
 You can play the game by your self or watch the AI play the game. Don't forget that if you touch the walls you are dead! You can also make custom tracks and save/load them.
